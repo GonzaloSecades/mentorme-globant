@@ -1,12 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const unaRutaRouter = require("./unaRuta");
+const usersRouter = require("./users");
 
 router.get("/ping",(req,res)=>{
   res.send("pong")
 })
 
-//router.use("/categories", unaRutaRouter);
+
+router.use("/users", usersRouter);
 
 router.use("/", (req, res) => {
   res.send("No se ha alcanzado ninguna ruta");
