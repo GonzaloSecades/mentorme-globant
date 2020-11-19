@@ -1,0 +1,26 @@
+.App {
+  height: 100vh;
+  text-align: center;
+  background: rgb(22,30,40);
+  background: linear-gradient(0deg, rgba(22,30,40,1) 0%, rgba(22,40,60,1) 50%);
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 5em;
+  color: #E9E9E9;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none; 
+  user-select: none;
+    span{
+      color:#a6d431;
+      font-size: 1em;
+      position: relative;
+      bottom: 54px;
+      left: 113px;
+    }
+}
