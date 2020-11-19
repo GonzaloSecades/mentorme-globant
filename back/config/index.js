@@ -1,5 +1,5 @@
 //const chalk = require("chalk")
-const mongoose = require("mongoose");
+const mongoose = require("mongoose").set('debug', true); //quitar .set una vez en produccion
 mongoose.connect("mongodb://127.0.0.1:27017/mentorme", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
