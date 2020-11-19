@@ -1,3 +1,4 @@
+require("./config/index")
 const express = require("express");
 const volleyball = require("volleyball");
 const routes = require("./routes");
