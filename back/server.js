@@ -1,4 +1,4 @@
-require("./config/index")
+require("./config/index");
 const express = require("express");
 const volleyball = require("volleyball");
 const routes = require("./routes");
@@ -10,4 +10,4 @@ app.use(volleyball);
 //Routes
 app.use("/api", routes);
 
-app.listen(8000, ()=>console.log("SERVER LISTENING AT PORT 8000"))
+app.listen(8000, () => console.log("SERVER LISTENING AT PORT 8000"));
