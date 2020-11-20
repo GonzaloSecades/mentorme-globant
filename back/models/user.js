@@ -25,6 +25,7 @@ let userSchema = new mongoose.Schema({
   accessLevel: {type: String, required: true},
   type: {type: String, required: true},
   skills: [{type: Schema.Types.ObjectId, ref: "Skill"}],
+  skillsToLearn:[{type: Schema.Types.ObjectId, ref: "Skill"}],
   mentors: [{type: Schema.Types.ObjectId, ref: "User"}],
   mentees: [{type: Schema.Types.ObjectId, ref: "User"}],
 });
