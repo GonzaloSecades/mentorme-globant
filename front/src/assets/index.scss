@@ -4,6 +4,7 @@
 @import "./_burger";
 @import "./_nav";
 @import "./_menu";
+@import "./myprofile";
 
 
 body {
@@ -16,4 +17,9 @@ html{
   margin: 0;
 }
 
+.order{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
