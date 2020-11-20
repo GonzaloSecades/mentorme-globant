@@ -5,7 +5,7 @@ import "./assets/index.scss";
 //COMPONENTS
 import Landing from "./components/Landing/Landing";
 import Navbar from "./components/Navbar/Navbar";
-import Loign from "./components/Login/Login";
+import Login from "./components/Login/Login";
 import Menu from "./components/Menu/Menu";
 import MyProfile from "./components/MyProfile/MyProfile";
 
@@ -17,7 +17,7 @@ function Main() {
       <div>
         <Switch>
           <Route exact path="/" component={Landing}></Route>
-          <Route path="/login" component={Loign}></Route>
+          <Route path="/login" component={Login}></Route>
           <Route path="/myprofile" component={MyProfile} />
         </Switch>
       </div>
