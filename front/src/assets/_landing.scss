@@ -1,23 +1,24 @@
+@import "./_colors";
+
 .App {
   height: 100vh;
   text-align: center;
-  background: rgb(22,30,40);
-  background: linear-gradient(0deg, rgba(22,30,40,1) 0%, rgba(22,40,60,1) 50%);
+  background: $landingBgColor;
   text-transform: uppercase;
   font-weight: 800;
   font-size: 5em;
-  color: #E9E9E9;
+  color: $mentorColor;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  user-select: none;
    -webkit-user-select: none;
    -moz-user-select: none;
    -ms-user-select: none; 
-  user-select: none;
     span{
-      color:#a6d431;
+      color:$meColor ;
       font-size: 1em;
       position: relative;
       bottom: 54px;
