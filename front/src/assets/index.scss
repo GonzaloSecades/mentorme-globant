@@ -1,12 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,800;1,300;1,400&display=swap');
-@import "./_home";
+@import "./_colors.scss"; 
+@import "./_landing";
+@import "./_burger";
+@import "./_nav";
+@import "./_menu";
 
 
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  background-color: #e9e9e9;
+  background-color: $backgorundColor;
 }
 
+html{
+  margin: 0;
+}
 
 
