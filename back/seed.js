@@ -33,6 +33,12 @@ async function seed() {
       .then((data) => console.log("completado!!", data))
   })
 
+  Skill.find({}).then(data => {
+    console.log(data)
+    User.updateMany({country: "Paraguay"}, {skillsToLearn: [data[0]._id, data[1]._id]})
+      .then((data) => console.log("completado!!", data))
+  })
+
 }
 seed()
 //User.update({skills:[]}).then((data)=> console.log(data))

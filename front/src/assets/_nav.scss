@@ -1,0 +1,33 @@
+@import "./_colors.scss";
+.container{
+  background: $landingBgColor;
+  margin: 0;
+  box-shadow:  0 9px 20px rgba(0, 0, 0, 0.2), 0 2px 3px rgba(0, 0, 0, 0.04);
+}
+ .logo {
+    height: 13vh;
+    padding-right: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 4vh;
+    color:$mentorColor ;
+    display: flex;
+    position: relative;
+    top: -12px;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: flex-start;
+    flex-direction: column;
+    user-select: none;
+     -webkit-user-select: none;
+     -moz-user-select: none;
+     -ms-user-select: none; 
+      span{
+        color:$meColor;
+        font-size: 1em;
+        position: relative;
+        bottom: 3vh;
+     
+      }
+  } 
