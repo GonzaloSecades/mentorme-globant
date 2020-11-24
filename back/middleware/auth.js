@@ -11,7 +11,7 @@ auth = (req, res, next) => {
     } else {
       req.userId = userId
       next();
-    }mui
+    }
   } catch {
     res.status(401).json({
       error: new Error('Invalid request!')

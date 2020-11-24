@@ -21,11 +21,11 @@ function Main() {
   //HOOK PERSISTENCIA DE SESION
   React.useEffect(() => {
     if (document.cookie) {
-      const cookieValue = document.cookie
+      const token = document.cookie
         .split('; ')
         .find(row => row.startsWith('token'))
         .split('=')[1];
-      dispatch(me(cookieValue))
+      dispatch(me(token))
     }
   }, [])
 
