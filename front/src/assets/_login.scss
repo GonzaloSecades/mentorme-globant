@@ -1,37 +1,35 @@
 @import "./_colors.scss";
-.formContainerLogin{
+
+.formContainerLogin {
   display: flex;
   align-items: center;
   flex-direction: column;
   position: relative;
   top: 6vh;
-  p{
+  p {
     text-transform: uppercase;
     font-size: 2rem;
     font-weight: 500;
     margin: 7px;
-    color:$landingBgColor
-  };
-  .forgotpassword{
+    color: $landingBgColor;
+  }
+  .forgotpassword {
     text-decoration: none;
     font-size: 13px;
-    margin-right: .5em;
-    color:rgb(169, 164, 164);
+    margin-right: 0.5em;
+    color: rgb(169, 164, 164);
     position: relative;
     left: 65px;
-  };
-  .buttonLoginContainer{
+  }
+  .buttonLoginContainer {
     margin: 12%;
     display: flex;
     flex-direction: column;
     text-decoration: none;
-    .buttoncreateacc{
+    .buttoncreateacc {
       margin: 2px auto;
       border-radius: 20px;
-      color:$landingBgColor;
-      
+      color: $landingBgColor;
     }
   }
-
-
 }
