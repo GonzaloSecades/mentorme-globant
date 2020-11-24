@@ -31,7 +31,6 @@ function Main() {
           <Route path="/myprofile" component={MyProfile} />
         </Switch>
       </div>
-
       {location === "/" ? null : <Menu />}
     </div>
   );

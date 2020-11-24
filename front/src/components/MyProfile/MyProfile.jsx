@@ -76,7 +76,6 @@ function myProfile() {
 
       </div>
       
-
     </div>
   );
 }

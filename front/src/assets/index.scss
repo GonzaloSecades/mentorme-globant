@@ -4,10 +4,9 @@
 @import "./_burger";
 @import "./_nav";
 @import "./_menu";
-
 @import "./myprofile";
-
 @import "./_login.scss";
+@import "./register.scss";
 
 *{
   box-sizing: border-box;
@@ -21,7 +20,10 @@ body {
 
 html{
   margin: 0;
-/*   overflow: hidden; */
+}
+
+.separador{
+  display: block;
 }
 
 .order{
