@@ -1,5 +1,6 @@
 import React from "react";
-import { Route, Switch, useLocation } from "react-router-dom";
+import {useDispatch} from 'react-redux'
+import {Route, Switch, useLocation} from "react-router-dom";
 //STYLES
 import "./assets/index.scss";
 //COMPONENTS
@@ -10,8 +11,23 @@ import Login from "./components/Login/Login";
 import Menu from "./components/Menu/Menu";
 import MyProfile from "./components/MyProfile/MyProfile";
 
+import {me} from './redux/action-creators/currentUser'
+
 function Main() {
   const location = useLocation().pathname;
+  const dispatch = useDispatch()
+
+  React.useEffect(() => {
+    if (document.cookie) {
+      const cookieValue = document.cookie
+        .split('; ')
+        .find(row => row.startsWith('token'))
+        .split('=')[1];
+      dispatch(me(cookieValue))
+    }
+  }, [])
+
+
   return (
     <div className="order">
       {location === "/" ? null : <Navbar />}
