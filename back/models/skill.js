@@ -1,13 +1,12 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-var skillSchema = new Schema({
+const skillSchema = new Schema({
   name: { type: String, required: true },
-  category: { type: String, required: true },
-  proficiency: { type: String},
-  //users: [{ type: Schema.Types.ObjectId, ref: "User"}]
+  keywords: { type: [String] },
+  proficiency: {type: String},
 });
 
 const Skill = mongoose.model("Skill", skillSchema);
 
-module.exports = Skill;
+module.exports = {Skill, skillSchema};

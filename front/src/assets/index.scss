@@ -5,6 +5,13 @@
 @import "./_nav";
 @import "./_menu";
 
+@import "./myprofile";
+
+@import "./_login.scss";
+
+*{
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -14,6 +21,12 @@ body {
 
 html{
   margin: 0;
+/*   overflow: hidden; */
 }
 
+.order{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
