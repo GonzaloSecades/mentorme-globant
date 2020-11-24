@@ -1,6 +1,7 @@
 import Burger from "./Components/Burger"
 import { useLocation } from "react-router-dom";
-function Navbar() {
+
+export default function Navbar() {
     const location = useLocation().pathname;
     return (
         <div className="container">
@@ -10,4 +11,4 @@ function Navbar() {
             </div>
         </div>
     )
-export default Navbar;
+}
