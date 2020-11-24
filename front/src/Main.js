@@ -19,7 +19,7 @@ function Main() {
         <Switch>
           <Route exact path="/" component={Landing}></Route>
           <Route path="/login" component={Login}></Route>
-         <Route path="/register" component={UserForm}></Route>
+          <Route path="/register" component={UserForm}></Route>
           <Route path="/myprofile" component={MyProfile} />
         </Switch>
       </div>
