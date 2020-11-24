@@ -32,7 +32,7 @@ function FormUserSkills(props) {
     <div className="content-register">
       <p>STEP 3 SKILSS DE USUARIO...</p>
       <MobileStepper
-        variant="progress"
+        variant="dots"
         steps={4}
         position="static"
         activeStep={props.selectedStep - 2}
@@ -44,7 +44,11 @@ function FormUserSkills(props) {
             disabled={props.selectedStep === 5}
           >
             <p className="btn-steppers">Next</p>
-            {theme.direction === "rtl" ? "<-" : "->"}
+            {theme.direction === "rtl" ? (
+              <KeyboardArrowLeft />
+            ) : (
+              <KeyboardArrowRight />
+            )}
           </Button>
         }
         backButton={
@@ -53,7 +57,11 @@ function FormUserSkills(props) {
             onClick={prev}
             disabled={props.selectedStep === 0}
           >
-            {theme.direction === "rtl" ? "->" : "<-"}
+            {theme.direction === "rtl" ? (
+              <KeyboardArrowRight />
+            ) : (
+              <KeyboardArrowLeft />
+            )}
             <p className="btn-steppers">Back</p>
           </Button>
         }
