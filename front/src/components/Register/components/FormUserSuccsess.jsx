@@ -27,15 +27,14 @@ function FormUserSuccsess(props) {
     <div className="content-register">
       <p>STEP 5 SUCCSESS...</p>
       <MobileStepper
-        variant="progress"
+        variant="dots"
         steps={4}
         position="static"
         activeStep={props.selectedStep - 2}
         className={classes.root}
         nextButton={
           <Button size="small" disabled={props.selectedStep === 4}>
-            <p className="btn-steppers">Next</p>
-            {theme.direction === "rtl" ? "<-" : "->"}
+            <p className="btn-steppers">Finish</p>
           </Button>
         }
         backButton={
@@ -44,7 +43,7 @@ function FormUserSuccsess(props) {
             onClick={prev}
             disabled={props.selectedStep === 0}
           >
-            {theme.direction === "rtl" ? "->" : "<-"}
+            {theme.direction === "rtl" ? "->" : <KeyboardArrowLeft />}
             <p className="btn-steppers">Back</p>
           </Button>
         }

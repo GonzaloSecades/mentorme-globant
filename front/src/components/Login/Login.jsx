@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
 function Login() {
   const classes = useStyles();
   const dispatch = useDispatch();
+
   const [useEmail, setEmail] = useState("")
   const [usePassword, setPassword] = useState("")
 
@@ -59,26 +60,31 @@ function Login() {
     e.preventDefault()
     dispatch(login(useEmail, usePassword))
     console.log('ENTRO')
+
   }
 
   return (
     <div>
-      <div className="formContainerLogin">
+      <form onSubmit={onSubmit} className="formContainerLogin">
         <p>Sign In</p>
         <TextField
           className={classes.formLogininput}
           id="outlined-search"
           label=" Email *"
+          name="email"
           type="text"
           variant="outlined"
+          onChange={onChange}
         />
         <TextField
           className={classes.formLogininput}
           id="outlined-password-input"
           label=" Password *"
+          name="password"
           type="password"
           autoComplete="current-password"
           variant="outlined"
+          onChange={onChange}
         />
         <Link to="#" className="forgotpassword" href="#">
           Lost Your Password ?
@@ -88,16 +94,17 @@ function Login() {
             style={{
               backgroundColor: "rgba(18,41,68,1)",
               borderRadius: "20px",
-              width: "100%",
+              width: "48%",
               margin: "20px auto",
             }}
             className={classes.buttonSignin}
             variant="contained"
             color="primary"
+            onClick={onSubmit}
           >
             Sign in
           </Button>
-          <Link style={{ textDecoration: "none" }} to="/register">
+          <Link to="/register">
             <Button
               style={{
                 color: "rgba(18,41,68,1)",
@@ -111,7 +118,7 @@ function Login() {
             </Button>
           </Link>
         </div>
-      </div>
+      </form>
     </div>
   );
 }
