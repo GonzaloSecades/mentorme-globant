@@ -14,7 +14,6 @@ register = (req, res) => {
 }
 
 login = (req, res) => {
-  console.log("reqBODY", req.body)
   User.findOne({email: req.body.email}).select('+password')
     .then(user => {
       if (!user) {

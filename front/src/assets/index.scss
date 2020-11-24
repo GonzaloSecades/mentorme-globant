@@ -1,32 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,800;1,300;1,400&display=swap');
-@import "./_colors.scss"; 
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,800;1,300;1,400&display=swap");
+@import "./_colors.scss";
 @import "./_landing";
 @import "./_burger";
 @import "./_nav";
 @import "./_menu";
-
 @import "./myprofile";
-
 @import "./_login.scss";
+@import "./register.scss";
 
-*{
+* {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: $backgorundColor;
 }
 
-html{
-  margin: 0;
-/*   overflow: hidden; */
+.separador {
+  display: block;
 }
 
-.order{
+.order {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-

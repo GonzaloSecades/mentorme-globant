@@ -18,4 +18,3 @@ export const LOGOUT = 'LOGOUT'
 export const GET_MENTORS = 'GET_MENTORS'
 export const GET_MENTEES = 'GET_MENTEES'
 
-//skillss

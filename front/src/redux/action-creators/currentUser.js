@@ -1,4 +1,4 @@
-import {LOGIN} from "../constants";
+import { LOGIN } from "../constants";
 import axios from "axios";
 
 export function login(email, password) {

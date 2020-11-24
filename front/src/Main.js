@@ -1,6 +1,7 @@
 import React from "react";
-import {useDispatch} from 'react-redux'
-import {Route, Switch, useLocation} from "react-router-dom";
+import { Route, Switch, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 //STYLES
 import "./assets/index.scss";
 //COMPONENTS
@@ -14,9 +15,10 @@ import MyProfile from "./components/MyProfile/MyProfile";
 import {me} from './redux/action-creators/currentUser'
 
 function Main() {
-  const location = useLocation().pathname;
   const dispatch = useDispatch()
+  const location = useLocation().pathname;
 
+  //HOOK PERSISTENCIA DE SESION
   React.useEffect(() => {
     if (document.cookie) {
       const cookieValue = document.cookie
@@ -39,8 +41,7 @@ function Main() {
           <Route path="/myprofile" component={MyProfile} />
         </Switch>
       </div>
-
-      {location === "/" ? null : <Menu />}
+      {location === "/" || "/register" ? null : <Menu />}
     </div>
   );
 }
