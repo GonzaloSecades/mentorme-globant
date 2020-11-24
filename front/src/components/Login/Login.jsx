@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { makeStyles, TextField, Button } from "@material-ui/core";
-import { Link } from "react-router-dom";
-import { login } from "../../redux/action-creators/currentUser";
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux'
+import { makeStyles, TextField, Button } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import { login } from '../../redux/action-creators/currentUser'
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,22 +43,24 @@ const useStyles = makeStyles((theme) => ({
 function Login() {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const [useEmail, setEmail] = useState("");
-  const [usePassword, setPassword] = useState("");
+
+  const [useEmail, setEmail] = useState("")
+  const [usePassword, setPassword] = useState("")
 
   function onChange(e) {
-    console.log(e.target.value);
+    console.log(e.target.value)
     if (e.target.name === "email") {
-      setEmail(e.target.value);
+      setEmail(e.target.value)
     } else {
-      setPassword(e.target.value);
+      setPassword(e.target.value)
     }
-  }
 
+  }
   function onSubmit(e) {
-    e.preventDefault();
-    dispatch(login(useEmail, usePassword));
-    console.log("ENTRO");
+    e.preventDefault()
+    dispatch(login(useEmail, usePassword))
+    console.log('ENTRO')
+
   }
 
   return (
