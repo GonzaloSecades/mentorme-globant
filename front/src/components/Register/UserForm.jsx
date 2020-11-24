@@ -6,9 +6,24 @@ import FormUserSkills from "./components/FormUserSkills"
 import FormUserSave from "./components/FormUserSave"
 import FormUserSuccsess from "./components/FormUserSuccsess"
 
-
 function UserForm(){
 const [step, setStep] = useState(1)
+const [user, setUser] = useState({
+  email: "",
+  password: "",
+  firstName: "",
+  lastName: "",
+  country: "",
+  phoneNumber: "",
+  languages: [],
+  avatar: "",
+  skills: [],
+  skillsToLearn: [],
+  skillsToTeach: [],
+  mentors: [],
+  mentees: [],
+  isAdmin: false,
+})
 
 const nextStep = ()=>{
     setStep(step + 1) 
