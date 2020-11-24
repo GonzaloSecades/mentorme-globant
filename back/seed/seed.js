@@ -4,6 +4,7 @@ const User = require("../models/user");
 const chalk = require("chalk");
 const usersObj = require("./usersObj")
 const skillsObj = require("./skillsObj")
+const bcrypt = require('bcrypt')
 require("../config/index");
 const log = (...args) => console.log(chalk.yellow(...args));
 const _ = require('lodash');
@@ -48,6 +49,23 @@ async function seed() {
       }
     }
   }
+
+  for (let i = 0; i < allUsers.length; i++) {
+    const hash = await bcrypt.hash(allUsers[i].password, 10)
+    allUsers[i].password = hash
+    allUsers[i].save()
+  }
+
+  // register = (req, res) => {
+  //   bcrypt.hash(req.body.password, 10).then(
+  //     (hash) => {
+  //       const user = new User({...req.body, password: hash});
+  //       user.save()
+  //         .then(() => res.status(201).json({message: 'User added successfully!'}))
+  //         .catch((error) => res.status(500).json({error: error}));
+  //     }
+  //   )
+  // }
 
 
 }
