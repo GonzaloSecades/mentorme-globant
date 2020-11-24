@@ -43,7 +43,7 @@ function myProfile() {
       <div>hola</div>
       <div>hola</div>
       
-      
+    
     </div>
   );
 };
