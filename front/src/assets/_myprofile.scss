@@ -2,9 +2,8 @@
 
 .MyProfileFather {
   color: black;
-  
-  .backgroundAnimation1{
-    width: 350px;
+    .backgroundAnimation1{
+    width: 250px;
     position: absolute;
     left: 1%;
     opacity: 0.2;
@@ -60,6 +59,12 @@
         
       }
     }
+  }
+
+
+  .prueba {    
+    background-color: red;   
+    margin-bottom: 86.7px;
   }
 }
 

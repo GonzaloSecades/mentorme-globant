@@ -14,7 +14,7 @@ register = (req, res) => {
 }
 
 login = (req, res) => {
-  User.findOne({email: req.body.email})
+  User.findOne({email: req.body.email}).select("+password")
     .then(user => {
       if (!user) {
         return res.status(401).json({
@@ -25,7 +25,8 @@ login = (req, res) => {
         .then((valid) => {
           if (!valid) return res.status(401).json({error: new Error('Incorrect password!')})
           const token = jwt.sign( { userId: user._id }, 'superfluous-cat&ultra-dog', { expiresIn: '24h' })
-          res.status(200).json({userId: user._id, token})
+          user['token'] = token
+          res.status(200).json({user, token})
         }).catch(error => res.status(500).json({error: error}))
     }).catch(error => res.status(500).json({error: error}))
 }
