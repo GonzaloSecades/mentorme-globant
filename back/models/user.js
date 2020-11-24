@@ -1,44 +1,40 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const uniqueValidator = require('mongoose-unique-validator');
-const {skillSchema} = require('./skill')
+
+const userSkillsSchema = new Schema ({
+    name: {type: String, required: true},
+    keywords: {type: [String]},
+    proficiency: {type: Number, min: 1, max: 5, default: 1},
+})
+
+const userMenteeMentor = new Schema({
+  _id: {type: Schema.Types.ObjectId, ref: "User"},
+  email: {type: String, required: true},
+  firstName: {type: String, required: true},
+  lastName: {type: String, required: true},
+  country: {type: String, required: true},
+  phoneNumber: {type: String},
+  languages: [{type: String, enum: ['spanish', 'portuguese', 'english', 'french', 'german', 'italian'], default: 'spanish'}],
+  skills: [{_id: {type: Schema.Types.ObjectId, ref: "Skill"}, name: {type: String}}],
+  avatar: {type: String},
+})
 
 const userSchema = new Schema({
   email: {type: String, required: [true, 'User email required'], unique: true},
   password: {type: String, required: true, select: false},
   firstName: {type: String, required: true},
   lastName: {type: String, required: true},
-  country: {type: String, required: true},
+  country: {type: String, required: true, default: 'Argentina'},
   phoneNumber: {type: String},
   languages: [{type: String, enum: ['spanish', 'portuguese', 'english', 'french', 'german', 'italian'], default: 'spanish'}],
   avatar: {type: String},
-
-  skills: [{type: skillSchema, default:[]}],
-  skillsToLearn: [{type: skillSchema, default:[]}],
-  skillsToTeach: [{type: skillSchema, default:[]}],
-  mentors: [{
-    _id: {type: Schema.Types.ObjectId, ref: "User"},
-    email: {type: String, required: true},
-    firstName: {type: String, required: true},
-    lastName: {type: String, required: true},
-    country: {type: String, required: true},
-    phoneNumber: {type: String},
-    languages: [{type: String, enum: ['spanish', 'portuguese', 'english', 'french', 'german', 'italian'], default: 'spanish'}],
-    skills: [{_id: {type: Schema.Types.ObjectId, ref: "Skill"}, name: {type: String}}],
-    avatar: {type: String}
-  }],
-  mentees: [{
-    _id: {type: Schema.Types.ObjectId, ref: "User"},
-    email: {type: String, required: true},
-    firstName: {type: String, required: true},
-    lastName: {type: String, required: true},
-    country: {type: String, required: true},
-    phoneNumber: {type: String},
-    languages: [{type: String, enum: ['spanish', 'portuguese', 'english', 'french', 'german', 'italian'], default: 'spanish'}],
-    skills: [{_id: {type: Schema.Types.ObjectId, ref: "Skill"}, name: {type: String}}],
-    avatar: {type: String}
-  }],
-  isAdmin: {type: Boolean, required: true},
+  skills: [{type: userSkillsSchema, default: []}],
+  skillsToLearn: [{type: userSkillsSchema, default: []}],
+  skillsToTeach: [{type: userSkillsSchema, default: []}],
+  mentors: [{type: userMenteeMentor, default: []}],
+  mentees: [{type: userMenteeMentor, default: []}],
+  isAdmin: {type: Boolean, required: true, default: false},
 });
 
 // skillsToLearn: [{type: Schema.Types.ObjectId, ref: "Skill"}],
@@ -48,17 +44,3 @@ const userSchema = new Schema({
 
 userSchema.plugin(uniqueValidator);
 module.exports = mongoose.model("User", userSchema);
-
-/* Otra forma de validar email
-validate: {
-  validator: async function (email) {
-    const user = await this.constructor.findOne({email});
-    if (user) {
-      if (this.id === user.id) return true;
-      return false;
-    }
-    return true;
-  },
-  message: () => 'The specified email address is already in use.'
-},
-*/

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux'
-import { makeStyles, TextField, Button } from '@material-ui/core';
-import { Link } from 'react-router-dom';
-import { login } from '../../redux/action-creators/currentUser'
+import React, {useState} from 'react';
+import {useDispatch} from 'react-redux'
+import {makeStyles, TextField, Button} from '@material-ui/core';
+import {Link} from 'react-router-dom';
+import {login} from '../../redux/action-creators/currentUser'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -40,87 +40,39 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Login() {
-  const classes = useStyles();
-  const dispatch = useDispatch();
 
+function Login() {
+  const dispatch = useDispatch();
+  const classes = useStyles();
   const [useEmail, setEmail] = useState("")
   const [usePassword, setPassword] = useState("")
 
   function onChange(e) {
     console.log(e.target.value)
-    if (e.target.name === "email") {
-      setEmail(e.target.value)
-    } else {
-      setPassword(e.target.value)
-    }
-
+    if (e.target.name === "email") setEmail(e.target.value)
+    else setPassword(e.target.value)
   }
+
   function onSubmit(e) {
     e.preventDefault()
     dispatch(login(useEmail, usePassword))
-    console.log('ENTRO')
-
   }
 
   return (
     <div>
       <form onSubmit={onSubmit} className="formContainerLogin">
         <p>Sign In</p>
-        <TextField
-          className={classes.formLogininput}
-          id="outlined-search"
-          label=" Email *"
-          name="email"
-          type="text"
-          variant="outlined"
-          onChange={onChange}
-        />
-        <TextField
-          className={classes.formLogininput}
-          id="outlined-password-input"
-          label=" Password *"
-          name="password"
-          type="password"
-          autoComplete="current-password"
-          variant="outlined"
-          onChange={onChange}
-        />
-        <Link to="#" className="forgotpassword" href="#">
-          Lost Your Password ?
-        </Link>
+        <TextField onChange={onChange} className={classes.formLogininput} id="outlined-search" label=" Email *" name="email" type="text" variant="outlined" />
+        <TextField className={classes.formLogininput} onChange={onChange} id="outlined-password-input" label=" Password *" name="password" type="password" autoComplete="current-password" variant="outlined" />
+        <Link to="#" className="forgotpassword" href="#">Lost Your Password ?</Link>
         <div className="buttonLoginContainer">
-          <Button
-            style={{
-              backgroundColor: "rgba(18,41,68,1)",
-              borderRadius: "20px",
-              width: "48%",
-              margin: "20px auto",
-            }}
-            className={classes.buttonSignin}
-            variant="contained"
-            color="primary"
-            onClick={onSubmit}
-          >
-            Sign in
-          </Button>
-          <Link to="/register">
-            <Button
-              style={{
-                color: "rgba(18,41,68,1)",
-                border: "2px solid rgba(18,41,68,1)",
-              }}
-              className="buttoncreateacc"
-              variant="outlined"
-              color="primary"
-            >
-              Create Your Account
-            </Button>
-          </Link>
+          <Button style={{backgroundColor: "rgba(18,41,68,1)", borderRadius: "20px", width: "48%", margin: "20px auto", }} className={classes.buttonSignin} variant="contained" color="primary" onClick={onSubmit}> Sign in </Button>
+          <Button as={Link} to="/register" style={{color: "rgba(18,41,68,1)", border: "2px solid rgba(18,41,68,1)"}} className="buttoncreateacc" variant="outlined" color="primary"> Create Your Account </Button>
         </div>
       </form>
+
     </div>
-  );
+  )
 }
 
 export default Login;
