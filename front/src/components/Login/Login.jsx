@@ -11,7 +11,8 @@ const useStyles = makeStyles((theme) => ({
     },
     formLogininput: {
         "& .MuiInputLabel-formControl": {
-            left: "11px"
+            left: "14px",
+            lineHeight: "22px"
         },
         "& .MuiOutlinedInput-input": {
             padding: "4%",
@@ -51,15 +52,15 @@ function Login() {
                 />
                 <Link to="#" className="forgotpassword" href="#">Lost Your Password ?</Link>
                 <div className="buttonLoginContainer">
-                    
-                    <Button style={{ backgroundColor: "rgba(18,41,68,1)", borderRadius: "20px", width: "48%", margin: "20px auto", }} className={classes.buttonSignin} variant="contained" color="primary">
+
+                    <Button style={{ backgroundColor: "rgba(18,41,68,1)", borderRadius: "20px", width: "100%", margin: "20px auto", }} className={classes.buttonSignin} variant="contained" color="primary">
                         Sign in
                 </Button>
-                <Link to="/register">
-                    <Button style={{ color: "rgba(18,41,68,1)", border: "2px solid rgba(18,41,68,1)" }} className="buttoncreateacc" variant="outlined" color="primary">
-                        Create Your Account
+                    <Link to="/register" style={{ textDecoration: 'none' }}>
+                        <Button style={{ color: "rgba(18,41,68,1)", border: "2px solid rgba(18,41,68,1)" }} className="buttoncreateacc" variant="outlined" color="primary">
+                            Create Your Account
                 </Button>
-                </Link>
+                    </Link>
                 </div>
 
             </div>
