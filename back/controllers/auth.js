@@ -26,13 +26,15 @@ login = (req, res) => {
         .then((valid) => {
           if (!valid) return res.status(401).json({error: new Error('Incorrect password!')})
           const token = jwt.sign( { userId: user._id }, 'superfluous-cat&ultra-dog', { expiresIn: '24h' })
-          console.log("token",token)
-          Object.defineProperty(user, 'token', {value: token});
-          user.lastName = "Carlos"
-          console.log("user",user)
-          res.status(200).json(user)
+          res.status(200).json({user, token})
         }).catch(error => res.status(500).json({error: error}))
     }).catch(error => res.status(500).json({error: error}))
 }
 
-module.exports = {register, login}
+me = (req, res) => {
+  console.log("AUTHENTICATED", req.isAuthenticated());
+  if (!req.user) res.sendStatus(401);
+  res.send(req.user);
+}
+
+module.exports = {register, login, me}
