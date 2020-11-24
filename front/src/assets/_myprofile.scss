@@ -3,9 +3,8 @@
 .MyProfileFather {
   color: black;
 
-
-  .backgroundAnimation1{
-    width: 350px;
+    .backgroundAnimation1{
+    width: 250px;
     position: absolute;
     left: 1%;
     opacity: 0.2;
@@ -52,33 +51,80 @@
       justify-content: center;
       margin: 0;
 
-      .iconMid{
-        
-        
-      }
       div{
-        box-shadow: 0 4px 10px -2px rgb(128, 128, 128);
-        width: 32px;
+        box-shadow: 0 4px 10px -2px rgb(128, 128, 128);  
         border-radius: 50%;
         padding: 10px;
         margin: 0 0.5rem;
         
+        
       }
     }
   }
-  
+
+
+  .prueba {    
+    background-color: red;   
+    margin-bottom: 86.7px;
+  }
+}
+
+.LinkInferior{
+
+
+  div{
+    width: 100%;
+    background-color:white;
+    box-shadow: 0 4px 35px -2px rgba(0, 0, 0, 0.445);  
+    margin: 1rem 0;
+    height: 4rem;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .MyProgress{
+    animation: moveInLeft 1.5s;
+  }
+  .MyMenteesOrMentor{
+    animation: moveInRight 1.5s;
+  }
+
 }
 
 @keyframes moveInTop {
-  0% {
-    opacity: 0;
+  0% {    
     transform: translateY(-200px);
   }
-  100% {
-    opacity: 1;
+  100% {    
     transform: translateY(0);
   }
 }
+
+
+
+@keyframes moveInLeft {
+  0% {    
+    transform: translateX(-200px);
+  }
+  100% {    
+    transform: translateY(0);
+  }
+}
+
+
+
+@keyframes moveInRight {
+  0% {
+    
+    transform: translateX(-200px);
+  }
+  100% {
+    
+    transform: translateY(0);
+  }
+}
+
+
 
 @keyframes rightnleft {
   0% {
