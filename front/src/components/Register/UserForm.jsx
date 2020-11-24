@@ -6,7 +6,6 @@ import FormUserSkills from "./components/FormUserSkills"
 import FormUserSave from "./components/FormUserSave"
 import FormUserSuccsess from "./components/FormUserSuccsess"
 
-
 function UserForm(){
 const [step, setStep] = useState(1)
 
