@@ -11,7 +11,6 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
       width: "25ch",
     },
-
   },
   formLogininput: {
     "& .MuiInputLabel-formControl": {
@@ -124,17 +123,15 @@ function Login() {
                 />
                 <Link to="#" className="forgotpassword" href="#">Lost Your Password ?</Link>
                 <div className="buttonLoginContainer">
-                    
-                    <Button style={{ backgroundColor: "rgba(18,41,68,1)", borderRadius: "20px", width: "48%", margin: "20px auto", }} className={classes.buttonSignin} variant="contained" color="primary"   
-                    onClick={onSubmit}               
-                    >
+                    <Button style={{ backgroundColor: "rgba(18,41,68,1)", borderRadius: "20px", width: "100%", margin: "20px auto", }} className={classes.buttonSignin} variant="contained" color="primary"  onClick={onSubmit}>
                         Sign in
                 </Button>
-                <Link to="/register">
-                    <Button style={{ color: "rgba(18,41,68,1)", border: "2px solid rgba(18,41,68,1)" }} className="buttoncreateacc" variant="outlined" color="primary">
-                        Create Your Account
+                    <Link to="/register" style={{ textDecoration: 'none' }}>
+                        <Button style={{ color: "rgba(18,41,68,1)", border: "2px solid rgba(18,41,68,1)" }} className="buttoncreateacc" variant="outlined" color="primary">
+                            Create Your Account
                 </Button>
-                </Link> 
+                    </Link>
+
                 </div>
 
             </form>

@@ -29,7 +29,6 @@ function myProfile() {
           <div>{iconComodin}</div>
         </div>
       </section>
-
       <img
         alt="backgroud-animation1"
         className="backgroundAnimation1"
@@ -46,7 +45,6 @@ function myProfile() {
       <div>hola</div>
       <div>hola</div>
       <div>hola</div>
-
       <div>hola</div>
       <div>hola</div>
       <div>hola</div>
@@ -71,11 +69,7 @@ function myProfile() {
       <div>hola</div>
       <div>hola</div>
       <div>chau</div>
-
-
-
-      </div>
-      
+      </div>    
     </div>
   );
 }
