@@ -18,7 +18,6 @@ function UserForm() {
     phoneNumber: "",
     languages: [],
     avatar: "",
-    //skills: [],
     skills: [],
     skillsToLearn: [],
     skillsToTeach: [],
@@ -27,16 +26,21 @@ function UserForm() {
     isAdmin: false,
   });
 
+  console.log(user);
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    console.log(value);
+    console.log(e.target.name);
+    setUser({ ...user, [e.target.name]: value });
+  };
+
   const nextStep = () => {
     setStep(step + 1);
   };
 
   const prevStep = () => {
     setStep(step - 1);
-  };
-
-  const handleChange = (input) => (e) => {
-    console.log(e.target.value);
   };
 
   const submitMySkills = (skillsArray) => {
