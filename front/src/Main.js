@@ -10,7 +10,7 @@ import UserForm from "./components/Register/UserForm";
 import Login from "./components/Login/Login";
 import Menu from "./components/Menu/Menu";
 import MyProfile from "./components/MyProfile/MyProfile";
-
+import MyProfileContainer from './components/MyProfile/MyProfileContainer'
 import {me} from './redux/action-creators/currentUser'
 
 function Main() {
@@ -37,7 +37,7 @@ function Main() {
           <Route exact path="/" component={Landing}></Route>
           <Route path="/login" component={Login}></Route>
           <Route path="/register" component={UserForm}></Route>
-          <Route path="/myprofile" component={MyProfile} />
+          <Route path="/myprofile" component={MyProfileContainer} />
         </Switch>
       </div>
       {location === "/" || "/register" ? null : <Menu />}

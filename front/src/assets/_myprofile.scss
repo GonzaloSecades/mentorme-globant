@@ -3,16 +3,16 @@
 .MyProfileFather {
   color: black;
 
-    .backgroundAnimation1{
-    width: 250px;
+  .backgroundAnimation1 {
+    width: 300px;
     position: absolute;
     left: 1%;
     opacity: 0.2;
     animation: rightnleft 10s linear 0s infinite;
   }
-  .backgroundAnimation2{
+  .backgroundAnimation2 {
     z-index: -200;
-    width: 250px;
+    width: 300px;
     position: absolute;
     top: 15%;
     opacity: 0.2;
@@ -26,7 +26,7 @@
     justify-content: center;
     align-items: center;
 
-    background-color: #ffffff;
+    background-color: #ffffffb2;
     border-bottom-left-radius: 100%;
     border-bottom-right-radius: 100%;
     padding-bottom: 50px;
@@ -34,116 +34,123 @@
     animation: moveInTop 1.5s;
 
     img {
-
       width: 115px;
       border-radius: 50%;
       margin: 3% 0 0 0;
       border: 1px solid black;
     }
-    p{
-        text-transform: uppercase;
-        font-weight: 450;
-        color: #333;
-    };
+    p {
+      text-transform: uppercase;
+      font-weight: 450;
+      color: #333;
+    }
 
-    .iconsFather{
+    .iconsFather {
       display: flex;
       justify-content: center;
       margin: 0;
 
-      div{
-        box-shadow: 0 4px 10px -2px rgb(128, 128, 128);  
+      div {
+        box-shadow: 0 4px 10px -2px rgb(128, 128, 128);
         border-radius: 50%;
         padding: 10px;
         margin: 0 0.5rem;
-        
-        
       }
     }
   }
 
-
-  .prueba {    
-    background-color: red;   
-    margin-bottom: 86.7px;
+  .prueba {
+    height: 240px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    div {
+      color: #333;
+      z-index: 300;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 1.4rem;
+      background-color: rgba(255, 255, 255, 0.575);
+      box-shadow: 0 4px 10px -2px rgba(128, 128, 128, 0.555);
+      height: 5rem;
+      text-transform: uppercase;
+    }
+    .MyMenteesOrMentor {
+      animation: moveInRight 1s;
+    }
+    .mySkills {
+      animation: moveInRight 1.5s;
+    }
+    .MyProgress {
+      animation: moveInRight 2s;
+    }
+    
   }
 }
 
-.LinkInferior{
-
-
-  div{
+.LinkInferior {
+  div {
     width: 100%;
-    background-color:white;
-    box-shadow: 0 4px 35px -2px rgba(0, 0, 0, 0.445);  
+    background-color: white;
+    box-shadow: 0 4px 35px -2px rgba(0, 0, 0, 0.445);
     margin: 1rem 0;
     height: 4rem;
     text-align: center;
     text-transform: uppercase;
   }
-
-  .MyProgress{
-    animation: moveInLeft 1.5s;
-  }
-  .MyMenteesOrMentor{
-    animation: moveInRight 1.5s;
-  }
-
 }
 
 @keyframes moveInTop {
-  0% {    
+  0% {
     transform: translateY(-200px);
   }
-  100% {    
+  100% {
     transform: translateY(0);
   }
 }
-
-
 
 @keyframes moveInLeft {
-  0% {    
+  0% {
     transform: translateX(-200px);
   }
-  100% {    
+  100% {
     transform: translateY(0);
   }
 }
-
-
 
 @keyframes moveInRight {
   0% {
-    
+    opacity: 0;
     transform: translateX(-200px);
   }
   100% {
-    
+    opacity: 1;
     transform: translateY(0);
   }
 }
 
-
-
 @keyframes rightnleft {
   0% {
-    
-    transform: translateX(0px); }
+    transform: translateX(0px);
+  }
   50% {
-    
-    transform: translateX(100px); }
+    transform: translateX(100px);
+  }
   100% {
-    
-    transform: translateY(0px); } }
+    transform: translateY(0px);
+  }
+}
 
-  @keyframes upndown {
-      0% {
-        
-        transform: translateY(0px); }
-      50% {
-        
-        transform: translateY(100px); }
-      100% {
-        
-        transform: translateY(0px); } }
+@keyframes upndown {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(100px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}

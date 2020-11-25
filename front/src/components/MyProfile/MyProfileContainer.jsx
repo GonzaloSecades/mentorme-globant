@@ -5,9 +5,13 @@ import MyProfile from './MyProfile'
 
 
 export default ()=>{
+    const currentUser = useSelector((state)=>state.currentUser)
+    console.log(currentUser)
     return(
-        <section>            
-                <MyProfile />            
+        <section>
+            <MyProfile
+            user={currentUser}
+            />                 
         </section>
     )
 }
