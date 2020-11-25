@@ -4,12 +4,11 @@ import FormUserNew from "./components/FormUserNew";
 import FormUserData from "./components/FormUserData";
 import FormUserSkills from "./components/FormUserSkills";
 import FormUserSave from "./components/FormUserSave";
-import FormUserSuccsess from "./components/FormUserSuccsess";
+import FormUserSuccsess from "./components/FormUserSuccess";
 
 function UserForm() {
   const [step, setStep] = useState(1);
-  const [skills, setSkills] = useState([]);
-  import FormUserSuccsess from "./components/FormUserSuccess";
+  const [skills, setSkills] = useState([]);  
 
   function UserForm() {
     const [step, setStep] = useState(1);
