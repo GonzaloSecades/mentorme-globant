@@ -1,3 +1,4 @@
+
 import React from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import MobileStepper from "@material-ui/core/MobileStepper";
@@ -5,6 +6,12 @@ import Button from "@material-ui/core/Button";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import { formUserSkillsStyles } from "./materialStyles";
+import Checkbox from "@material-ui/core/Checkbox";
+import TextField from "@material-ui/core/TextField";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
+import CheckBoxIcon from "@material-ui/icons/CheckBox";
+import { Button } from "@material-ui/core";
 
 function FormUserSkills(props) {
   const classes = formUserSkillsStyles();
@@ -22,7 +29,38 @@ function FormUserSkills(props) {
 
   return (
     <div className="content-register">
-      <p>STEP 3 SKILSS DE USUARIO...</p>
+      <div>
+      <p>My Skills</p>
+
+      <Autocomplete
+        onChange={(event, value) => props.submitMySkills(value)} // prints the selected value
+        multiple
+        id="checkboxes-tags-demo"
+        options={top100Films}
+        disableCloseOnSelect
+        getOptionLabel={(option) => option.name}
+        renderOption={(option, { selected }) => (
+          <React.Fragment>
+            <Checkbox
+              icon={icon}
+              checkedIcon={checkedIcon}
+              style={{ marginRight: 8 }}
+              checked={selected}
+            />
+            {option.name}
+          </React.Fragment>
+        )}
+        style={{ width: 500 }}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            variant="outlined"
+            label="Checkboxes"
+            placeholder="Favorites"
+          />
+        )}
+      />
+    </div>
       <div className="container-stepper">
         <MobileStepper
           variant="dots"
@@ -65,3 +103,4 @@ function FormUserSkills(props) {
 }
 
 export default FormUserSkills;
+
