@@ -6,11 +6,16 @@ import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 const useStyles = makeStyles({
   root: {
-    maxWidth: "100%",
+    width: "100%",
     borderRadius: 5,
     flexGrow: 1,
+    marginTop: 20,
     backgroundColor: "rgba(22,40,60,1)",
     color: "white",
+    "& .MuiMobileStepper-dotActive": {
+      left: "14px",
+      backgroundColor: " #a6d431",
+    },
   },
 });
 
@@ -31,41 +36,43 @@ function FormUserNew(props) {
   return (
     <div className="content-register">
       <p>STEP 4...</p>
-      <MobileStepper
-        variant="dots"
-        steps={4}
-        position="static"
-        activeStep={props.selectedStep - 2}
-        className={classes.root}
-        nextButton={
-          <Button
-            size="small"
-            onClick={next}
-            disabled={props.selectedStep === 5}
-          >
-            <p className="btn-steppers">Next</p>
-            {theme.direction === "rtl" ? (
-              <KeyboardArrowLeft />
-            ) : (
-              <KeyboardArrowRight />
-            )}
-          </Button>
-        }
-        backButton={
-          <Button
-            size="small"
-            onClick={prev}
-            disabled={props.selectedStep === 0}
-          >
-            {theme.direction === "rtl" ? (
-              <KeyboardArrowRight />
-            ) : (
-              <KeyboardArrowLeft />
-            )}
-            <p className="btn-steppers">Back</p>
-          </Button>
-        }
-      />
+      <div className="container-stepper">
+        <MobileStepper
+          variant="dots"
+          steps={4}
+          position="static"
+          activeStep={props.selectedStep - 2}
+          className={classes.root}
+          nextButton={
+            <Button
+              size="small"
+              onClick={next}
+              disabled={props.selectedStep === 5}
+            >
+              <p className="btn-steppers">Next</p>
+              {theme.direction === "rtl" ? (
+                <KeyboardArrowLeft />
+              ) : (
+                <KeyboardArrowRight />
+              )}
+            </Button>
+          }
+          backButton={
+            <Button
+              size="small"
+              onClick={prev}
+              disabled={props.selectedStep === 0}
+            >
+              {theme.direction === "rtl" ? (
+                <KeyboardArrowRight />
+              ) : (
+                <KeyboardArrowLeft />
+              )}
+              <p className="btn-steppers">Back</p>
+            </Button>
+          }
+        />
+      </div>
     </div>
   );
 }
