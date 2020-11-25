@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { makeStyles, TextField, Button } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { login } from "../../redux/action-creators/currentUser";
 
 const useStyles = makeStyles((theme) => ({
@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
 function Login() {
   const dispatch = useDispatch();
   const classes = useStyles();
+  const history = useHistory();
   const [useEmail, setEmail] = useState("");
   const [usePassword, setPassword] = useState("");
 
@@ -53,7 +54,9 @@ function Login() {
 
   function onSubmit(e) {
     e.preventDefault();
-    dispatch(login(useEmail, usePassword));
+    dispatch(login(useEmail, usePassword)).then(() =>
+      history.push("/myprofile")
+    );
   }
 
   return (
