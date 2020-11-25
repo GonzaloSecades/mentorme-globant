@@ -18,43 +18,43 @@ async function seed() {
   ])
   console.log("users and skills generated")
 
-  await Skill.findOne({name: "Salesforce"})
-    .then(data => {
-      const user = new User({
-        firstName: "GERVASIO",
-        lastName: "GONZALEZ",
-        email: "caca@gmail.com",
-        password: "1",
-        country: "JAMAICA",
-        isAdmin: false,
-        skills: [data]
-      });
-      user.save();
-    })
+  // await Skill.findOne({name: "Salesforce"})
+  //   .then(data => {
+  //     const user = new User({
+  //       firstName: "GERVASIO",
+  //       lastName: "GONZALEZ",
+  //       email: "caca@gmail.com",
+  //       password: "1",
+  //       country: "JAMAICA",
+  //       isAdmin: false,
+  //       skills: [data]
+  //     });
+  //     user.save();
+  //   })
 
-  const allUsers = await User.find({})
-  for (let i = 0; i < allUsers.length; i++) {
-    if (allUsers[i].mentors.length) {
-      console.log("MENTORSARR BEFORE CLONE: ", allUsers[i].mentors)
-      let mentorsArr = _.cloneDeep(allUsers[i].mentors)
-      while (mentorsArr.length) {
-        const k = mentorsArr.length - 1
-        const mentor = await User.findOne({_id: mentorsArr[k]._id})
-        if (mentor != null) {
-          if (mentor.hasOwnProperty("mentees")) mentor["mentees"].push(mentorsArr[k])
-          else mentor["mentees"] = mentorsArr[k]
-          mentor.save()
-        }
-        mentorsArr.pop()
-      }
-    }
-  }
+  // const allUsers = await User.find({})
+  // for (let i = 0; i < allUsers.length; i++) {
+  //   if (allUsers[i].mentors.length) {
+  //     console.log("MENTORSARR BEFORE CLONE: ", allUsers[i].mentors)
+  //     let mentorsArr = _.cloneDeep(allUsers[i].mentors)
+  //     while (mentorsArr.length) {
+  //       const k = mentorsArr.length - 1
+  //       const mentor = await User.findOne({_id: mentorsArr[k]._id})
+  //       if (mentor != null) {
+  //         if (mentor.hasOwnProperty("mentees")) mentor["mentees"].push(mentorsArr[k])
+  //         else mentor["mentees"] = mentorsArr[k]
+  //         mentor.save()
+  //       }
+  //       mentorsArr.pop()
+  //     }
+  //   }
+  // }
 
-  for (let i = 0; i < allUsers.length; i++) {
-    const hash = await bcrypt.hash(allUsers[i].password, 10)
-    allUsers[i].password = hash
-    allUsers[i].save()
-  }
+  // for (let i = 0; i < allUsers.length; i++) {
+  //   const hash = await bcrypt.hash(allUsers[i].password, 10)
+  //   allUsers[i].password = hash
+  //   allUsers[i].save()
+  // }
 
   // register = (req, res) => {
   //   bcrypt.hash(req.body.password, 10).then(
