@@ -1,9 +1,23 @@
 const User = require("../models/user")
+const _ = require("lodash")
 
 getAllUsers = (req, res) => {
-  User.find({}).lean()
+  if (!_.isEmpty(req.query)){
+    const pageOptions = {
+      page: parseInt(req.query.page, 10) || 0,
+      limit: parseInt(req.query.limit, 10) || 10
+  }
+
+    User.find().skip(pageOptions.page * pageOptions.limit).limit(pageOptions.limit)
+    .then((data)=>res.status(200).send(data))
+    .catch(err=>res.status(500).send(err))
+  }
+  else {
+    User.find({}).lean()
     .then(data => res.status(200).send(data))
     .catch(err => console.log(err))
+  }
+
 }
 
 getUser = (req, res) => {
