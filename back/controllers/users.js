@@ -68,10 +68,8 @@ matchUserSkills = async (req, res) => {
 
 uploadAvatar = (req, res, next) => {
   const _id = req.body.userId, url = req.protocol + '://' + req.get('host');
-  console.log("URL ", url)
   User.findOne({_id}).select('-__v')
     .then(user => {
-      console.log(user)
       user.avatar = url + '/images/' + req.file.filename
       return user
     })

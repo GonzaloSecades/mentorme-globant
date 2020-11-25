@@ -1,12 +1,16 @@
 @import "./_colors.scss";
-.container{
+.container {
   z-index: 200;
   background: $landingBgColor;
   margin: 0;
+
   box-shadow:  0 9px 20px rgba(0, 0, 0, 0.2), 0 2px 3px rgba(0, 0, 0, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
  .logo {
-    height: 13vh;
+    margin-top: 6%;
     padding-right: 30px;
     text-align: center;
     text-transform: uppercase;
@@ -15,7 +19,6 @@
     color:$mentorColor ;
     display: flex;
     position: relative;
-    top: -12px;
     flex-wrap: wrap;
     align-items: flex-end;
     justify-content: flex-start;
@@ -28,7 +31,8 @@
         color:$meColor;
         font-size: 1em;
         position: relative;
-        bottom: 3vh;
+        bottom: 2.5vh;
      
       }
   } 
+

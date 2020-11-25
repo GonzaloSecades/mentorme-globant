@@ -1,4 +1,11 @@
-import React, { useState } from "react";
+
+import React from "react";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import MobileStepper from "@material-ui/core/MobileStepper";
+import Button from "@material-ui/core/Button";
+import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
+import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
+import { formUserSkillsStyles } from "./materialStyles";
 import Checkbox from "@material-ui/core/Checkbox";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
@@ -6,10 +13,10 @@ import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import { Button } from "@material-ui/core";
 
-const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
-const checkedIcon = <CheckBoxIcon fontSize="small" />;
-
 function FormUserSkills(props) {
+  const classes = formUserSkillsStyles();
+  const theme = useTheme();
+
   const next = (e) => {
     e.preventDefault();
     props.nextStep();
@@ -21,7 +28,8 @@ function FormUserSkills(props) {
   };
 
   return (
-    <div>
+    <div className="content-register">
+      <div>
       <p>My Skills</p>
 
       <Autocomplete
@@ -53,75 +61,46 @@ function FormUserSkills(props) {
         )}
       />
     </div>
+      <div className="container-stepper">
+        <MobileStepper
+          variant="dots"
+          steps={4}
+          position="static"
+          activeStep={props.selectedStep - 2}
+          className={classes.root}
+          nextButton={
+            <Button
+              size="small"
+              onClick={next}
+              disabled={props.selectedStep === 5}
+            >
+              <p className="btn-steppers">Next</p>
+              {theme.direction === "rtl" ? (
+                <KeyboardArrowLeft />
+              ) : (
+                <KeyboardArrowRight />
+              )}
+            </Button>
+          }
+          backButton={
+            <Button
+              size="small"
+              onClick={prev}
+              disabled={props.selectedStep === 0}
+            >
+              {theme.direction === "rtl" ? (
+                <KeyboardArrowRight />
+              ) : (
+                <KeyboardArrowLeft />
+              )}
+              <p className="btn-steppers">Back</p>
+            </Button>
+          }
+        />
+      </div>
+    </div>
   );
 }
+
 export default FormUserSkills;
-// Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
-const top100Films = [
-  {
-    _id: "5fb818a7ae6e9a6349017102",
-    name: "mongo",
-    keywords: ["backend, odm"],
-    __v: 0,
-  },
-  {
-    _id: "5fb818a7ae6e9a6349017103",
-    name: "sequelize",
-    keywords: ["backend, orm"],
-    __v: 0,
-  },
-  {
-    _id: "5fb818a7ae6e9a6349017104",
-    name: "node",
-    keywords: ["front end framework"],
-    __v: 0,
-  },
-  {
-    _id: "5fb818a7ae6e9a6349017105",
-    name: "docker",
-    keywords: ["devops"],
-    __v: 0,
-  },
-  {
-    _id: "5fb818a7ae6e9a6349017106",
-    name: "kubernetes",
-    keywords: ["devops"],
-    __v: 0,
-  },
-  {
-    _id: "5fb818a7ae6e9a6349017107",
-    name: "openshift",
-    keywords: ["devops"],
-    __v: 0,
-  },
-  {
-    _id: "5fb818a7ae6e9a6349017108",
-    name: "jenkins",
-    keywords: ["devops"],
-    __v: 0,
-  },
-  {
-    _id: "5fb818a7ae6e9a6349017109",
-    name: "ansible",
-    keywords: ["devops"],
-    __v: 0,
-  },
-  {
-    _id: "5fb818a7ae6e9a6349017110",
-    name: "terraform",
-    keywords: ["devops"],
-    __v: 0,
-  },
-  {
-    _id: "5fb818a7ae6e9a6349017111",
-    name: "postgres",
-    keywords: ["database"],
-    __v: 0,
-  },
-  {
-    _id: "5fb818a7ae6e9a6349017112",
-    name: "mysql",
-    keywords: ["database"],
-    __v: 0,
-  },
-];
+

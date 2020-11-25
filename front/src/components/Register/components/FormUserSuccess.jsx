@@ -1,19 +1,13 @@
 import React from "react";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { useTheme } from "@material-ui/core/styles";
 import MobileStepper from "@material-ui/core/MobileStepper";
 import Button from "@material-ui/core/Button";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
-import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
-import { formUserSaveStyles } from "./materialStyles";
+import { formUserSuccessStyles } from "./materialStyles";
 
-function FormUserNew(props) {
-  const classes = formUserSaveStyles();
+function FormUserSuccsess(props) {
+  const classes = formUserSuccessStyles();
   const theme = useTheme();
-
-  const next = (e) => {
-    e.preventDefault();
-    props.nextStep();
-  };
 
   const prev = (e) => {
     e.preventDefault();
@@ -22,7 +16,7 @@ function FormUserNew(props) {
 
   return (
     <div className="content-register">
-      <p>STEP 4...</p>
+      <p>STEP 5 SUCCSESS...</p>
       <div className="container-stepper">
         <MobileStepper
           variant="dots"
@@ -31,17 +25,8 @@ function FormUserNew(props) {
           activeStep={props.selectedStep - 2}
           className={classes.root}
           nextButton={
-            <Button
-              size="small"
-              onClick={next}
-              disabled={props.selectedStep === 5}
-            >
-              <p className="btn-steppers">Next</p>
-              {theme.direction === "rtl" ? (
-                <KeyboardArrowLeft />
-              ) : (
-                <KeyboardArrowRight />
-              )}
+            <Button size="small" disabled={props.selectedStep === 4}>
+              <p className="btn-steppers">Finish</p> <CheckIcon />
             </Button>
           }
           backButton={
@@ -50,11 +35,7 @@ function FormUserNew(props) {
               onClick={prev}
               disabled={props.selectedStep === 0}
             >
-              {theme.direction === "rtl" ? (
-                <KeyboardArrowRight />
-              ) : (
-                <KeyboardArrowLeft />
-              )}
+              {theme.direction === "rtl" ? null : <KeyboardArrowLeft />}
               <p className="btn-steppers">Back</p>
             </Button>
           }
@@ -63,4 +44,4 @@ function FormUserNew(props) {
     </div>
   );
 }
-export default FormUserNew;
+export default FormUserSuccsess;

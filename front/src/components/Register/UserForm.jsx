@@ -9,73 +9,85 @@ import FormUserSuccsess from "./components/FormUserSuccsess";
 function UserForm() {
   const [step, setStep] = useState(1);
   const [skills, setSkills] = useState([]);
-  const [user, setUser] = useState({
-    email: "",
-    password: "",
-    firstName: "",
-    lastName: "",
-    country: "",
-    phoneNumber: "",
-    languages: [],
-    avatar: "",
-    //skills: [],
-    skillsToLearn: [],
-    skillsToTeach: [],
-    mentors: [],
-    mentees: [],
-    isAdmin: false,
-  });
+  import FormUserSuccsess from "./components/FormUserSuccess";
 
-  const nextStep = () => {
-    setStep(step + 1);
-  };
+  function UserForm() {
+    const [step, setStep] = useState(1);
+    const [user, setUser] = useState({
+      email: "",
+      password: "",
+      firstName: "",
+      lastName: "",
+      country: "",
+      phoneNumber: "",
+      languages: [],
+      avatar: "",
+      //skills: [],
+      skills: [],
+      skillsToLearn: [],
+      skillsToTeach: [],
+      mentors: [],
+      mentees: [],
+      isAdmin: false,
+    });
 
-  const prevStep = () => {
-    setStep(step - 1);
-  };
+    const nextStep = () => {
+      setStep(step + 1);
+    };
 
-  const handleChange = (input) => (e) => {
-    console.log(e.target.value);
-  };
+    const prevStep = () => {
+      setStep(step - 1);
+    };
 
-  const submitMySkills = (skillsArray) => {
-    setSkills(skillsArray);
-  };
+    const handleChange = (input) => (e) => {
+      console.log(e.target.value);
+    };
 
-  useEffect(() => console.log(skills), [skills]);
-  switch (step) {
-    case 1:
-      return <FormUserNew nextStep={nextStep} handleChange={handleChange} />;
-    case 2:
-      return (
-        <FormUserData
-          nextStep={nextStep}
-          prevStep={prevStep}
-          handleChange={handleChange}
-        />
-      );
-    case 3:
-      return (
-        <FormUserSkills
-          nextStep={nextStep}
-          prevStep={prevStep}
-          handleChange={handleChange}
-          submitMySkills={submitMySkills}
-        />
-      );
-    case 4:
-      return (
-        <FormUserSave
-          nextStep={nextStep}
-          prevStep={prevStep}
-          handleChange={handleChange}
-        />
-      );
-    case 5:
-      return (
-        <FormUserSuccsess prevStep={prevStep} handleChange={handleChange} />
-      );
+    const submitMySkills = (skillsArray) => {
+      setSkills(skillsArray);
+    };
+
+    useEffect(() => console.log(skills), [skills]);
+    switch (step) {
+      case 1:
+        return <FormUserNew nextStep={nextStep} handleChange={handleChange} />;
+      case 2:
+        return (
+          <FormUserData
+            selectedStep={step}
+            nextStep={nextStep}
+            prevStep={prevStep}
+            handleChange={handleChange}
+          />
+        );
+      case 3:
+        return (
+          <FormUserSkills
+            submitMySkills={submitMySkills}
+            selectedStep={step}
+            nextStep={nextStep}
+            prevStep={prevStep}
+            handleChange={handleChange}
+          />
+        );
+      case 4:
+        return (
+          <FormUserSave
+            selectedStep={step}
+            nextStep={nextStep}
+            prevStep={prevStep}
+            handleChange={handleChange}
+          />
+        );
+      case 5:
+        return (
+          <FormUserSuccsess
+            selectedStep={step}
+            prevStep={prevStep}
+            handleChange={handleChange}
+          />
+        );
+    }
   }
 }
-
 export default UserForm;
