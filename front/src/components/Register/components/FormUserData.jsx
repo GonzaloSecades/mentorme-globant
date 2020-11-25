@@ -4,19 +4,10 @@ import { TextField, Button } from "@material-ui/core";
 import MobileStepper from "@material-ui/core/MobileStepper";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
-const useStyles = makeStyles({
-  root: {
-    width: "100%",
-    borderRadius: 5,
-    flexGrow: 1,
-    marginTop: 20,
-    backgroundColor: "rgba(22,40,60,1)",
-    color: "white",
-  },
-});
+import { formUserDataStyles } from "./materialStyles";
 
 function FormUserData(props) {
-  const classes = useStyles();
+  const classes = formUserDataStyles();
   const theme = useTheme();
 
   const next = (e) => {
@@ -36,7 +27,52 @@ function FormUserData(props) {
         <TextField
           className={classes.formLogininput}
           id="outlined-search"
+          label=" Nombre *"
+          name="email"
+          type="text"
+          variant="outlined"
+          /*    onChange={onChange} */
+        />
+        <TextField
+          className={classes.formLogininput}
+          id="outlined-search"
+          label=" Apellido *"
+          name="email"
+          type="text"
+          variant="outlined"
+          /*    onChange={onChange} */
+        />
+        <TextField
+          className={classes.formLogininput}
+          id="outlined-search"
           label=" Email *"
+          name="email"
+          type="text"
+          variant="outlined"
+          /*    onChange={onChange} */
+        />
+        <TextField
+          className={classes.formLogininput}
+          id="outlined-search"
+          label=" Contraseña *"
+          name="email"
+          type="text"
+          variant="outlined"
+          /*    onChange={onChange} */
+        />
+        <TextField
+          className={classes.formLogininput}
+          id="outlined-search"
+          label=" Confirma tu contraseña *"
+          name="email"
+          type="text"
+          variant="outlined"
+          /*    onChange={onChange} */
+        />
+        <TextField
+          className={classes.formLogininput}
+          id="outlined-search"
+          label=" Pais *"
           name="email"
           type="text"
           variant="outlined"

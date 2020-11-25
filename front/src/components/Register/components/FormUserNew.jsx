@@ -1,46 +1,13 @@
 import React from "react";
 import { makeStyles, Button } from "@material-ui/core";
+import {formUserNewStyles} from './materialStyles'
 
 function FormUserNew(props) {
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      "& .MuiTextField-root": {
-        margin: theme.spacing(1),
-        width: "25ch",
-      },
-    },
-    formLogininput: {
-      "& .MuiInputLabel-formControl": {
-        left: "11px",
-      },
-      "& .MuiOutlinedInput-input": {
-        padding: "4%",
-        textAlign: "center",
-      },
-      "& .MuiOutlinedInput-root": {
-        borderRadius: "20px",
-      },
-      "& .MuiInputBase-root": {
-        margin: "10px",
-      },
-      "& .MuiInputBase-input": {
-        width: "18rem",
-      },
-
-      "& .MuiInputLabel-root.Mui-focused": {
-        color: "#006400",
-      },
-      "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-        borderColor: "#a6d431",
-      },
-    },
-  }));
-
   const next = (e) => {
     e.preventDefault();
     props.nextStep();
   };
-  const classes = useStyles();
+  const classes = formUserNewStyles();
   return (
     <div className="content-register">
       <h3>Bienvenido, vemos que eres nuevo por aqui!</h3>
