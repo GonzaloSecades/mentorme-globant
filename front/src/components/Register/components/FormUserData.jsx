@@ -4,7 +4,7 @@ import { TextField, Button } from "@material-ui/core";
 import MobileStepper from "@material-ui/core/MobileStepper";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
-import {formUserDataStyles} from './materialStyles'
+import { formUserDataStyles } from "./materialStyles";
 
 function FormUserData(props) {
   const classes = formUserDataStyles();
@@ -27,7 +27,52 @@ function FormUserData(props) {
         <TextField
           className={classes.formLogininput}
           id="outlined-search"
+          label=" Nombre *"
+          name="email"
+          type="text"
+          variant="outlined"
+          /*    onChange={onChange} */
+        />
+        <TextField
+          className={classes.formLogininput}
+          id="outlined-search"
+          label=" Apellido *"
+          name="email"
+          type="text"
+          variant="outlined"
+          /*    onChange={onChange} */
+        />
+        <TextField
+          className={classes.formLogininput}
+          id="outlined-search"
           label=" Email *"
+          name="email"
+          type="text"
+          variant="outlined"
+          /*    onChange={onChange} */
+        />
+        <TextField
+          className={classes.formLogininput}
+          id="outlined-search"
+          label=" Contraseña *"
+          name="email"
+          type="text"
+          variant="outlined"
+          /*    onChange={onChange} */
+        />
+        <TextField
+          className={classes.formLogininput}
+          id="outlined-search"
+          label=" Confirma tu contraseña *"
+          name="email"
+          type="text"
+          variant="outlined"
+          /*    onChange={onChange} */
+        />
+        <TextField
+          className={classes.formLogininput}
+          id="outlined-search"
+          label=" Pais *"
           name="email"
           type="text"
           variant="outlined"
