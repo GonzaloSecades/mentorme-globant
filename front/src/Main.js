@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch, useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 //STYLES
 import "./assets/index.scss";
 //COMPONENTS
@@ -11,13 +11,25 @@ import UserForm from "./components/Register/UserForm";
 import Login from "./components/Login/Login";
 import Menu from "./components/Menu/Menu";
 import MyProfile from "./components/MyProfile/MyProfile";
-//PERSISTENCIA
-import { login } from "./redux/action-creators/currentUser";
+
+import {me} from './redux/action-creators/currentUser'
 
 function Main() {
+  const dispatch = useDispatch()
   const location = useLocation().pathname;
-  const user = useSelector((state) => state.currentUser.user);
-  useEffect(() => {}, []);
+
+  //HOOK PERSISTENCIA DE SESION
+  React.useEffect(() => {
+    if (document.cookie) {
+      const token = document.cookie
+        .split('; ')
+        .find(row => row.startsWith('token'))
+        .split('=')[1];
+      dispatch(me(token))
+    }
+  }, [])
+
+
   return (
     <div className="order">
       {location === "/" ? null : <Navbar />}

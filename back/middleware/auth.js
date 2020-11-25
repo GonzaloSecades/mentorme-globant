@@ -2,12 +2,14 @@ const jwt = require('jsonwebtoken');
 
 auth = (req, res, next) => {
   try {
+    console.log(req.body)
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, 'superfluous-cat&ultra-dog');
     const userId = decodedToken.userId;
     if (req.body.userId && req.body.userId !== userId) {
       throw 'Invalid user ID';
     } else {
+      req.userId = userId
       next();
     }
   } catch {
@@ -32,4 +34,4 @@ adminAuth = (req, res, next) => {
   }
 };
 
-module.exports = {auth, adminAuth}
+module.exports = {auth, adminAuth, me}

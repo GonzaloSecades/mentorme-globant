@@ -4,23 +4,10 @@ import MobileStepper from "@material-ui/core/MobileStepper";
 import Button from "@material-ui/core/Button";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
-const useStyles = makeStyles({
-  root: {
-    width: "100%",
-    borderRadius: 5,
-    flexGrow: 1,
-    marginTop: 20,
-    backgroundColor: "rgba(22,40,60,1)",
-    color: "white",
-    "& .MuiMobileStepper-dotActive": {
-      left: "14px",
-      backgroundColor: " #a6d431",
-    },
-  },
-});
+import { formUserSkillsStyles } from "./materialStyles";
 
 function FormUserSkills(props) {
-  const classes = useStyles();
+  const classes = formUserSkillsStyles();
   const theme = useTheme();
 
   const next = (e) => {

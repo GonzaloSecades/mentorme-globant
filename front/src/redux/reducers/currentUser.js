@@ -1,12 +1,10 @@
-const initialState = {
-  currentUser: {
-    user: 0
-  }
-};
+const initialState = {};
 
 function currentUserReducer(state = initialState, action) {
   switch (action.type) {
     case "LOGIN":
+      return action.payload
+    case "ME_LOGIN":
       return action.payload
     case "LOGOUT":
       return initialState;

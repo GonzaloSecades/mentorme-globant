@@ -7,7 +7,8 @@ const multer = require('../middleware/multer-config')
 
 const User = require("../models/user")
 
-router.get('/test', async (req, res) => {
+router.get('/test', auth ,async (req, res) => {
+  console.log("PASO EL AUTH")
   const selectedUser = await User.findOne({_id: req.body.id}).select('-__v').lean()
   const skillsToLearnArr = selectedUser.skillsToLearn.map(e => e._id)
   const users = await User.aggregate([

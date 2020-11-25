@@ -5,7 +5,6 @@ import MyProfile from './MyProfile'
 
 
 export default ()=>{
-
     return(
         <section>            
                 <MyProfile />            
