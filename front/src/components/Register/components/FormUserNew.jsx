@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles, Button } from "@material-ui/core";
-import {formUserNewStyles} from './materialStyles'
+import { formUserNewStyles } from "./materialStyles";
 
 function FormUserNew(props) {
   const next = (e) => {
