@@ -1,8 +1,4 @@
-const initialState = {
-  currentUser: {
-    user: 0
-  }
-};
+const initialState = {};
 
 function currentUserReducer(state = initialState, action) {
   switch (action.type) {

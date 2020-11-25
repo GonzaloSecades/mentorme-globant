@@ -4,18 +4,11 @@ import MobileStepper from "@material-ui/core/MobileStepper";
 import Button from "@material-ui/core/Button";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
-const useStyles = makeStyles({
-  root: {
-    maxWidth: "100%",
-    borderRadius: 5,
-    flexGrow: 1,
-    backgroundColor: "rgba(22,40,60,1)",
-    color: "white",
-  },
-});
+import {formUserSuccess} from './materialStyles'
+
 
 function FormUserSuccsess(props) {
-  const classes = useStyles();
+  const classes = git a();
   const theme = useTheme();
 
   const prev = (e) => {
