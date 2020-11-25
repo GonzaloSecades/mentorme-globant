@@ -2,10 +2,11 @@ import React from "react";
 import { useTheme } from "@material-ui/core/styles";
 import MobileStepper from "@material-ui/core/MobileStepper";
 import Button from "@material-ui/core/Button";
+import CheckIcon from "@material-ui/icons/Check";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import { formUserSuccessStyles } from "./materialStyles";
 
-function FormUserSuccsess(props) {
+function FormUserSuccess(props) {
   const classes = formUserSuccessStyles();
   const theme = useTheme();
 
@@ -44,4 +45,4 @@ function FormUserSuccsess(props) {
     </div>
   );
 }
-export default FormUserSuccsess;
+export default FormUserSuccess;

@@ -8,6 +8,40 @@ export const formUserDataStyles = makeStyles({
     marginTop: 20,
     backgroundColor: "rgba(22,40,60,1)",
     color: "white",
+    "& .MuiMobileStepper-dotActive": {
+      backgroundColor: "#a6d431",
+    },
+    "& .MuiTextField-root": {
+      width: "25ch",
+    },
+    ".MuiMobileStepper-dotActive": {
+      backgroundColor: "black",
+    },
+  },
+  formLogininput: {
+    "& .MuiInputLabel-formControl": {
+      left: "11px",
+    },
+    "& .MuiOutlinedInput-input": {
+      padding: "4%",
+      textAlign: "center",
+    },
+    "& .MuiOutlinedInput-root": {
+      borderRadius: "20px",
+    },
+    "& .MuiInputBase-root": {
+      margin: "10px",
+    },
+    "& .MuiInputBase-input": {
+      width: "18rem",
+    },
+
+    "& .MuiInputLabel-root.Mui-focused": {
+      color: "#006400",
+    },
+    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#a6d431",
+    },
   },
 });
 
@@ -16,6 +50,9 @@ export const formUserNewStyles = makeStyles((theme) => ({
     "& .MuiTextField-root": {
       margin: theme.spacing(1),
       width: "25ch",
+    },
+    ".MuiMobileStepper-dotActive": {
+      backgroundColor: "black",
     },
   },
   formLogininput: {
@@ -52,6 +89,9 @@ export const formUserSaveStyles = makeStyles({
     flexGrow: 1,
     backgroundColor: "rgba(22,40,60,1)",
     color: "white",
+    "& .MuiMobileStepper-dotActive": {
+      backgroundColor: "#a6d431",
+    },
   },
 });
 
@@ -62,16 +102,21 @@ export const formUserSkillsStyles = makeStyles({
     flexGrow: 1,
     backgroundColor: "rgba(22,40,60,1)",
     color: "white",
+    "& .MuiMobileStepper-dotActive": {
+      backgroundColor: "#a6d431",
+    },
   },
 });
 
-export const formUserSuccess = makeStyles({
+export const formUserSuccessStyles = makeStyles({
   root: {
     maxWidth: "100%",
     borderRadius: 5,
     flexGrow: 1,
     backgroundColor: "rgba(22,40,60,1)",
     color: "white",
+    "& .MuiMobileStepper-dotActive": {
+      backgroundColor: "#a6d431",
+    },
   },
 });
-
