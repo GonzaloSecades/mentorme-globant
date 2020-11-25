@@ -15,6 +15,7 @@ const iconEditProfile = (
 const iconComodin = <FontAwesomeIcon icon={faAd} color="#3b3b3b" size="2x" />;
 
 function myProfile({user}) {
+  
   return (
     <div className="MyProfileFather">
       <section>
@@ -31,6 +32,7 @@ function myProfile({user}) {
       </section>
       <img
         alt="backgroud-animation1"
+
         className="backgroundAnimation1"
         src="https://i.ibb.co/7nhLm8S/02.png"
       />

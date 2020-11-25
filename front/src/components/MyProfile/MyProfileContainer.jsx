@@ -9,8 +9,11 @@ export default ()=>{
     console.log(currentUser)
     return(
         <section>
+
             <MyProfile
+            
             user={currentUser}
+
             />                 
         </section>
     )
