@@ -100,21 +100,20 @@ function Login() {
             {" "}
             Sign in{" "}
           </Button>
-          <Link to={"/register"}>
-            <Button
-              style={{
-                color: "rgba(18,41,68,1)",
-                border: "2px solid rgba(18,41,68,1)",
-              }}
-              className="buttoncreateacc"
-              variant="outlined"
-              color="primary"
-            >
-              {" "}
+          <Link to='/register' style={{textDecoration:"none"}}>
+          <Button
+            style={{
+              color: "rgba(18,41,68,1)",
+              border: "2px solid rgba(18,41,68,1)",
+            }}
+            className="buttoncreateacc"
+            variant="outlined"
+            color="primary"
+          >
+            {" "}
             Create Your Account{" "}
-            </Button>
+          </Button>
           </Link>
-
         </div>
       </form>
     </div>

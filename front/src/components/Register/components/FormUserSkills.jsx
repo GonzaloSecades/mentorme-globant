@@ -63,7 +63,12 @@ function FormUserSkills({ steps, data, skillsList, handleChange, selectedStep, n
         )}
         style={{ width: "43vh" }}
         renderInput={(params) => (
-          <TextField {...params} variant="outlined" label="Checkboxes" placeholder="Favorites" />
+          <TextField
+            {...params}
+            variant="outlined"
+            label="Skills"
+            
+          />
         )}
       />
       <div className="container-stepper">
