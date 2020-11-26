@@ -1,10 +1,11 @@
-import { GET_SKILLS_LIST } from "../constants";
-import axios from "axios";
+/* eslint-disable import/prefer-default-export */
+import axios from "axios"
+import { GET_SKILLS_LIST } from "../constants"
 
 export function getSkillsList() {
-  return function (dispatch) {
+  return (dispatch) => {
     axios.get("/api/skills/").then((res) => {
-      dispatch({ type: GET_SKILLS_LIST, payload: res.data });
-    });
-  };
+      dispatch({ type: GET_SKILLS_LIST, payload: res.data })
+    })
+  }
 }

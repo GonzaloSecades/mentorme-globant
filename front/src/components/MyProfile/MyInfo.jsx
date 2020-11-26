@@ -10,7 +10,7 @@ export default function MyInfo({user}) {
       <h3>Idiomas</h3>
       <div>{user.languages}</div>
       <h3>Skills</h3>
-      <div>{user && user.skills.map((skill)=>{
+      <div>{document.cookie && user && user.skills.map((skill)=>{
         return `${skill.name}     `
       })}</div>
       <h3>Mail</h3>

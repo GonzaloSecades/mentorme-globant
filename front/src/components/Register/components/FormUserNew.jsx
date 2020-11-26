@@ -1,20 +1,17 @@
-import React from "react";
-import { makeStyles, Button } from "@material-ui/core";
-import { formUserNewStyles } from "./materialStyles";
+import React from "react"
+import { Button } from "@material-ui/core"
+import { formUserNewStyles } from "./materialStyles"
 
 function FormUserNew(props) {
   const next = (e) => {
-    e.preventDefault();
-    props.nextStep();
-  };
-  const classes = formUserNewStyles();
+    e.preventDefault()
+    props.nextStep()
+  }
+  const classes = formUserNewStyles()
   return (
     <div className="content-register">
       <h3>Bienvenido, vemos que eres nuevo por aqui!</h3>
-      <p>
-        Comencemos por completar informacion sobre tu perfil para poder ayudarte
-        a encontrar tu match perfecto
-      </p>
+      <p>Comencemos por completar informacion sobre tu perfil para poder ayudarte a encontrar tu match perfecto</p>
       <Button
         style={{
           backgroundColor: "rgba(18,41,68,1)",
@@ -30,6 +27,6 @@ function FormUserNew(props) {
         comenzar
       </Button>
     </div>
-  );
+  )
 }
-export default FormUserNew;
+export default FormUserNew

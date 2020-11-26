@@ -10,7 +10,6 @@ import MyInfo from './MyInfo'
 
 function myProfile({ user , handleClick,editProfile,meeting,skillsToLearnOrTeach,menteesOrMentors,matching,setName}) { 
 
-
 const iconMeet = (
   <FontAwesomeIcon  icon={faComments} color="#3b3b3b" size="2x" />
 );
@@ -54,7 +53,7 @@ const iconComodin = <FontAwesomeIcon icon={faAd} color="#3b3b3b" size="2x" />;
         
       
     </div>
-  );
+  )
 }
 export default myProfile;
 
