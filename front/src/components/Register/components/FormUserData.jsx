@@ -45,25 +45,8 @@ function FormUserData({
     <div className="content-register">
       <h3>Ingresa tus datos personales</h3>
       <form>
-        <TextField
-          className={classes.formLogininput}
-          id="outlined-search"
-          label=" Nombre *"
-          name="firstName"
-          type="text"
-          variant="outlined"
-          value={data.firstName}
-          onChange={handleChange}
-        />
-        <TextField
-          className={classes.formLogininput}
-          id="outlined-search"
-          label=" Apellido *"
-          name="lastName"
-          type="text"
-          variant="outlined"
-          onChange={handleChange}
-        />
+        <TextField value={data.firstName} onChange={handleChange} className={classes.formLogininput} id="outlined-search" label=" Nombre *" name="firstName" type="text" variant="outlined" />
+        <TextField className={classes.formLogininput} onChange={handleChange} id="outlined-search" label=" Apellido *" name="lastName" type="text" variant="outlined" />
         <TextField
           className={classes.formLogininput}
           id="outlined-search"

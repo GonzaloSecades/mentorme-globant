@@ -7,6 +7,7 @@ import FormUserSkills from "./components/FormUserSkills";
 import FormUserSave from "./components/FormUserSave";
 import FormUserSuccess from "./components/FormUserSuccess";
 import { getSkillsList } from "../../redux/action-creators/skills";
+import { register } from "../../redux/action-creators/currentUser";
 
 function UserForm() {
   const dispatch = useDispatch();
@@ -61,24 +62,25 @@ function UserForm() {
     dispatch(getSkillsList());
   };
 
+  function handleSubmit() {
+    register(user).then(nextStep())
+  }
+
   useEffect(() => fetchAllSkills(), []);
   useEffect(() => console.log(skills), [skills]);
   switch (step) {
     case 1:
       return <FormUserNew nextStep={nextStep} handleChange={handleChange} />;
     case 2:
-      return (
+      return        (  
         <FormUserData
-          selectedStep={step}
-          nextStep={nextStep}
-          prevStep={prevStep}
-          handleChange={handleChange}
-          data={user}
+          selectedStep={step} nextStep={nextStep} prevStep={prevStep} handleChange={handleChange} data={user}
         />
       );
     case 3:
       return (
         <FormUserSkills
+          handleSubmit={handleSubmit}
           submitMySkills={submitMySkills}
           selectedStep={step}
           nextStep={nextStep}
