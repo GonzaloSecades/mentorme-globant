@@ -1,5 +1,11 @@
-import { LOGIN } from "../constants";
+import { LOGIN, REGISTER } from "../constants";
 import axios from "axios";
+
+export function register(user){
+  return axios.post("/api/auth/register", user)
+  .then(()=> console.log("User created succesfully!"))
+  .catch(err => console.log(err))
+}
 
 export function login(email, password) {
   return function (dispatch) {
@@ -20,6 +26,5 @@ export function me(token) {
 
 export const logout = () => (dispatch) => {
   document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
-  //  axios.post()
   return dispatch({ type: "LOGOUT", payload: {} });
 };

@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt')
 const User = require("../models/user")
 
 register = (req, res) => {
+  console.log(req.body)
   bcrypt.hash(req.body.password, 10).then(
     (hash) => {
       const user = new User({...req.body, password: hash});

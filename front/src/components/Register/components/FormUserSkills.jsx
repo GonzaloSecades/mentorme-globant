@@ -11,14 +11,7 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@material-ui/icons/CheckBox";
 
-function FormUserSkills({
-  skillsList,
-  handleChange,
-  selectedStep,
-  nextStep,
-  prevStep,
-
-}) {
+function FormUserSkills({ skillsList, handleChange, selectedStep, nextStep, prevStep, handleSubmit}) {
   const ref = useRef();
   const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
   const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -38,8 +31,8 @@ function FormUserSkills({
   let name, title
 
   if (selectedStep === 3) { name = "skills"; title = "Ingresa tus Skills"; }
-  else if (selectedStep === 4) { name = "skillsToLearn"; title = "Elige skills que quieras aprender" }
-  else if (selectedStep === 6) { name = "skillsToTeach"; title = "Elige skills que quieras enseñar" }
+  //else if (selectedStep === 4) { name = "skillsToLearn"; title = "Elige skills que quieras aprender" }
+  //else if (selectedStep === 6) { name = "skillsToTeach"; title = "Elige skills que quieras enseñar" }
 
   return (
     <div className="content-register">
@@ -86,8 +79,8 @@ function FormUserSkills({
           activeStep={selectedStep - 2}
           className={classes.root}
           nextButton={
-            <Button size="small" onClick={next} disabled={selectedStep === 7}>
-              <p className="btn-steppers">Next</p>
+            <Button size="small" onClick={handleSubmit} disabled={selectedStep === 7}>
+              <p className="btn-steppers">Submit</p>
               {theme.direction === "rtl" ? (
                 <KeyboardArrowLeft />
               ) : (
