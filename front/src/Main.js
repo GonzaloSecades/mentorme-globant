@@ -9,7 +9,6 @@ import Navbar from "./components/Navbar/Navbar";
 import UserForm from "./components/Register/UserForm";
 import Login from "./components/Login/Login";
 import Menu from "./components/Menu/Menu";
-import MyProfile from "./components/MyProfile/MyProfile";
 import MyProfileContainer from './components/MyProfile/MyProfileContainer'
 import {me} from './redux/action-creators/currentUser'
 
