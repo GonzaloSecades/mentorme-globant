@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { makeStyles, TextField, Button } from "@material-ui/core";
-import { Link, useHistory } from "react-router-dom";
-import { login } from "../../redux/action-creators/currentUser";
+import React, { useState } from "react"
+import { useDispatch } from "react-redux"
+import { makeStyles, TextField, Button } from "@material-ui/core"
+import { Link, useHistory } from "react-router-dom"
+import { login } from "../../redux/action-creators/currentUser"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,26 +37,25 @@ const useStyles = makeStyles((theme) => ({
       borderColor: "#a6d431",
     },
   },
-}));
+}))
 
 function Login() {
-  const dispatch = useDispatch();
-  const classes = useStyles();
-  const history = useHistory();
-  const [useEmail, setEmail] = useState("");
-  const [usePassword, setPassword] = useState("");
+
+  const dispatch = useDispatch()
+  const classes = useStyles()
+  const history = useHistory()
+  const [useEmail, setEmail] = useState("")
+  const [usePassword, setPassword] = useState("")
 
   function onChange(e) {
-    console.log(e.target.value);
-    if (e.target.name === "email") setEmail(e.target.value);
-    else setPassword(e.target.value);
+    console.log(e.target.value)
+    if (e.target.name === "email") setEmail(e.target.value)
+    else setPassword(e.target.value)
   }
 
   function onSubmit(e) {
-    e.preventDefault();
-    dispatch(login(useEmail, usePassword)).then(() =>
-      history.push("/myprofile")
-    );
+    e.preventDefault()
+    dispatch(login(useEmail, usePassword)).then(() => history.push("/myprofile"))
   }
 
   return (
@@ -82,7 +81,7 @@ function Login() {
           autoComplete="current-password"
           variant="outlined"
         />
-        <Link to="#" className="forgotpassword" href="#">
+        <Link to="/algo" className="forgotpassword" href="http:/algo">
           Lost Your Password ?
         </Link>
         <div className="buttonLoginContainer">
@@ -119,7 +118,7 @@ function Login() {
         </div>
       </form>
     </div>
-  );
+  )
 }
 
-export default Login;
+export default Login

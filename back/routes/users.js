@@ -1,22 +1,19 @@
+const express = require("express")
 
-const express = require("express");
-const router = express.Router();
-const {getUsers, getUser, matchMentor, uploadAvatar} = require('../controllers/users')
-const {auth} = require('../middleware/auth')
-const multer = require('../middleware/multer-config')
+const router = express.Router()
+const { getUsers, getUser, matchMentor, uploadAvatar } = require("../controllers/users")
+const { auth } = require("../middleware/auth")
+const multer = require("../middleware/multer-config")
 
-const User = require("../models/user")
+router.post("/:userId/avatar", multer, uploadAvatar)
+router.get("/:userId/matchMentor", matchMentor)
+router.get("/:userId", getUser)
+router.get("/", getUsers)
 
-router.post('/:userId/avatar', multer, uploadAvatar)
-router.get('/:userId/matchMentor', matchMentor)
-router.get('/:userId', getUser)
-router.get('/', getUsers)
+module.exports = router
 
-module.exports = router;
-
-
-router.get('/test', (req, res) => {
-  //ruta para testear cositas
+router.get("/test", (req, res) => {
+  // ruta para testear cositas
 })
 
 /*

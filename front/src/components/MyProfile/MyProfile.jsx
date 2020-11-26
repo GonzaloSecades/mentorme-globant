@@ -5,7 +5,6 @@ import BookmarksIcon from '@material-ui/icons/Bookmarks';
 
 function myProfile({ user , handleClick,editProfile,meeting,skillsToLearnOrTeach,menteesOrMentors,matching,setName}) { 
 
-
 const iconMeet = (
   <FontAwesomeIcon  icon={faComments} color="#3b3b3b" size="2x" />
 );
@@ -24,7 +23,7 @@ const iconComodin = <FontAwesomeIcon icon={faAd} color="#3b3b3b" size="2x" />;
           <div onClick={(e)=>{setName('meeting');handleClick(e)}}>
             {iconMeet}
           </div>
-          <div onClick={(e)=>{setName('editProfile');handleClick(e)}}>                {iconEditProfile}  
+          <div onClick={(e)=>{setName('editProfile');handleClick(e)}}> {iconEditProfile}  
           </div>
           <div onClick={(e)=>{setName('menteesOrMentors');handleClick(e)}}>
             {iconComodin}
@@ -44,8 +43,6 @@ const iconComodin = <FontAwesomeIcon icon={faAd} color="#3b3b3b" size="2x" />;
     {/* DISTINTAS SECCIONES */}
 
 
-
-
       <div className="prueba">
         {editProfile ? <div className="MyMenteesOrMentor">My Mentors and Mentees</div> : null}  
         {meeting ? <div className="mySkills">Meetings</div>   : null}
@@ -56,6 +53,6 @@ const iconComodin = <FontAwesomeIcon icon={faAd} color="#3b3b3b" size="2x" />;
         
       </div>
     </div>
-  );
+  )
 }
-export default myProfile;
+export default myProfile

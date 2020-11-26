@@ -1,17 +1,17 @@
-import React from "react";
-import { useTheme, withStyles } from "@material-ui/core/styles";
-import { Link, useHistory } from "react-router-dom";
-import MobileStepper from "@material-ui/core/MobileStepper";
-import Button from "@material-ui/core/Button";
-import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
-import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
-import { formUserSaveStyles } from "./materialStyles";
-import { Paper, TableRow, TableContainer, TableCell, TableBody, Table } from "@material-ui/core";
+import React from "react"
+import { useTheme, withStyles } from "@material-ui/core/styles"
+import { Link, useHistory } from "react-router-dom"
+import MobileStepper from "@material-ui/core/MobileStepper"
+import Button from "@material-ui/core/Button"
+import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft"
+import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight"
+import { Paper, TableRow, TableContainer, TableCell, TableBody, Table } from "@material-ui/core"
+import { formUserSaveStyles } from "./materialStyles"
 
 function FormUserNew({ prevStep, selectedStep, steps, data, handleSubmit }) {
-  const classes = formUserSaveStyles();
-  const theme = useTheme();
-  const StyledTableCell = withStyles((theme) => ({
+  const classes = formUserSaveStyles()
+  const theme = useTheme()
+  const StyledTableCell = withStyles(() => ({
     head: {
       backgroundColor: theme.palette.common.black,
       color: theme.palette.common.white,
@@ -20,36 +20,37 @@ function FormUserNew({ prevStep, selectedStep, steps, data, handleSubmit }) {
       fontSize: 14,
       margin: 0,
     },
-  }))(TableCell);
+  }))(TableCell)
 
-  const StyledTableRow = withStyles((theme) => ({
+  const StyledTableRow = withStyles(() => ({
     root: {
-      '&:nth-of-type(odd)': {
+      "&:nth-of-type(odd)": {
         backgroundColor: theme.palette.action.hover,
       },
     },
-  }))(TableRow);
+  }))(TableRow)
 
   const prev = (e) => {
-    e.preventDefault();
-    prevStep();
-  };
+    e.preventDefault()
+    prevStep()
+  }
 
   function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
+    return { name, calories, fat, carbs, protein }
   }
 
   const rows = [
-    createData('NOMBRE:', data.firstName),
-    createData('APELLIDO:', data.lastName),
-    createData('EMAIL:', data.email),
-    createData('TELEFONO:', data.phoneNumber),
-    createData('PAIS:', data.country),
-
-  ];
+    createData("NOMBRE:", data.firstName),
+    createData("APELLIDO:", data.lastName),
+    createData("EMAIL:", data.email),
+    createData("TELEFONO:", data.phoneNumber),
+    createData("PAIS:", data.country),
+  ]
 
   let title
-  if (selectedStep === 4) { title = "Confirma si los datos ingresados son correctos"; }
+  if (selectedStep === 4) {
+    title = "Confirma si los datos ingresados son correctos"
+  }
 
   return (
     <div className="content-register">
@@ -80,7 +81,8 @@ function FormUserNew({ prevStep, selectedStep, steps, data, handleSubmit }) {
         color="primary"
         onClick={handleSubmit}
       >
-        {" "}confirmar{" "}
+        {" "}
+        confirmar{" "}
       </Button>
       <div className="container-stepper">
         <MobileStepper
@@ -91,27 +93,19 @@ function FormUserNew({ prevStep, selectedStep, steps, data, handleSubmit }) {
           className={classes.root}
           nextButton={
             <Button size="small">
-              <p className="btn-steppers"></p>
-              {theme.direction === "rtl" ? (<KeyboardArrowLeft />) : (null)}
+              <p className="btn-steppers" />
+              {theme.direction === "rtl" ? <KeyboardArrowLeft /> : null}
             </Button>
           }
           backButton={
-            <Button
-              size="small"
-              onClick={prev}
-              disabled={selectedStep === 0}
-            >
-              {theme.direction === "rtl" ? (
-                <KeyboardArrowRight />
-              ) : (
-                  <KeyboardArrowLeft />
-                )}
+            <Button size="small" onClick={prev} disabled={selectedStep === 0}>
+              {theme.direction === "rtl" ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
               <p className="btn-steppers">Back</p>
             </Button>
           }
         />
       </div>
     </div>
-  );
+  )
 }
-export default FormUserNew;
+export default FormUserNew

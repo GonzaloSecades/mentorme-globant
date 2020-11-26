@@ -31,6 +31,6 @@ function FormUserSuccess({ }) {
 
 
     </div>
-  );
+  )
 }
-export default FormUserSuccess;
+export default FormUserSuccess
