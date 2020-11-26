@@ -21,20 +21,28 @@ function Main() {
   const history = useHistory();
   //HOOK PERSISTENCIA DE SESION
   useEffect(() => {
+    //persistencia
     if (document.cookie) {
       const token = document.cookie
         .split("; ")
         .find((row) => row.startsWith("token"))
         .split("=")[1];
       dispatch(me(token));
-      //   setTimeout(() => {
-      //     history.push("/myprofile");
-      //   }, 1000);
-      // } else {
-      //   setTimeout(() => {
-      //     history.push("/login");
-      //   }, 1000);
+
+      //transition
+      /*   .then(() => {
+          setTimeout(() => {
+            history.push("/myprofile")
+          }, 1000);
+        }) */
+    } /* else {
+      setTimeout(() => {
+        history.push("/login");
+      }, 1000);
+    } */
+
     }
+
   }, []);
 
   return (
