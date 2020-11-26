@@ -1,19 +1,19 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import clsx from "clsx";
-import { makeStyles } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import List from "@material-ui/core/List";
-import Divider from "@material-ui/core/Divider";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import { logout } from "../../../redux/action-creators/currentUser";
+import React from "react"
+import { useHistory } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import clsx from "clsx"
+import { makeStyles } from "@material-ui/core/styles"
+import Drawer from "@material-ui/core/Drawer"
+import List from "@material-ui/core/List"
+import Divider from "@material-ui/core/Divider"
+import ListItem from "@material-ui/core/ListItem"
+import ListItemIcon from "@material-ui/core/ListItemIcon"
+import ListItemText from "@material-ui/core/ListItemText"
+import InboxIcon from "@material-ui/icons/MoveToInbox"
+import MailIcon from "@material-ui/icons/Mail"
+import IconButton from "@material-ui/core/IconButton"
+import MenuIcon from "@material-ui/icons/Menu"
+import { logout } from "../../../redux/action-creators/currentUser"
 
 const useStyles = makeStyles({
   list: {
@@ -43,27 +43,23 @@ const useStyles = makeStyles({
       color: "#fff",
     },
   },
-});
+})
 
 export default function TemporaryDrawer() {
-  const classes = useStyles();
-  const history = useHistory();
+  const classes = useStyles()
+  const history = useHistory()
   const [state, setState] = React.useState({
     left: false,
-  });
+  })
 
   const toggleDrawer = (anchor, open) => (event) => {
-    if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
+    if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
+      return
     }
+    setState({ ...state, [anchor]: open })
+  }
 
-    setState({ ...state, [anchor]: open });
-  };
-
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const list = (anchor) => (
     <div
@@ -78,8 +74,8 @@ export default function TemporaryDrawer() {
         <ListItem>
           <ListItemIcon
             onClick={() => {
-              dispatch(logout());
-              history.push("/login");
+              dispatch(logout())
+              history.push("/login")
             }}
           >
             LOG OUT
@@ -89,17 +85,15 @@ export default function TemporaryDrawer() {
       </List>
       <Divider />
       <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
+        {["BUSCAR MENTOR", "MI PERFIL", "LLAMAR A VITTO"].map((text, index) => (
           <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
+            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
         ))}
       </List>
     </div>
-  );
+  )
 
   return (
     <div>
@@ -113,17 +107,13 @@ export default function TemporaryDrawer() {
           >
             <MenuIcon />
           </IconButton>
-          <Drawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-          >
+          <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
             {list(anchor)}
           </Drawer>
         </React.Fragment>
       ))}
     </div>
-  );
+  )
 }
 
 /* function Burger() {
