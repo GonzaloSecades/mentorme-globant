@@ -11,7 +11,7 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@material-ui/icons/CheckBox";
 
-function FormUserSkills({ skillsList, handleChange, selectedStep, nextStep, prevStep, handleSubmit}) {
+function FormUserSkills({ steps, data, skillsList, handleChange, selectedStep, nextStep, prevStep, handleSubmit }) {
   const ref = useRef();
   const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
   const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -39,6 +39,7 @@ function FormUserSkills({ skillsList, handleChange, selectedStep, nextStep, prev
       <h3>{title}</h3>
 
       <Autocomplete
+        value={data.skills}
         ref={ref}
         multiple
         id="checkboxes-tags-demo"
@@ -66,21 +67,21 @@ function FormUserSkills({ skillsList, handleChange, selectedStep, nextStep, prev
           <TextField
             {...params}
             variant="outlined"
-            label="Checkboxes"
-            placeholder="Favorites"
+            label="Skills"
+
           />
         )}
       />
       <div className="container-stepper">
         <MobileStepper
           variant="dots"
-          steps={7}
+          steps={steps}
           position="static"
           activeStep={selectedStep - 2}
           className={classes.root}
           nextButton={
-            <Button size="small" onClick={handleSubmit} disabled={selectedStep === 7}>
-              <p className="btn-steppers">Submit</p>
+            <Button size="small" onClick={next} disabled={selectedStep === steps + 1}>
+              <p className="btn-steppers">Next</p>
               {theme.direction === "rtl" ? (
                 <KeyboardArrowLeft />
               ) : (

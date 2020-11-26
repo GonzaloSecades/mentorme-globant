@@ -18,6 +18,7 @@ function FormUserData({
   data,
   handleChange,
   selectedStep,
+  steps
 }) {
   const [open, setOpen] = React.useState(false);
   const classes = formUserDataStyles();
@@ -46,9 +47,10 @@ function FormUserData({
       <h3>Ingresa tus datos personales</h3>
       <form>
         <TextField value={data.firstName} onChange={handleChange} className={classes.formLogininput} id="outlined-search" label=" Nombre *" name="firstName" type="text" variant="outlined" />
-        <TextField className={classes.formLogininput} onChange={handleChange} id="outlined-search" label=" Apellido *" name="lastName" type="text" variant="outlined" />
+        <TextField className={classes.formLogininput} value={data.lastName} onChange={handleChange} id="outlined-search" label=" Apellido *" name="lastName" type="text" variant="outlined" />
         <TextField
           className={classes.formLogininput}
+          value={data.email}
           id="outlined-search"
           label=" Email *"
           name="email"
@@ -58,6 +60,7 @@ function FormUserData({
         />
         <TextField
           className={classes.formLogininput}
+          value={data.password}
           id="outlined-search"
           label=" Contraseña *"
           name="password"
@@ -65,17 +68,10 @@ function FormUserData({
           variant="outlined"
           onChange={handleChange}
         />
+
         <TextField
           className={classes.formLogininput}
-          id="outlined-search"
-          label=" Confirma tu contraseña *"
-          name="confirmPassword"
-          type="password"
-          variant="outlined"
-          onChange={handleChange}
-        />
-        <TextField
-          className={classes.formLogininput}
+          value={data.phoneNumber}
           id="outlined-search"
           label="Telefono *"
           name="phoneNumber"
@@ -92,6 +88,7 @@ function FormUserData({
         </InputLabel>
 
         <Select
+          value={data.country}
           labelId="demo-controlled-open-select-label"
           id="demo-controlled-open-select"
           className={classes.formLogininput}
@@ -120,12 +117,12 @@ function FormUserData({
       <div className="container-stepper">
         <MobileStepper
           variant="dots"
-          steps={7}
+          steps={steps}
           position="static"
           activeStep={selectedStep - 2}
           className={classes.root}
           nextButton={
-            <Button size="small" onClick={next} disabled={selectedStep === 7}>
+            <Button size="small" onClick={next} disabled={selectedStep === steps}>
               <p className="btn-steppers">Next</p>
               {theme.direction === "rtl" ? (
                 <KeyboardArrowLeft />
