@@ -1,13 +1,12 @@
 const User = require("../models/user")
 const _ = require("lodash")
 
-getAllUsers = (req, res) => {
-  if (!_.isEmpty(req.query)){
+getUsers = (req, res) => {
+  if (!_.isEmpty(req.query)) {
     const pageOptions = {
       page: parseInt(req.query.page, 10) || 0,
       limit: parseInt(req.query.limit, 10) || 10
   }
-
     User.find().skip(pageOptions.page * pageOptions.limit).limit(pageOptions.limit)
     .then((data)=>res.status(200).send(data))
     .catch(err=>res.status(500).send(err))
@@ -17,7 +16,6 @@ getAllUsers = (req, res) => {
     .then(data => res.status(200).send(data))
     .catch(err => console.log(err))
   }
-
 }
 
 getUser = (req, res) => {
@@ -92,4 +90,4 @@ uploadAvatar = (req, res, next) => {
     .catch(error => res.status(400).json({error: error}))
 };
 
-module.exports = {getAllUsers, getUser, matchUserSkills, uploadAvatar}
+module.exports = {getUsers, getUser, matchUserSkills, uploadAvatar}

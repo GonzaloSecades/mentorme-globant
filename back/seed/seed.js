@@ -1,5 +1,5 @@
 
-const {Skill} = require("../models/skill");
+const { Skill } = require("../models/skill");
 const User = require("../models/user");
 const chalk = require("chalk");
 const usersObj = require("./usersObj")
@@ -32,41 +32,29 @@ async function seed() {
   //     user.save();
   //   })
 
-  // const allUsers = await User.find({})
-  // for (let i = 0; i < allUsers.length; i++) {
-  //   if (allUsers[i].mentors.length) {
-  //     console.log("MENTORSARR BEFORE CLONE: ", allUsers[i].mentors)
-  //     let mentorsArr = _.cloneDeep(allUsers[i].mentors)
-  //     while (mentorsArr.length) {
-  //       const k = mentorsArr.length - 1
-  //       const mentor = await User.findOne({_id: mentorsArr[k]._id})
-  //       if (mentor != null) {
-  //         if (mentor.hasOwnProperty("mentees")) mentor["mentees"].push(mentorsArr[k])
-  //         else mentor["mentees"] = mentorsArr[k]
-  //         mentor.save()
-  //       }
-  //       mentorsArr.pop()
-  //     }
-  //   }
-  // }
+  const allUsers = await User.find({})
+  for (let i = 0; i < allUsers.length; i++) {
+    if (allUsers[i].mentors.length) {
+      console.log("MENTORSARR BEFORE CLONE: ", allUsers[i].mentors)
+      let mentorsArr = _.cloneDeep(allUsers[i].mentors)
+      while (mentorsArr.length) {
+        const k = mentorsArr.length - 1
+        const mentor = await User.findOne({ _id: mentorsArr[k]._id })
+        if (mentor != null) {
+          if (mentor.hasOwnProperty("mentees")) mentor["mentees"].push(mentorsArr[k])
+          else mentor["mentees"] = mentorsArr[k]
+          mentor.save()
+        }
+        mentorsArr.pop()
+      }
+    }
+  }
 
-  // for (let i = 0; i < allUsers.length; i++) {
-  //   const hash = await bcrypt.hash(allUsers[i].password, 10)
-  //   allUsers[i].password = hash
-  //   allUsers[i].save()
-  // }
-
-  // register = (req, res) => {
-  //   bcrypt.hash(req.body.password, 10).then(
-  //     (hash) => {
-  //       const user = new User({...req.body, password: hash});
-  //       user.save()
-  //         .then(() => res.status(201).json({message: 'User added successfully!'}))
-  //         .catch((error) => res.status(500).json({error: error}));
-  //     }
-  //   )
-  // }
-
+  for (let i = 0; i < allUsers.length; i++) {
+    const hash = await bcrypt.hash(allUsers[i].password, 10)
+    allUsers[i].password = hash
+    allUsers[i].save()
+  }
 
 }
 seed()
