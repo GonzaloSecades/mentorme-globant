@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles"
 
 export const formUserDataStyles = makeStyles({
   root: {
@@ -43,7 +43,7 @@ export const formUserDataStyles = makeStyles({
       borderColor: "#a6d431",
     },
   },
-});
+})
 
 export const formUserNewStyles = makeStyles((theme) => ({
   root: {
@@ -80,7 +80,7 @@ export const formUserNewStyles = makeStyles((theme) => ({
       borderColor: "#a6d431",
     },
   },
-}));
+}))
 
 export const formUserSaveStyles = makeStyles({
   root: {
@@ -93,7 +93,7 @@ export const formUserSaveStyles = makeStyles({
       backgroundColor: "#a6d431",
     },
   },
-});
+})
 
 export const formUserSkillsStyles = makeStyles({
   root: {
@@ -106,7 +106,7 @@ export const formUserSkillsStyles = makeStyles({
       backgroundColor: "#a6d431",
     },
   },
-});
+})
 
 export const formUserSuccessStyles = makeStyles({
   root: {
@@ -119,4 +119,4 @@ export const formUserSuccessStyles = makeStyles({
       backgroundColor: "#a6d431",
     },
   },
-});
+})

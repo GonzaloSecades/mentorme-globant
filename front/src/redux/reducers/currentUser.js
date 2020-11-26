@@ -1,4 +1,4 @@
-const initialState = {};
+const initialState = {}
 
 function currentUserReducer(state = initialState, action) {
   switch (action.type) {
@@ -7,21 +7,21 @@ function currentUserReducer(state = initialState, action) {
     case "ME_LOGIN":
       return action.payload
     case "LOGOUT":
-      return initialState;
+      return initialState
     case "GET_MENTORS":
-      return {...state, mentors: action.payload};
+      return { ...state, mentors: action.payload }
     case "GET_MENTEES":
-      return {...state, mentees: action.payload};
+      return { ...state, mentees: action.payload }
     case "SET_SKILLS_TO_LEARN":
-      return {...state, skillsToLearn: action.payload}
+      return { ...state, skillsToLearn: action.payload }
     case "SET_SKILLS_TO_TEACH":
-      return {...state, skillsToTeach: action.payload}
+      return { ...state, skillsToTeach: action.payload }
     case "UPDATE_SKILLS_TO_LEARN":
-      return {...state, skillsToLearn: action.payload}
+      return { ...state, skillsToLearn: action.payload }
     case "UPDATE_SKILLS_TO_TEACH":
-      return {...state, skillsToTeach: action.payload}
+      return { ...state, skillsToTeach: action.payload }
     default:
-      return state;
+      return state
   }
 }
-export default currentUserReducer;
+export default currentUserReducer
