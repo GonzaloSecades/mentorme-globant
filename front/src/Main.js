@@ -28,6 +28,7 @@ function Main() {
         .find((row) => row.startsWith("token"))
         .split("=")[1];
       dispatch(me(token));
+
       //transition
       /*   .then(() => {
           setTimeout(() => {
@@ -39,6 +40,9 @@ function Main() {
         history.push("/login");
       }, 1000);
     } */
+
+    }
+
   }, []);
 
   return (
@@ -55,9 +59,9 @@ function Main() {
               >
                 <Switch location={location}>
                   <Route exact path="/" component={Landing}></Route>
-                  <Route exact path="/login" component={Login}></Route>
+                  <Route path="/login" component={Login}></Route>
                   <Route path="/register" component={UserForm}></Route>
-                  <Route path="/myprofile" component={MyProfile} />
+                  <Route path="/myprofile" component={MyProfileContainer} />
                 </Switch>
               </CSSTransition>
             </TransitionGroup>
