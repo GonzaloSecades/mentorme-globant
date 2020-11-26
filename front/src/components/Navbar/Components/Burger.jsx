@@ -1,4 +1,6 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -11,13 +13,14 @@ import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
+import { logout } from "../../../redux/action-creators/currentUser";
 
 const useStyles = makeStyles({
   list: {
-    width: 250
+    width: 250,
   },
   fullList: {
-    width: "auto"
+    width: "auto",
   },
   ButtonBurger: {
     "& .MuiIconButton-root": {
@@ -28,7 +31,7 @@ const useStyles = makeStyles({
       fontSize: "1.5rem",
       textAlign: "center",
       transition: "background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
-      borderRadius: "50%"
+      borderRadius: "50%",
     },
     "& .MuiSvgIcon-root": {
       fill: "currentColor",
@@ -38,14 +41,15 @@ const useStyles = makeStyles({
       fontSize: "2.5rem",
       transition: "fill 200ms cubic- bezier(0.4, 0, 0.2, 1) 0ms",
       color: "#fff",
-    }
-  }
+    },
+  },
 });
 
 export default function TemporaryDrawer() {
   const classes = useStyles();
+  const history = useHistory();
   const [state, setState] = React.useState({
-    left: false
+    left: false,
   });
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -59,31 +63,35 @@ export default function TemporaryDrawer() {
     setState({ ...state, [anchor]: open });
   };
 
+  const dispatch = useDispatch();
+
   const list = (anchor) => (
     <div
       className={clsx(classes.list, {
-        [classes.fullList]: anchor === "top" || anchor === "bottom"
+        [classes.fullList]: anchor === "top" || anchor === "bottom",
       })}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
-
     >
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem button key={text} >
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+        <ListItem>
+          <ListItemIcon
+            onClick={() => {
+              dispatch(logout());
+              history.push("/login");
+            }}
+          >
+            LOG OUT
+          </ListItemIcon>
+          <ListItemText />
+        </ListItem>
       </List>
       <Divider />
       <List>
         {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem button key={text} >
-            <ListItemIcon >
+          <ListItem button key={text}>
+            <ListItemIcon>
               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
             </ListItemIcon>
             <ListItemText primary={text} />
@@ -117,7 +125,6 @@ export default function TemporaryDrawer() {
     </div>
   );
 }
-
 
 /* function Burger() {
   return (
