@@ -27,20 +27,8 @@ function Main() {
         .find(row => row.startsWith('token'))
         .split('=')[1];
       dispatch(me(token))
-      /*   .then(() => {
-          setTimeout(() => {
-            history.push("/myprofile")
-          }, 1000);
-        }) */
-    } else {
-      setTimeout(() => {
-        history.push("/login")
-      }, 1000);
     }
-
   }, [])
-
-
   return (
     <div className="order">
       {location === "/" ? null : <Navbar />}
@@ -55,7 +43,7 @@ function Main() {
                 <Route exact path="/" component={Landing}></Route>
                 <Route path="/login" component={Login}></Route>
                 <Route path="/register" component={UserForm}></Route>
-                <Route path="/myprofile" component={MyProfile} />
+                <Route path="/myprofile" component={MyProfileContainer} />
               </Switch>
             </CSSTransition>
           </TransitionGroup>
