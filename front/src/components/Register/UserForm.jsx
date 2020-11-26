@@ -10,10 +10,11 @@ import { getSkillsList } from "../../redux/action-creators/skills"
 import { register } from "../../redux/action-creators/currentUser"
 
 function UserForm() {
-  const dispatch = useDispatch()
-  const skillsList = useSelector((state) => state.skills)
-  const [step, setStep] = useState(1)
-  const [skills, setSkills] = useState([])
+  const dispatch = useDispatch();
+  const skillsList = useSelector((state) => state.skills);
+  const steps = 3;
+  const [step, setStep] = useState(1);
+  const [skills, setSkills] = useState([]);
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -62,7 +63,11 @@ function UserForm() {
   useEffect(() => console.log(skills), [skills])
   switch (step) {
     case 1:
-      return <FormUserNew nextStep={nextStep} handleChange={handleChange} />
+      return <FormUserNew
+        nextStep={nextStep}
+        handleChange={handleChange}
+        steps={steps}
+      />;
     case 2:
       return (
         <FormUserData
@@ -71,11 +76,24 @@ function UserForm() {
           prevStep={prevStep}
           handleChange={handleChange}
           data={user}
-        />
-      )
+          steps={steps} />
+      );
     case 3:
       return (
         <FormUserSkills
+          submitMySkills={submitMySkills}
+          selectedStep={step}
+          nextStep={nextStep}
+          prevStep={prevStep}
+          handleChange={handleChange}
+          skillsList={skillsList}
+          data={user}
+          steps={steps}
+        />
+      )
+    case 4:
+      return (
+        <FormUserSave
           handleSubmit={handleSubmit}
           submitMySkills={submitMySkills}
           selectedStep={step}
@@ -83,26 +101,26 @@ function UserForm() {
           prevStep={prevStep}
           handleChange={handleChange}
           skillsList={skillsList}
+          data={user}
+          steps={steps}
         />
-      )
-    case 4:
+      );
+
+    case 5:
       return (
-        <FormUserSkills
+        <FormUserSuccess
           submitMySkills={submitMySkills}
           selectedStep={step}
           nextStep={nextStep}
           prevStep={prevStep}
           handleChange={handleChange}
           skillsList={skillsList}
+          data={user}
+          steps={steps}
         />
-      )
-    case 5:
-      return <FormUserSuccess selectedStep={step} prevStep={prevStep} nextStep={nextStep} handleChange={handleChange} />
-    case 6:
-      return <FormUserSuccess selectedStep={step} prevStep={prevStep} nextStep={nextStep} handleChange={handleChange} />
-    case 7:
-      return <FormUserSuccess selectedStep={step} prevStep={prevStep} nextStep={nextStep} handleChange={handleChange} />
-    default:
+      );
+
+
   }
 }
 
