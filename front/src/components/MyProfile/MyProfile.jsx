@@ -1,5 +1,5 @@
 import React from "react";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faComments,
   faPencilAlt,
@@ -14,8 +14,8 @@ const iconEditProfile = (
 );
 const iconComodin = <FontAwesomeIcon icon={faAd} color="#3b3b3b" size="2x" />;
 
-function myProfile({user}) {
-  
+function myProfile({ user }) {
+  console.log("el diego", user);
   return (
     <div className="MyProfileFather">
       <section>
@@ -23,7 +23,9 @@ function myProfile({user}) {
           alt="user-avatar"
           src="https://instagram.faep8-1.fna.fbcdn.net/v/t51.2885-15/e35/66641973_394347101250857_3361261859679580024_n.jpg?_nc_ht=instagram.faep8-1.fna.fbcdn.net&_nc_cat=105&_nc_ohc=4Nq48nCycGUAX_g33Gs&tp=1&oh=80775c823e1e50b25af4f595c0d14402&oe=5FDF80E3"
         />
-        <p>{user.firstName} {user.lastName}</p>
+        <p>
+          {user.firstName} {user.lastName}
+        </p>
         <div className="iconsFather">
           <div> {iconMeet}</div>
           <div className="iconMid">{iconEditProfile}</div>
@@ -32,7 +34,6 @@ function myProfile({user}) {
       </section>
       <img
         alt="backgroud-animation1"
-
         className="backgroundAnimation1"
         src="https://i.ibb.co/7nhLm8S/02.png"
       />
@@ -42,16 +43,10 @@ function myProfile({user}) {
         src="https://i.ibb.co/YX02RmT/01.png"
       />
       <div className="prueba">
-        <div className='MyMenteesOrMentor'>
-          My Mentors and Mentees
-        </div>
-        <div className='mySkills'>
-          My Skills
-        </div>
-        <div className='MyProgress'>
-          My Process on skills
-        </div>
-      </div>    
+        <div className="MyMenteesOrMentor">My Mentors and Mentees</div>
+        <div className="mySkills">My Skills</div>
+        <div className="MyProgress">My Process on skills</div>
+      </div>
     </div>
   );
 }
