@@ -26,7 +26,7 @@ function FormUserNew(props) {
       <div className="container-stepper">
         <MobileStepper
           variant="dots"
-          steps={4}
+          steps={7}
           position="static"
           activeStep={props.selectedStep - 2}
           className={classes.root}
@@ -34,14 +34,14 @@ function FormUserNew(props) {
             <Button
               size="small"
               onClick={next}
-              disabled={props.selectedStep === 5}
+              disabled={props.selectedStep === 7}
             >
               <p className="btn-steppers">Next</p>
               {theme.direction === "rtl" ? (
                 <KeyboardArrowLeft />
               ) : (
-                <KeyboardArrowRight />
-              )}
+                  <KeyboardArrowRight />
+                )}
             </Button>
           }
           backButton={
@@ -53,8 +53,8 @@ function FormUserNew(props) {
               {theme.direction === "rtl" ? (
                 <KeyboardArrowRight />
               ) : (
-                <KeyboardArrowLeft />
-              )}
+                  <KeyboardArrowLeft />
+                )}
               <p className="btn-steppers">Back</p>
             </Button>
           }
