@@ -1,66 +1,69 @@
-const User = require("../models/user")
+/* eslint-disable no-param-reassign */
 const _ = require("lodash")
+const User = require("../models/user")
 
-getUsers = (req, res) => {
+const getUsers = (req, res) => {
   if (!_.isEmpty(req.query)) {
     const pageOptions = {
       page: parseInt(req.query.page, 10) || 0,
-      limit: parseInt(req.query.limit, 10) || 10
-  }
-    User.find().skip(pageOptions.page * pageOptions.limit).limit(pageOptions.limit)
-    .then((data)=>res.status(200).send(data))
-    .catch(err=>res.status(500).send(err))
-  }
-  else {
-    User.find({}).lean()
-    .then(data => res.status(200).send(data))
-    .catch(err => console.log(err))
+      limit: parseInt(req.query.limit, 10) || 10,
+    }
+    User.find()
+      .skip(pageOptions.page * pageOptions.limit)
+      .limit(pageOptions.limit)
+      .then((data) => res.status(200).send(data))
+      .catch((err) => res.status(500).send(err))
+  } else {
+    User.find({})
+      .lean()
+      .then((data) => res.status(200).send(data))
+      .catch((err) => console.log(err))
   }
 }
 
-getUser = (req, res) => {
-  User.findOne({_id:req.params.userId}).select('-_id -__v')
-    .then(data => res.status(200).send(data))
-    .catch(err => console.log(err))
+const getUser = (req, res) => {
+  User.findOne({ _id: req.params.userId })
+    .select("-_id -__v")
+    .then((data) => res.status(200).send(data))
+    .catch((err) => console.log(err))
 }
 
-matchMentor = async (req, res) => {
-  const selectedUser = await User.findOne({_id: req.body.id}).select('-__v').lean()
-  const skillsToLearnArr = selectedUser.skillsToLearn.map(e => e._id)
+const matchMentor = async (req, res) => {
+  const selectedUser = await User.findOne({ _id: req.body.id }).select("-__v").lean()
+  const skillsToLearnArr = selectedUser.skillsToLearn.map((e) => e._id)
   const users = await User.aggregate([
-    {$unwind: '$skillsToTeach'},
-    {$match: {'skillsToTeach._id': {$in: skillsToLearnArr}}},
-    {$group: {
+    { $unwind: "$skillsToTeach" },
+    { $match: { "skillsToTeach._id": { $in: skillsToLearnArr } } },
+    {
+      $group: {
         _id: "$_id",
-        firstName: {$first: '$firstName'},
-        lastName: {$first: '$lastName'},
-        country: {$first: '$country'},
-        skillsToTeach: {$push:{_id:'$skillsToTeach._id', name:'$skillsToTeach.name'}},
-        count: {$sum: 1},
-      }
+        firstName: { $first: "$firstName" },
+        lastName: { $first: "$lastName" },
+        country: { $first: "$country" },
+        skillsToTeach: { $push: { _id: "$skillsToTeach._id", name: "$skillsToTeach.name" } },
+        count: { $sum: 1 },
+      },
     },
-    {$sort: {count: 1}}
+    { $sort: { count: 1 } },
   ])
   res.send(users)
 }
 
-uploadAvatar = (req, res, next) => {
-  const _id = req.body.userId, url = req.protocol + '://' + req.get('host');
-  User.findOne({_id}).select('-__v')
-    .then(user => {
-      user.avatar = url + '/images/' + req.file.filename
+const uploadAvatar = (req, res, next) => {
+  const _id = req.body.userId
+  const url = `${req.protocol}://${req.get("host")}`
+  User.findOne({ _id })
+    .select("-__v")
+    .then((user) => {
+      user.avatar = `${url}/images/${req.file.filename}`
       return user
     })
-    .then(user=>user.save())
-    .then(user => res.status(201).send(user))
-    .catch(error => res.status(400).json({error: error}))
-};
+    .then((user) => user.save())
+    .then((user) => res.status(201).send(user))
+    .catch((error) => res.status(400).json({ error }))
+}
 
-module.exports = {getUsers, getUser, matchMentor, uploadAvatar}
-
-
-
-
+module.exports = { getUsers, getUser, matchMentor, uploadAvatar }
 
 /*
   // const _id = req.params.userId
