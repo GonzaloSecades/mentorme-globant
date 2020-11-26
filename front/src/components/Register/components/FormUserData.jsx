@@ -12,19 +12,25 @@ import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import { formUserDataStyles } from "./materialStyles";
 
-function FormUserData(props) {
+function FormUserData({
+  nextStep,
+  prevStep,
+  data,
+  handleChange,
+  selectedStep,
+}) {
   const [open, setOpen] = React.useState(false);
   const classes = formUserDataStyles();
   const theme = useTheme();
 
   const next = (e) => {
     e.preventDefault();
-    props.nextStep();
+    nextStep();
   };
 
   const prev = (e) => {
     e.preventDefault();
-    props.prevStep();
+    prevStep();
   };
 
   const handleClose = () => {
@@ -46,16 +52,17 @@ function FormUserData(props) {
           name="firstName"
           type="text"
           variant="outlined"
-          onChange={props.handleChange}
+          value={data.firstName}
+          onChange={handleChange}
         />
         <TextField
           className={classes.formLogininput}
           id="outlined-search"
           label=" Apellido *"
-          name="lastname"
+          name="lastName"
           type="text"
           variant="outlined"
-          onChange={props.handleChange}
+          onChange={handleChange}
         />
         <TextField
           className={classes.formLogininput}
@@ -64,7 +71,7 @@ function FormUserData(props) {
           name="email"
           type="email"
           variant="outlined"
-          onChange={props.handleChange}
+          onChange={handleChange}
         />
         <TextField
           className={classes.formLogininput}
@@ -73,7 +80,7 @@ function FormUserData(props) {
           name="password"
           type="password"
           variant="outlined"
-          onChange={props.handleChange}
+          onChange={handleChange}
         />
         <TextField
           className={classes.formLogininput}
@@ -82,7 +89,7 @@ function FormUserData(props) {
           name="confirmPassword"
           type="password"
           variant="outlined"
-          onChange={props.handleChange}
+          onChange={handleChange}
         />
         <TextField
           className={classes.formLogininput}
@@ -91,7 +98,7 @@ function FormUserData(props) {
           name="phoneNumber"
           type="tel"
           variant="outlined"
-          onChange={props.handleChange}
+          onChange={handleChange}
         />
 
         <InputLabel
@@ -109,7 +116,7 @@ function FormUserData(props) {
           onClose={handleClose}
           name="country"
           onOpen={handleOpen} //para hacerlo controlled deberiamos hacer un hook here
-          /*   value={age} */ onChange={props.handleChange}
+          /*   value={age} */ onChange={handleChange}
           autoWidth={true}
         >
           <MenuItem value="">
@@ -130,35 +137,27 @@ function FormUserData(props) {
       <div className="container-stepper">
         <MobileStepper
           variant="dots"
-          steps={4}
+          steps={7}
           position="static"
-          activeStep={props.selectedStep - 2}
+          activeStep={selectedStep - 2}
           className={classes.root}
           nextButton={
-            <Button
-              size="small"
-              onClick={next}
-              disabled={props.selectedStep === 5}
-            >
+            <Button size="small" onClick={next} disabled={selectedStep === 7}>
               <p className="btn-steppers">Next</p>
               {theme.direction === "rtl" ? (
                 <KeyboardArrowLeft />
               ) : (
-                <KeyboardArrowRight />
-              )}
+                  <KeyboardArrowRight />
+                )}
             </Button>
           }
           backButton={
-            <Button
-              size="small"
-              onClick={prev}
-              disabled={props.selectedStep === 0}
-            >
+            <Button size="small" onClick={prev} disabled={selectedStep === 0}>
               {theme.direction === "rtl" ? (
                 <KeyboardArrowRight />
               ) : (
-                <KeyboardArrowLeft />
-              )}
+                  <KeyboardArrowLeft />
+                )}
               <p className="btn-steppers">Back</p>
             </Button>
           }

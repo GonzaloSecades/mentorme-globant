@@ -1,5 +1,6 @@
 import React from "react";
-import { Route, Switch, useLocation } from "react-router-dom";
+import { Route, Switch, useLocation, useHistory } from "react-router-dom";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 //STYLES
@@ -11,35 +12,57 @@ import UserForm from "./components/Register/UserForm";
 import Login from "./components/Login/Login";
 import Menu from "./components/Menu/Menu";
 import MyProfile from "./components/MyProfile/MyProfile";
-
-import {me} from './redux/action-creators/currentUser'
+import MyProfileContainer from "./components/MyProfile/MyProfileContainer";
+import { me } from "./redux/action-creators/currentUser";
 
 function Main() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const location = useLocation().pathname;
-
+  const history = useHistory();
   //HOOK PERSISTENCIA DE SESION
-  React.useEffect(() => {
+  useEffect(() => {
+    //persistencia
     if (document.cookie) {
       const token = document.cookie
-        .split('; ')
-        .find(row => row.startsWith('token'))
-        .split('=')[1];
-      dispatch(me(token))
-    }
-  }, [])
-
+        .split("; ")
+        .find((row) => row.startsWith("token"))
+        .split("=")[1];
+      dispatch(me(token));
+      //transition
+      /*   .then(() => {
+          setTimeout(() => {
+            history.push("/myprofile")
+          }, 1000);
+        }) */
+    } /* else {
+      setTimeout(() => {
+        history.push("/login");
+      }, 1000);
+    } */
+  }, []);
 
   return (
     <div className="order">
       {location === "/" ? null : <Navbar />}
       <div>
-        <Switch>
-          <Route exact path="/" component={Landing}></Route>
-          <Route path="/login" component={Login}></Route>
-          <Route path="/register" component={UserForm}></Route>
-          <Route path="/myprofile" component={MyProfile} />
-        </Switch>
+        <Route
+          render={({ location }) => (
+            <TransitionGroup>
+              <CSSTransition
+                key={location.key}
+                timeout={2000}
+                classNames="fade"
+              >
+                <Switch location={location}>
+                  <Route exact path="/" component={Landing}></Route>
+                  <Route exact path="/login" component={Login}></Route>
+                  <Route path="/register" component={UserForm}></Route>
+                  <Route path="/myprofile" component={MyProfile} />
+                </Switch>
+              </CSSTransition>
+            </TransitionGroup>
+          )}
+        />
       </div>
       {location === "/" || "/register" ? null : <Menu />}
     </div>
