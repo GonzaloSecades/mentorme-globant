@@ -101,9 +101,8 @@ function Login() {
             {" "}
             Sign in{" "}
           </Button>
+          <Link to='/register' style={{textDecoration:"none"}}>
           <Button
-            as={Link}
-            to="/register"
             style={{
               color: "rgba(18,41,68,1)",
               border: "2px solid rgba(18,41,68,1)",
@@ -115,6 +114,7 @@ function Login() {
             {" "}
             Create Your Account{" "}
           </Button>
+          </Link>
         </div>
       </form>
     </div>

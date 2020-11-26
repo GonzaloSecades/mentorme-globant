@@ -66,8 +66,8 @@ function FormUserSkills({ skillsList, handleChange, selectedStep, nextStep, prev
           <TextField
             {...params}
             variant="outlined"
-            label="Checkboxes"
-            placeholder="Favorites"
+            label="Skills"
+            
           />
         )}
       />
