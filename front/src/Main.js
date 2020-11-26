@@ -41,9 +41,7 @@ function Main() {
       }, 1000);
     } */
 
-    }
-
-  }, []);
+    },[]);
 
   return (
     <div className="order">
