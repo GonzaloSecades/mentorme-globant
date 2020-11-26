@@ -12,6 +12,7 @@ export const GET_ALL_MENTEES = 'GET_ALL_MENTEES'
 
 export const LOGIN = 'LOGIN'
 export const LOGOUT = 'LOGOUT'
+export const REGISTER = 'REGISTER'
 
 
 //Get mentors and mentees
