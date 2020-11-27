@@ -6,7 +6,7 @@ import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft"
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight"
 import { formUserDataStyles } from "./materialStyles"
 
-function FormUserData({ nextStep, prevStep, data, handleChange, selectedStep }) {
+function FormUserData({ nextStep, prevStep, data, handleChange, selectedStep, steps }) {
   const [open, setOpen] = React.useState(false)
   const classes = formUserDataStyles()
   const theme = useTheme()
@@ -44,6 +44,7 @@ function FormUserData({ nextStep, prevStep, data, handleChange, selectedStep }) 
           variant="outlined"
         />
         <TextField
+          value={data.lastName}
           className={classes.formLogininput}
           onChange={handleChange}
           id="outlined-search"
@@ -54,6 +55,7 @@ function FormUserData({ nextStep, prevStep, data, handleChange, selectedStep }) 
         />
         <TextField
           className={classes.formLogininput}
+          value={data.email}
           id="outlined-search"
           label=" Email *"
           name="email"
@@ -63,6 +65,7 @@ function FormUserData({ nextStep, prevStep, data, handleChange, selectedStep }) 
         />
         <TextField
           className={classes.formLogininput}
+          value={data.password}
           id="outlined-search"
           label=" Contraseña *"
           name="password"
@@ -70,17 +73,10 @@ function FormUserData({ nextStep, prevStep, data, handleChange, selectedStep }) 
           variant="outlined"
           onChange={handleChange}
         />
+
         <TextField
           className={classes.formLogininput}
-          id="outlined-search"
-          label=" Confirma tu contraseña *"
-          name="confirmPassword"
-          type="password"
-          variant="outlined"
-          onChange={handleChange}
-        />
-        <TextField
-          className={classes.formLogininput}
+          value={data.phoneNumber}
           id="outlined-search"
           label="Telefono *"
           name="phoneNumber"
@@ -94,6 +90,7 @@ function FormUserData({ nextStep, prevStep, data, handleChange, selectedStep }) 
         </InputLabel>
 
         <Select
+          value={data.country}
           labelId="demo-controlled-open-select-label"
           id="demo-controlled-open-select"
           className={classes.formLogininput}
@@ -101,7 +98,7 @@ function FormUserData({ nextStep, prevStep, data, handleChange, selectedStep }) 
           onClose={handleClose}
           name="country"
           onOpen={handleOpen} // para hacerlo controlled deberiamos hacer un hook here
-          /*   value={age} */ onChange={handleChange}
+          onChange={handleChange}
           autoWidth
         >
           <MenuItem value="">
@@ -122,12 +119,12 @@ function FormUserData({ nextStep, prevStep, data, handleChange, selectedStep }) 
       <div className="container-stepper">
         <MobileStepper
           variant="dots"
-          steps={7}
+          steps={steps}
           position="static"
           activeStep={selectedStep - 2}
           className={classes.root}
           nextButton={
-            <Button size="small" onClick={next} disabled={selectedStep === 7}>
+            <Button size="small" onClick={next} disabled={selectedStep === steps}>
               <p className="btn-steppers">Next</p>
               {theme.direction === "rtl" ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
             </Button>

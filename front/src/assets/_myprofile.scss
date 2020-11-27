@@ -74,11 +74,17 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-top: 1.4rem;
+      //margin-top: 1.4rem;
       background-color: rgba(255, 255, 255, 0.575);
       box-shadow: 0 4px 10px -2px rgba(128, 128, 128, 0.555);
       height: 5rem;
       text-transform: uppercase;
+    }
+    h3{
+      margin-bottom: 0;
+      text-transform: uppercase;
+      font-weight: 510;
+      color: #333;
     }
     .MyMenteesOrMentor {
       animation: moveInRight 1s;

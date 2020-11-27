@@ -11,12 +11,12 @@ import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank"
 import CheckBoxIcon from "@material-ui/icons/CheckBox"
 import { formUserSkillsStyles } from "./materialStyles"
 
-function FormUserSkills({ skillsList, handleChange, selectedStep, nextStep, prevStep, handleSubmit }) {
-  const ref = useRef()
-  const icon = <CheckBoxOutlineBlankIcon fontSize="small" />
-  const checkedIcon = <CheckBoxIcon fontSize="small" />
-  const classes = formUserSkillsStyles()
-  const theme = useTheme()
+function FormUserSkills({ steps, data, skillsList, handleChange, selectedStep, nextStep, prevStep, handleSubmit }) {
+  const ref = useRef();
+  const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
+  const checkedIcon = <CheckBoxIcon fontSize="small" />;
+  const classes = formUserSkillsStyles();
+  const theme = useTheme();
 
   const next = (e) => {
     e.preventDefault()
@@ -43,6 +43,7 @@ function FormUserSkills({ skillsList, handleChange, selectedStep, nextStep, prev
       <h3>{title}</h3>
 
       <Autocomplete
+        value={data.skills}
         ref={ref}
         multiple
         id="checkboxes-tags-demo"
@@ -62,20 +63,29 @@ function FormUserSkills({ skillsList, handleChange, selectedStep, nextStep, prev
         )}
         style={{ width: "43vh" }}
         renderInput={(params) => (
-          <TextField {...params} variant="outlined" label="Checkboxes" placeholder="Favorites" />
+          <TextField
+            {...params}
+            variant="outlined"
+            label="Skills"
+            
+          />
         )}
       />
       <div className="container-stepper">
         <MobileStepper
           variant="dots"
-          steps={7}
+          steps={steps}
           position="static"
           activeStep={selectedStep - 2}
           className={classes.root}
           nextButton={
-            <Button size="small" onClick={handleSubmit} disabled={selectedStep === 7}>
-              <p className="btn-steppers">Submit</p>
-              {theme.direction === "rtl" ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+            <Button size="small" onClick={next} disabled={selectedStep === steps + 1}>
+              <p className="btn-steppers">Next</p>
+              {theme.direction === "rtl" ? (
+                <KeyboardArrowLeft />
+              ) : (
+                  <KeyboardArrowRight />
+                )}
             </Button>
           }
           backButton={
