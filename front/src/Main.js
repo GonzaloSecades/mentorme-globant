@@ -1,9 +1,9 @@
 import React, { useEffect } from "react"
 
-import { Route, Switch, useLocation, useHistory } from "react-router-dom"
+import { Route, Switch, useLocation } from "react-router-dom"
 import { CSSTransition, TransitionGroup } from "react-transition-group"
 
-import { useSelector, useDispatch } from "react-redux"
+import { useDispatch } from "react-redux"
 // STYLES
 import "./assets/index.scss"
 // COMPONENTS
@@ -12,14 +12,12 @@ import Navbar from "./components/Navbar/Navbar"
 import UserForm from "./components/Register/UserForm"
 import Login from "./components/Login/Login"
 import Menu from "./components/Menu/Menu"
-import MyProfile from "./components/MyProfile/MyProfile"
 import MyProfileContainer from "./components/MyProfile/MyProfileContainer"
 import { me } from "./redux/action-creators/currentUser"
 
 function Main() {
   const dispatch = useDispatch()
-  const location = useLocation().pathname
-  const history = useHistory()
+  const lock = useLocation().pathname
   // HOOK PERSISTENCIA DE SESION
   useEffect(() => {
     // persistencia
@@ -34,7 +32,7 @@ function Main() {
 
   return (
     <div className="order">
-      {location === "/" ? null : <Navbar />}
+      {lock === "/" ? null : <Navbar />}
       <div>
         <Route
           render={({ location }) => (
@@ -51,7 +49,7 @@ function Main() {
           )}
         />
       </div>
-      {location === "/" || "/register" ? null : <Menu />}
+      {lock === "/" || lock === "/register" ? null : <Menu />}
     </div>
   )
 }
