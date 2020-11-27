@@ -1,6 +1,6 @@
-import { GET_SKILLS_LIST, ADD_SKILL, REMOVE_SKILL, ADD_CATEGORY, REMOVE_CATEGORY, } from '../constants'
+import { GET_SKILLS_LIST, ADD_SKILL, REMOVE_SKILL, ADD_CATEGORY, REMOVE_CATEGORY } from "../constants"
 
-const initialState = [];
+const initialState = []
 
 function skillsReducer(state = initialState, action) {
   switch (action.type) {
@@ -15,7 +15,7 @@ function skillsReducer(state = initialState, action) {
     case REMOVE_CATEGORY:
       return
     default:
-      return state;
+      return state
   }
 }
-export default skillsReducer;
+export default skillsReducer

@@ -1,17 +1,18 @@
-import React, { createFactory } from "react";
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import FormUserNew from "./components/FormUserNew";
-import FormUserData from "./components/FormUserData";
-import FormUserSkills from "./components/FormUserSkills";
-import FormUserSave from "./components/FormUserSave";
-import FormUserSuccess from "./components/FormUserSuccess";
-import { getSkillsList } from "../../redux/action-creators/skills";
-import { register } from "../../redux/action-creators/currentUser";
+import React, { createFactory, useState, useEffect } from "react"
+
+import { useDispatch, useSelector } from "react-redux"
+import FormUserNew from "./components/FormUserNew"
+import FormUserData from "./components/FormUserData"
+import FormUserSkills from "./components/FormUserSkills"
+import FormUserSave from "./components/FormUserSave"
+import FormUserSuccess from "./components/FormUserSuccess"
+import { getSkillsList } from "../../redux/action-creators/skills"
+import { register } from "../../redux/action-creators/currentUser"
 
 function UserForm() {
   const dispatch = useDispatch();
   const skillsList = useSelector((state) => state.skills);
+  const steps = 3;
   const [step, setStep] = useState(1);
   const [skills, setSkills] = useState([]);
   const [user, setUser] = useState({
@@ -29,57 +30,70 @@ function UserForm() {
     mentors: [],
     mentees: [],
     isAdmin: false,
-  });
+  })
 
-  console.log(user);
+  console.log(user)
 
   const handleChange = (e, v, n) => {
-    console.log(v);
+    console.log(v)
 
     if (Array.isArray(v)) {
-      setUser({ ...user, [n]: v });
+      setUser({ ...user, [n]: v })
     } else {
-      const value = e.target.value;
-      console.log(value);
-      console.log(e.target.name);
-      setUser({ ...user, [e.target.name]: value });
+      const { value } = e.target
+      console.log(value)
+      console.log(e.target.name)
+      setUser({ ...user, [e.target.name]: value })
     }
-  };
-
-  const nextStep = () => {
-    setStep(step + 1);
-  };
-
-  const prevStep = () => {
-    setStep(step - 1);
-  };
-
-  const submitMySkills = (skillsArray) => {
-    setSkills(skillsArray);
-  };
-
-  const fetchAllSkills = () => {
-    dispatch(getSkillsList());
-  };
-
-  function handleSubmit() {
-    register(user).then(nextStep())
   }
 
-  useEffect(() => fetchAllSkills(), []);
-  useEffect(() => console.log(skills), [skills]);
+  const nextStep = () => {
+    setStep(step + 1)
+  }
+
+  const prevStep = () => {
+    setStep(step - 1)
+  }
+
+  const submitMySkills = (skillsArray) => setSkills(skillsArray)
+
+  const handleSubmit = () => register(user).then(nextStep())
+
+  useEffect(() => dispatch(getSkillsList()), [dispatch])
+  useEffect(() => console.log(skills), [skills])
   switch (step) {
     case 1:
-      return <FormUserNew nextStep={nextStep} handleChange={handleChange} />;
+      return <FormUserNew
+        nextStep={nextStep}
+        handleChange={handleChange}
+        steps={steps}
+      />;
     case 2:
-      return        (  
+      return (
         <FormUserData
-          selectedStep={step} nextStep={nextStep} prevStep={prevStep} handleChange={handleChange} data={user}
-        />
+          selectedStep={step}
+          nextStep={nextStep}
+          prevStep={prevStep}
+          handleChange={handleChange}
+          data={user}
+          steps={steps} />
       );
     case 3:
       return (
         <FormUserSkills
+          submitMySkills={submitMySkills}
+          selectedStep={step}
+          nextStep={nextStep}
+          prevStep={prevStep}
+          handleChange={handleChange}
+          skillsList={skillsList}
+          data={user}
+          steps={steps}
+        />
+      )
+    case 4:
+      return (
+        <FormUserSave
           handleSubmit={handleSubmit}
           submitMySkills={submitMySkills}
           selectedStep={step}
@@ -87,47 +101,27 @@ function UserForm() {
           prevStep={prevStep}
           handleChange={handleChange}
           skillsList={skillsList}
+          data={user}
+          steps={steps}
         />
       );
-    case 4:
+
+    case 5:
       return (
-        <FormUserSkills
+        <FormUserSuccess
           submitMySkills={submitMySkills}
           selectedStep={step}
           nextStep={nextStep}
           prevStep={prevStep}
           handleChange={handleChange}
           skillsList={skillsList}
+          data={user}
+          steps={steps}
         />
       );
-    case 5:
-      return (
-        <FormUserSuccess
-          selectedStep={step}
-          prevStep={prevStep}
-          nextStep={nextStep}
-          handleChange={handleChange}
-        />
-      );
-    case 6:
-      return (
-        <FormUserSuccess
-          selectedStep={step}
-          prevStep={prevStep}
-          nextStep={nextStep}
-          handleChange={handleChange}
-        />
-      );
-    case 7:
-      return (
-        <FormUserSuccess
-          selectedStep={step}
-          prevStep={prevStep}
-          nextStep={nextStep}
-          handleChange={handleChange}
-        />
-      );
+
+
   }
 }
 
-export default UserForm;
+export default UserForm
