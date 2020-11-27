@@ -19,8 +19,8 @@
     },
     "plugins": [
         "react",
-        "prettier"
-        
+        "prettier",
+        "only-warn"
     ],
     "rules": {
       "prettier/prettier": [
@@ -38,12 +38,12 @@
       ],
       "consistent-return": [0, { "treatUndefinedAsUnspecified": true }],
       "no-console": "off",
-      "no-underscore-dangle":["error", { "allow": ["_id", "__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"]}], 
+      "no-underscore-dangle":["warn", { "allow": ["_id", "__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"]}], 
       "array-bracket-newline": [1, "consistent"],
       "array-element-newline": [1, "consistent"],
 
           "react/jsx-filename-extension": [
-            "error",
+            "warn",
             {
               "extensions": [
                   ".js",
