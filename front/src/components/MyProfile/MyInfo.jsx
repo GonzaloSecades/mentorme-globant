@@ -1,6 +1,7 @@
 import React from "react"
 
 export default function MyInfo({user}){
+  return(
     <div className="prueba">
       <h3>Nombre</h3>
       <div >{user.firstName} {user.lastName}</div>
@@ -15,5 +16,5 @@ export default function MyInfo({user}){
       <h3>Mail</h3>
       <div>{user.email}</div>
     </div>
-  
+  )
 }
