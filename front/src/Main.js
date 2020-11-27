@@ -37,7 +37,7 @@ function Main() {
       {location === "/" ? null : <Navbar />}
       <div>
         <Route
-          render={({location}) => (
+          render={({ location }) => (
             <TransitionGroup>
               <CSSTransition key={location.key} timeout={2000} classNames="fade">
                 <Switch location={location}>
@@ -51,7 +51,7 @@ function Main() {
           )}
         />
       </div>
-      {location === "/" || "/register" ? null : <Menu />}
+      {location === "/" || location === "/register" ? null : <Menu />}
     </div>
   )
 }
