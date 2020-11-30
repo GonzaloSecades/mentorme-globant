@@ -90,11 +90,22 @@ const uploadAvatar = (req, res, next) => {
     .catch((error) => res.status(400).json({ error }))
 }
 
+const addMentor = (req, res, next) => {
+  const _id = req.params.userId
+  User.findOne({ _id })
+    .then((user) => {
+      user.mentors.push(req.body)
+      return user.mentors
+    })
+    .then((mentors) => res.status(201).json(mentors))
+    .catch((err) => new Error(err))
+}
+
 // const postSkillsToTeach = (req, res) => {}
 
 // const postSkillsToLearn = (req, res) => {}
 
-module.exports = { getUsers, getUser, matchMentors, uploadAvatar }
+module.exports = { getUsers, getUser, matchMentors, uploadAvatar, addMentor }
 
 /*
   // const _id = req.params.userId
