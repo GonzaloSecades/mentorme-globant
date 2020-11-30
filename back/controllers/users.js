@@ -93,9 +93,12 @@ const uploadAvatar = (req, res, next) => {
 const addMentor = (req, res, next) => {
   const _id = req.params.userId
   User.findOne({ _id })
-    .then((user) => {
+    .then((user) => {    
+      console.log(user.mentors)  
       user.mentors.push(req.body)
-      return user.mentors
+      console.log(user.mentors)  
+      user.save()
+      return user.mentors      
     })
     .then((mentors) => res.status(201).json(mentors))
     .catch((err) => new Error(err))
