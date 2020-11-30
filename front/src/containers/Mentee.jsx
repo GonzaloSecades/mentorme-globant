@@ -1,5 +1,5 @@
 import React from "react"
-import { useTheme, withStyles } from "@material-ui/core/styles"
+import { useTheme, withStyles, makeStyles } from "@material-ui/core/styles"
 import { TextField, Button, Paper, TableRow, TableContainer, TableCell, TableBody, Table } from "@material-ui/core"
 
 import Accordion from "@material-ui/core/Accordion"
@@ -13,6 +13,16 @@ function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein }
 }
 
+const useStyles = makeStyles((theme) => ({
+
+  Accordion: {
+    "& .MuiAccordionDetails-root": {
+      padding: "8px 6px 14px",
+      display: "block"
+    }
+  }
+}));
+
 const rows = [
   createData("NOMBRE:", "nombre"),
   createData("APELLIDO:", "apellido"),
@@ -23,6 +33,7 @@ const rows = [
 
 export default function Mentee() {
   const classes = formUserDataStyles()
+  const classes2 = useStyles()
   const theme = useTheme()
   const StyledTableCell = withStyles(() => ({
     head: {
@@ -44,7 +55,7 @@ export default function Mentee() {
   }))(TableRow)
   return (
     <div className="conteiner-card">
-      <Accordion style={{ width: "100%" }}>
+      <Accordion className={classes2.Accordion} style={{ width: "100%" }}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
           <Typography>DATOS PERSONALES</Typography>
         </AccordionSummary>
@@ -67,7 +78,7 @@ export default function Mentee() {
           </Typography>
         </AccordionDetails>
       </Accordion>
-      <Accordion style={{ width: "100%" }}>
+      <Accordion className={classes2.Accordion} style={{ width: "100%" }}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
           <Typography>INGRESA UN OBJETIVO</Typography>
         </AccordionSummary>
@@ -88,13 +99,13 @@ export default function Mentee() {
                 style={{
                   backgroundColor: "rgba(18,41,68,1)",
                   borderRadius: "20px",
-                  width: "80%",
+
                   margin: "20px auto",
                 }}
                 className={classes.buttonSignin}
                 variant="contained"
                 color="primary"
-                /*  onClick={handleSubmit} */
+              /*  onClick={handleSubmit} */
               >
                 agregar
               </Button>
@@ -102,7 +113,7 @@ export default function Mentee() {
           </Typography>
         </AccordionDetails>
       </Accordion>
-      <Accordion style={{ width: "100%" }}>
+      <Accordion className={classes2.Accordion} style={{ width: "100%" }}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
           <Typography>PLANIFICA UNA REUNION</Typography>
         </AccordionSummary>
@@ -150,7 +161,7 @@ export default function Mentee() {
                 className={classes.buttonSignin}
                 variant="contained"
                 color="primary"
-                /*  onClick={handleSubmit} */
+              /*  onClick={handleSubmit} */
               >
                 agregar
               </Button>
