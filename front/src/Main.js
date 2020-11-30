@@ -18,6 +18,7 @@ import SelectSkillsContainer from "./containers/FilterMentoreeSearchContainer"
 import FindMentoreeContainer from "./containers/FindMentoreeContainer"
 import Mentees from "./containers/Mentees"
 import MyMentees from "./containers/Mentee"
+import MatchingContainer from "./components/Matching/MatchingContainer"
 
 // ACTIONS
 import { me } from "./redux/action-creators/currentUser"
@@ -29,8 +30,6 @@ function Main() {
   const history = useHistory()
   // HOOK PERSISTENCIA DE SESION
   useEffect(() => {
-    console.log(location)
-
     // persistencia
     if (document.cookie) {
       const token = document.cookie
@@ -65,6 +64,7 @@ function Main() {
                 <Route path="/myprofile" component={MyProfileContainer} />
                 <Route path="/mymentees" component={Mentees} />
                 <Route path="/menteepage" component={MyMentees} />
+                <Route path="/matching" component={MatchingContainer} />
                 <Route path="/skills/select" component={SelectSkillsContainer} />
                 <Route path="/find/mentees" component={FindMentoreeContainer} />
                 <Route path="/find/mentor" component={FindMentoreeContainer} />

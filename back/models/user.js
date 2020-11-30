@@ -11,7 +11,7 @@ const userSkillsSchema = new Schema({
 
 const userMenteeMentor = new Schema({
   _id: { type: Schema.Types.ObjectId, ref: "User" },
-  email: { type: String, required: true },
+  email: { type: String },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   country: { type: String, required: true },

@@ -49,6 +49,33 @@ const matchMentor = async (req, res) => {
   res.send(users)
 }
 
+const matchMentors = async (req, res) => {
+  const pageOptions = {
+    page: parseInt(req.query.page, 10) || 0,
+    limit: parseInt(req.query.limit, 10) || 999,
+  }
+  const selectedUser = await User.findOne({ _id: req.params.userId }).select("-__v").lean()
+  const skillsToLearnArr = selectedUser.skillsToLearn.map((e) => e._id)
+  const users = await User.aggregate([
+    { $unwind: "$skillsToTeach" },
+    { $match: { "skillsToTeach._id": { $in: skillsToLearnArr } } },
+    {
+      $group: {
+        _id: "$_id",
+        firstName: { $first: "$firstName" },
+        lastName: { $first: "$lastName" },
+        country: { $first: "$country" },
+        skillsToTeach: { $push: { _id: "$skillsToTeach._id", name: "$skillsToTeach.name" } },
+        count: { $sum: 1 },
+      },
+    },
+    { $sort: { count: 1 } },
+    { $skip: pageOptions.page * pageOptions.limit },
+    { $limit: pageOptions.limit },
+  ])
+  res.send(users)
+}
+
 const uploadAvatar = (req, res, next) => {
   const _id = req.params.userId
   const url = `${req.protocol}://${req.get("host")}`
@@ -63,7 +90,25 @@ const uploadAvatar = (req, res, next) => {
     .catch((error) => res.status(400).json({ error }))
 }
 
-module.exports = { getUsers, getUser, matchMentor, uploadAvatar }
+const addMentor = (req, res, next) => {
+  const _id = req.params.userId
+  User.findOne({ _id })
+    .then((user) => {    
+      console.log(user.mentors)  
+      user.mentors.push(req.body)
+      console.log(user.mentors)  
+      user.save()
+      return user.mentors      
+    })
+    .then((mentors) => res.status(201).json(mentors))
+    .catch((err) => new Error(err))
+}
+
+// const postSkillsToTeach = (req, res) => {}
+
+// const postSkillsToLearn = (req, res) => {}
+
+module.exports = { getUsers, getUser, matchMentors, uploadAvatar, addMentor }
 
 /*
   // const _id = req.params.userId

@@ -1,12 +1,23 @@
 const express = require("express")
 
 const router = express.Router()
-const { getUsers, getUser, matchMentor, uploadAvatar } = require("../controllers/users")
+const {
+  getUsers,
+  getUser,
+  matchMentors,
+  uploadAvatar,
+  addMentor,
+  // postSkillsToLearn,
+  // postSkillsToTeach,
+} = require("../controllers/users")
 const { auth } = require("../middleware/auth")
 const multer = require("../middleware/multer-config")
 
+// router.post("/:userId/postSkillsToTeach", patchSkillsToTeach)
+// router.post("/:userId/postSkillsToLearn", patchSkillsToLearn)
+router.patch("/:userId/addMentor", addMentor)
 router.post("/:userId/uploadAvatar", multer, uploadAvatar)
-router.get("/:userId/matchMentor", matchMentor)
+router.get("/:userId/matchMentors", matchMentors)
 router.get("/:userId", getUser)
 router.get("/", getUsers)
 
