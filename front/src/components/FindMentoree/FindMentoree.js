@@ -5,10 +5,10 @@ matrixLog("FindMentoree")
 
 function FindMentoree({ option }) {
   if (option === "mentor") {
-    return <div>{option}</div>
+    return <div>{option} ACA VAN LAS TARJETAS VS DE MENTORES</div>
   }
   if (option === "mentee") {
-    return <div>{option}</div>
+    return <div>{option} ACA VAN LAS TARJETAS VS DE MENTEES</div>
   }
   return null
 }

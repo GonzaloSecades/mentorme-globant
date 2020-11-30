@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory, useLocation } from "react-router-dom"
-import Typography from "@material-ui/core/Typography"
+import { matrixLog } from "../utils/logger"
 
 import { getSkillsList } from "../redux/action-creators/skills"
 import SelectSkills from "../components/SelectSkills/SelectSkills"
 
 function SelectSkillsContainer() {
-  console.log("-------------------------------SELECT SKILLS CONTAINER---------------------------------------")
+  matrixLog("FILTER MENTOREE SEARCH CONTAINER")
   const location = useLocation()
-  console.log("LOCATION", location)
   const dispatch = useDispatch()
   const history = useHistory()
 
@@ -29,10 +28,11 @@ function SelectSkillsContainer() {
   }, [dispatch, skillsList.length])
 
   const handleSubmit = (selectedSkills) => {
+    console.log(location.state)
     if (location.state === "mentor") {
       setSkillsToLearn(selectedSkills)
       history.push({ pathname: "/find/mentor", search: "ACA VAN FUTUROS FILTROS" })
-    } else if (location.state === "mentee") {
+    } else {
       setSkillsToTeach(selectedSkills)
       history.push({ pathname: "/find/mentees", search: "ACA VAN FUTUROS FILTROS" })
     }

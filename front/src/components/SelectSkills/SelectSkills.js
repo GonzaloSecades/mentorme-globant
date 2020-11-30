@@ -22,12 +22,12 @@ export const selectSkillsStyles = makeStyles({
   },
 })
 
-function SelectSkills({ skillsList, title, name, handleChange, handleSubmit }) {
+function SelectSkills({ skillsList, title, handleChange, handleSubmit }) {
   const ref = useRef()
   const classes = selectSkillsStyles()
   const icon = <CheckBoxOutlineBlankIcon fontSize="small" />
   const checkedIcon = <CheckBoxIcon fontSize="small" />
-  let names
+  let name
   console.log("ENTRO AL SELECTSKILLS TITLE", title)
   return (
     <div className="content-register">
@@ -39,10 +39,10 @@ function SelectSkills({ skillsList, title, name, handleChange, handleSubmit }) {
         id="checkboxes-tags-demo"
         options={skillsList}
         onChange={(event, value) => {
-          names = ref.current.getAttribute("name")
+          name = ref.current.getAttribute("name")
           handleChange(event, value, name)
         }}
-        name={names}
+        name={name}
         disableCloseOnSelect
         getOptionLabel={(option) => option.name}
         renderOption={(option, { selected }) => (
