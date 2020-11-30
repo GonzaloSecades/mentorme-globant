@@ -2,11 +2,7 @@ import React from "react"
 import { Button } from "@material-ui/core"
 import { formUserNewStyles } from "./materialStyles"
 
-function FormUserNew(props) {
-  const next = (e) => {
-    e.preventDefault()
-    props.nextStep()
-  }
+function FormUserNew({ nextStep }) {
   const classes = formUserNewStyles()
   return (
     <div className="content-register">
@@ -22,7 +18,7 @@ function FormUserNew(props) {
         className={classes.buttonSignin}
         variant="contained"
         color="primary"
-        onClick={next}
+        onClick={nextStep}
       >
         comenzar
       </Button>

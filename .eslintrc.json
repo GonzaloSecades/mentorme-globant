@@ -31,7 +31,7 @@
         "singleQuote": false,
         "tabWidth": 2,
         "trailingComma": "es5",
-        "proseWrap": "preserve",
+        "proseWrap": "never",
         "quoteProps": "preserve",
         "printWidth": 120
       }

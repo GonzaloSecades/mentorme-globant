@@ -10,11 +10,11 @@ import { getSkillsList } from "../../redux/action-creators/skills"
 import { register } from "../../redux/action-creators/currentUser"
 
 function UserForm() {
-  const dispatch = useDispatch();
-  const skillsList = useSelector((state) => state.skills);
-  const steps = 3;
-  const [step, setStep] = useState(1);
-  const [skills, setSkills] = useState([]);
+  const dispatch = useDispatch()
+  const skillsList = useSelector((state) => state.skills)
+  const steps = 3
+  const [step, setStep] = useState(1)
+  const [skills, setSkills] = useState([])
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -63,11 +63,7 @@ function UserForm() {
   useEffect(() => console.log(skills), [skills])
   switch (step) {
     case 1:
-      return <FormUserNew
-        nextStep={nextStep}
-        handleChange={handleChange}
-        steps={steps}
-      />;
+      return <FormUserNew nextStep={nextStep} handleChange={handleChange} steps={steps} />
     case 2:
       return (
         <FormUserData
@@ -75,9 +71,10 @@ function UserForm() {
           nextStep={nextStep}
           prevStep={prevStep}
           handleChange={handleChange}
-          data={user}
-          steps={steps} />
-      );
+          user={user}
+          steps={steps}
+        />
+      )
     case 3:
       return (
         <FormUserSkills
@@ -87,7 +84,7 @@ function UserForm() {
           prevStep={prevStep}
           handleChange={handleChange}
           skillsList={skillsList}
-          data={user}
+          user={user}
           steps={steps}
         />
       )
@@ -101,10 +98,10 @@ function UserForm() {
           prevStep={prevStep}
           handleChange={handleChange}
           skillsList={skillsList}
-          data={user}
+          user={user}
           steps={steps}
         />
-      );
+      )
 
     case 5:
       return (
@@ -115,12 +112,11 @@ function UserForm() {
           prevStep={prevStep}
           handleChange={handleChange}
           skillsList={skillsList}
-          data={user}
+          user={user}
           steps={steps}
         />
-      );
-
-
+      )
+    default:
   }
 }
 

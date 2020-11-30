@@ -8,7 +8,7 @@ import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight"
 import { Paper, TableRow, TableContainer, TableCell, TableBody, Table } from "@material-ui/core"
 import { formUserSaveStyles } from "./materialStyles"
 
-function FormUserNew({ prevStep, selectedStep, steps, data, handleSubmit }) {
+function FormUserNew({ prevStep, selectedStep, steps, user, handleSubmit }) {
   const classes = formUserSaveStyles()
   const theme = useTheme()
   const StyledTableCell = withStyles(() => ({
@@ -30,21 +30,16 @@ function FormUserNew({ prevStep, selectedStep, steps, data, handleSubmit }) {
     },
   }))(TableRow)
 
-  const prev = (e) => {
-    e.preventDefault()
-    prevStep()
-  }
-
   function createData(name, calories, fat, carbs, protein) {
     return { name, calories, fat, carbs, protein }
   }
 
   const rows = [
-    createData("NOMBRE:", data.firstName),
-    createData("APELLIDO:", data.lastName),
-    createData("EMAIL:", data.email),
-    createData("TELEFONO:", data.phoneNumber),
-    createData("PAIS:", data.country),
+    createData("NOMBRE:", user.firstName),
+    createData("APELLIDO:", user.lastName),
+    createData("EMAIL:", user.email),
+    createData("TELEFONO:", user.phoneNumber),
+    createData("PAIS:", user.country),
   ]
 
   let title
@@ -98,7 +93,7 @@ function FormUserNew({ prevStep, selectedStep, steps, data, handleSubmit }) {
             </Button>
           }
           backButton={
-            <Button size="small" onClick={prev} disabled={selectedStep === 0}>
+            <Button size="small" onClick={prevStep} disabled={selectedStep === 0}>
               {theme.direction === "rtl" ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
               <p className="btn-steppers">Back</p>
             </Button>
