@@ -1,4 +1,8 @@
-const initialState = {}
+const initialState = {
+  skills: [],
+  skillsToTeach: [],
+  skillsToLearn: [],
+}
 
 function currentUserReducer(state = initialState, action) {
   switch (action.type) {

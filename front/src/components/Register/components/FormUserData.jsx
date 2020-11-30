@@ -6,7 +6,7 @@ import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft"
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight"
 import { formUserDataStyles } from "./materialStyles"
 
-function FormUserData({ nextStep, prevStep, data, handleChange, selectedStep, steps }) {
+function FormUserData({ nextStep, prevStep, user, handleChange, selectedStep, steps }) {
   const [open, setOpen] = React.useState(false)
   const classes = formUserDataStyles()
   const theme = useTheme()
@@ -34,7 +34,7 @@ function FormUserData({ nextStep, prevStep, data, handleChange, selectedStep, st
       <h3>Ingresa tus datos personales</h3>
       <form>
         <TextField
-          value={data.firstName}
+          value={user.firstName}
           onChange={handleChange}
           className={classes.formLogininput}
           id="outlined-search"
@@ -44,7 +44,7 @@ function FormUserData({ nextStep, prevStep, data, handleChange, selectedStep, st
           variant="outlined"
         />
         <TextField
-          value={data.lastName}
+          value={user.lastName}
           className={classes.formLogininput}
           onChange={handleChange}
           id="outlined-search"
@@ -55,7 +55,7 @@ function FormUserData({ nextStep, prevStep, data, handleChange, selectedStep, st
         />
         <TextField
           className={classes.formLogininput}
-          value={data.email}
+          value={user.email}
           id="outlined-search"
           label=" Email *"
           name="email"
@@ -65,7 +65,7 @@ function FormUserData({ nextStep, prevStep, data, handleChange, selectedStep, st
         />
         <TextField
           className={classes.formLogininput}
-          value={data.password}
+          value={user.password}
           id="outlined-search"
           label=" Contraseña *"
           name="password"
@@ -76,7 +76,7 @@ function FormUserData({ nextStep, prevStep, data, handleChange, selectedStep, st
 
         <TextField
           className={classes.formLogininput}
-          value={data.phoneNumber}
+          value={user.phoneNumber}
           id="outlined-search"
           label="Telefono *"
           name="phoneNumber"
@@ -90,7 +90,7 @@ function FormUserData({ nextStep, prevStep, data, handleChange, selectedStep, st
         </InputLabel>
 
         <Select
-          value={data.country}
+          value={user.country}
           labelId="demo-controlled-open-select-label"
           id="demo-controlled-open-select"
           className={classes.formLogininput}

@@ -21,6 +21,18 @@ const userMenteeMentor = new Schema({
   ],
   skills: [{ _id: { type: Schema.Types.ObjectId, ref: "Skill" }, name: { type: String } }],
   avatar: { type: String },
+
+  // Relationship details
+  meetings: [],
+  objectives: [],
+
+  // avance, reuniones, fecha, notificacion
+  /*
+    Seteo de reunión (con notificación). 
+    Seteo de objetivos
+    Seguimiento (notas)
+
+  */
 })
 
 const userSchema = new Schema({

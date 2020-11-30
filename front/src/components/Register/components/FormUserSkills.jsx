@@ -11,22 +11,12 @@ import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank"
 import CheckBoxIcon from "@material-ui/icons/CheckBox"
 import { formUserSkillsStyles } from "./materialStyles"
 
-function FormUserSkills({ steps, data, skillsList, handleChange, selectedStep, nextStep, prevStep, handleSubmit }) {
-  const ref = useRef();
-  const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
-  const checkedIcon = <CheckBoxIcon fontSize="small" />;
-  const classes = formUserSkillsStyles();
-  const theme = useTheme();
-
-  const next = (e) => {
-    e.preventDefault()
-    nextStep()
-  }
-
-  const prev = (e) => {
-    e.preventDefault()
-    prevStep()
-  }
+function FormUserSkills({ steps, user, skillsList, handleChange, selectedStep, nextStep, prevStep }) {
+  const ref = useRef()
+  const icon = <CheckBoxOutlineBlankIcon fontSize="small" />
+  const checkedIcon = <CheckBoxIcon fontSize="small" />
+  const classes = formUserSkillsStyles()
+  const theme = useTheme()
 
   let name
   let title
@@ -43,7 +33,7 @@ function FormUserSkills({ steps, data, skillsList, handleChange, selectedStep, n
       <h3>{title}</h3>
 
       <Autocomplete
-        value={data.skills}
+        value={user.skills}
         ref={ref}
         multiple
         id="checkboxes-tags-demo"
@@ -62,14 +52,10 @@ function FormUserSkills({ steps, data, skillsList, handleChange, selectedStep, n
           </>
         )}
         style={{ width: "43vh" }}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            variant="outlined"
-            label="Skills"
-            
-          />
-        )}
+        renderInput={(params) => {
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          return <TextField {...params} variant="outlined" label="Skills" />
+        }}
       />
       <div className="container-stepper">
         <MobileStepper
@@ -79,17 +65,13 @@ function FormUserSkills({ steps, data, skillsList, handleChange, selectedStep, n
           activeStep={selectedStep - 2}
           className={classes.root}
           nextButton={
-            <Button size="small" onClick={next} disabled={selectedStep === steps + 1}>
+            <Button size="small" onClick={nextStep} disabled={selectedStep === steps + 1}>
               <p className="btn-steppers">Next</p>
-              {theme.direction === "rtl" ? (
-                <KeyboardArrowLeft />
-              ) : (
-                  <KeyboardArrowRight />
-                )}
+              {theme.direction === "rtl" ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
             </Button>
           }
           backButton={
-            <Button size="small" onClick={prev} disabled={selectedStep === 0}>
+            <Button size="small" onClick={prevStep} disabled={selectedStep === 0}>
               {theme.direction === "rtl" ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
               <p className="btn-steppers">Back</p>
             </Button>
