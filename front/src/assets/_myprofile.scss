@@ -5,6 +5,7 @@
 
   .backgroundAnimation1 {
     width: 300px;
+    margin-top: 2rem;
     position: absolute;
     left: 1%;
     opacity: 0.2;
@@ -20,8 +21,7 @@
   }
 
   section {
-    z-index: -100;
-    
+    z-index: -100;    
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -35,7 +35,7 @@
     animation: moveInTop 1.5s;
     
     img {
-      width: 6em;
+      width:30%;
       border-radius: 50%;
       margin: 3% 0 0 0;
       border: 1px solid black;
@@ -61,7 +61,7 @@
       }      
     }
   }
-
+///240
   .prueba {
     height: 240px;
     text-align: center;
