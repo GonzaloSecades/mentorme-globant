@@ -16,9 +16,11 @@ import MyProfileContainer from "./components/MyProfile/MyProfileContainer"
 import AvatarUploadContainer from "./components/MyProfile/AvatarUpload"
 import SelectSkillsContainer from "./containers/FilterMentoreeSearchContainer"
 import FindMentoreeContainer from "./containers/FindMentoreeContainer"
+import MatchingContainer from "./components/Matching/MatchingContainer"
 
 // ACTIONS
 import { me } from "./redux/action-creators/currentUser"
+
 
 function Main() {
   matrixLog("MAIN")
@@ -61,6 +63,7 @@ function Main() {
                 <Route path="/login" component={Login} />
                 <Route path="/register" component={UserForm} />
                 <Route path="/myprofile" component={MyProfileContainer} />
+                <Route path="/matching" component={MatchingContainer} />
                 <Route path="/skills/select" component={SelectSkillsContainer} />
                 <Route path="/find/mentees" component={FindMentoreeContainer} />
                 <Route path="/find/mentor" component={FindMentoreeContainer} />

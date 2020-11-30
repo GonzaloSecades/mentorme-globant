@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory, useLocation } from "react-router-dom"
 import { matrixLog } from "../utils/logger"
-
 import { getSkillsList } from "../redux/action-creators/skills"
 import SelectSkills from "../components/SelectSkills/SelectSkills"
 

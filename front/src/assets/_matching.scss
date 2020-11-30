@@ -1,0 +1,57 @@
+.matchingFather{
+    margin-top: 20%;
+    height: 100wh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .matchingImgVS{
+        position: absolute;
+        width: 100px;        
+    }
+    div{
+        margin: 0%;
+        width: 90%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        .matchingMentorOrMenteeIMG{
+            border: 0.5px solid black;
+            margin: 3%;
+            width: 200px;
+        } 
+        div{
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            h4{
+                margin: 0;
+            }
+            p{
+                margin: 0;
+                color: #333;
+                font-size: 13px;
+            }
+            section{
+                font-weight: 600;
+                color: #333;
+            }
+            .matchingSkills{
+                font-weight: normal;
+                color: #333;
+            }
+        }
+    }
+    
+    .matchingOne{
+        margin: 5%;
+        box-shadow:3px 3px 5px 6px #ccc;
+    
+    }
+    .matchingTwo{        
+        margin: 5%;
+        box-shadow:3px 3px 5px 6px #ccc;
+    
+    }
+}
