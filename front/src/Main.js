@@ -12,6 +12,7 @@ import Navbar from "./components/Navbar/Navbar"
 import UserForm from "./components/Register/UserForm"
 import Login from "./components/Login/Login"
 import Menu from "./components/Menu/Menu"
+import MyMentorDashboard from "./components/MyMentorDashboard/MyMentorDashboard"
 import MyProfileContainer from "./components/MyProfile/MyProfileContainer"
 import AvatarUploadContainer from "./components/MyProfile/AvatarUpload"
 import SelectSkillsContainer from "./containers/FilterMentoreeSearchContainer"
@@ -60,6 +61,7 @@ function Main() {
                 <Route path="/login" component={Login} />
                 <Route path="/register" component={UserForm} />
                 <Route path="/myprofile" component={MyProfileContainer} />
+                <Route exact path="/myprogress" component={MyMentorDashboard} />
                 <Route path="/skills/select" component={SelectSkillsContainer} />
                 <Route path="/find/mentees" component={FindMentoreeContainer} />
                 <Route path="/find/mentor" component={FindMentoreeContainer} />
