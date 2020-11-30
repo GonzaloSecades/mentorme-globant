@@ -76,6 +76,25 @@ const MyMentorDashbord = () => {
             </div>
           </AccordionDetails>
         </Accordion>
+
+        <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel2bh-content"
+            id="panel2bh-header"
+          >
+            <Typography className={classes.heading}>Redux</Typography>
+            <Typography className={classes.secondaryHeading}>
+              Mentor: Dr. Kreshel
+          </Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <div className="checkBoxListContainer">
+              <CheckboxList objectiveList={objectiveList} />
+              <Progresscheck className="progressCheck" objectiveList={objectiveList} />
+            </div>
+          </AccordionDetails>
+        </Accordion>
       </div>
     </>
   )
