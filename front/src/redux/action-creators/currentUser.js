@@ -37,3 +37,11 @@ export const logout = () => (dispatch) => {
   document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 GMT"
   return dispatch({ type: "LOGOUT", payload: {} })
 }
+
+// export const postSkillsToTeach = () => (dispatch) => {
+//   axios.post()
+// }
+
+// export const postSkillsToLearn = () => (dispatch) => {
+//   axios.post()
+// }
