@@ -3,20 +3,46 @@
   z-index: 200;
   background: $landingBgColor;
   margin: 0;
-
-  box-shadow:  0 9px 20px rgba(0, 0, 0, 0.2), 0 2px 3px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 9px 20px rgba(0, 0, 0, 0.2), 0 2px 3px rgba(0, 0, 0, 0.04);
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
- .logo {
+.logo {
+  margin-top: 2%;
+  padding-right: 30px;
+  padding-left: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 4vh;
+  color: $mentorColor;
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: flex-start;
+  flex-direction: column;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  span {
+    color: $meColor;
+    font-size: 1em;
+    position: relative;
+    bottom: 2.5vh;
+  }
+
+  @media screen and (max-width: 768px) {
     margin-top: 6%;
     padding-right: 30px;
+    padding-left: 30px;
     text-align: center;
     text-transform: uppercase;
     font-weight: 800;
     font-size: 4vh;
-    color:$mentorColor ;
+    color: $mentorColor;
     display: flex;
     position: relative;
     flex-wrap: wrap;
@@ -24,15 +50,14 @@
     justify-content: flex-start;
     flex-direction: column;
     user-select: none;
-     -webkit-user-select: none;
-     -moz-user-select: none;
-     -ms-user-select: none; 
-      span{
-        color:$meColor;
-        font-size: 1em;
-        position: relative;
-        bottom: 2.5vh;
-     
-      }
-  } 
-
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    span {
+      color: $meColor;
+      font-size: 1em;
+      position: relative;
+      bottom: 2.5vh;
+    }
+  }
+}
