@@ -5,7 +5,7 @@ const { getUsers, getUser, matchMentor, uploadAvatar } = require("../controllers
 const { auth } = require("../middleware/auth")
 const multer = require("../middleware/multer-config")
 
-router.post("/:userId/avatar", multer, uploadAvatar)
+router.post("/:userId/uploadAvatar", multer, uploadAvatar)
 router.get("/:userId/matchMentor", matchMentor)
 router.get("/:userId", getUser)
 router.get("/", getUsers)

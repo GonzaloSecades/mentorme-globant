@@ -71,11 +71,10 @@ function UserForm() {
           nextStep={nextStep}
           prevStep={prevStep}
           handleChange={handleChange}
-          data={user}
+          user={user}
           steps={steps}
         />
       )
-
     case 3:
       return (
         <FormUserSkills
@@ -85,7 +84,7 @@ function UserForm() {
           prevStep={prevStep}
           handleChange={handleChange}
           skillsList={skillsList}
-          data={user}
+          user={user}
           steps={steps}
         />
       )
@@ -99,7 +98,7 @@ function UserForm() {
           prevStep={prevStep}
           handleChange={handleChange}
           skillsList={skillsList}
-          data={user}
+          user={user}
           steps={steps}
         />
       )
@@ -113,12 +112,11 @@ function UserForm() {
           prevStep={prevStep}
           handleChange={handleChange}
           skillsList={skillsList}
-          data={user}
+          user={user}
           steps={steps}
         />
       )
     default:
-      return null
   }
 }
 

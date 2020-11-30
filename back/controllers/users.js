@@ -50,7 +50,7 @@ const matchMentor = async (req, res) => {
 }
 
 const uploadAvatar = (req, res, next) => {
-  const _id = req.body.userId
+  const _id = req.params.userId
   const url = `${req.protocol}://${req.get("host")}`
   User.findOne({ _id })
     .select("-__v")

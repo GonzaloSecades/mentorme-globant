@@ -1,5 +1,5 @@
 import React from "react"
-import { useHistory } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import clsx from "clsx"
 import { makeStyles } from "@material-ui/core/styles"
@@ -13,6 +13,7 @@ import InboxIcon from "@material-ui/icons/MoveToInbox"
 import MailIcon from "@material-ui/icons/Mail"
 import IconButton from "@material-ui/core/IconButton"
 import MenuIcon from "@material-ui/icons/Menu"
+import { matrixLog } from "../../../utils/logger"
 import { logout } from "../../../redux/action-creators/currentUser"
 
 const useStyles = makeStyles({
@@ -46,8 +47,9 @@ const useStyles = makeStyles({
 })
 
 export default function TemporaryDrawer() {
+  matrixLog("BURGER")
   const classes = useStyles()
-  const history = useHistory()
+  const dispatch = useDispatch()
   const [state, setState] = React.useState({
     left: false,
   })
@@ -59,8 +61,6 @@ export default function TemporaryDrawer() {
     setState({ ...state, [anchor]: open })
   }
 
-  const dispatch = useDispatch()
-
   const list = (anchor) => (
     <div
       className={clsx(classes.list, {
@@ -70,27 +70,37 @@ export default function TemporaryDrawer() {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
+      <ListItem>
+        <ListItemText secondary="MENTOR ME" />
+      </ListItem>
+      <Divider />
+
+      <ListItem button component={Link} to="/myprofile">
+        <ListItemIcon>
+          <InboxIcon />
+        </ListItemIcon>
+        <ListItemText primary="MI PERFIL" />
+      </ListItem>
+
+      <ListItem button component={Link} to={{ pathname: "/skills/select", state: "mentor" }}>
+        <ListItemIcon>
+          <MailIcon />
+        </ListItemIcon>
+        <ListItemText primary="BUSCAR MENTOR" />
+      </ListItem>
+
+      <ListItem button component={Link} to={{ pathname: "/skills/select", state: "mentee" }}>
+        <ListItemIcon>
+          <MailIcon />
+        </ListItemIcon>
+        <ListItemText primary="BUSCAR MENTEES" />
+      </ListItem>
+
       <List>
-        <ListItem>
-          <ListItemIcon
-            onClick={() => {
-              dispatch(logout())
-              history.push("/login")
-            }}
-          >
-            LOG OUT
-          </ListItemIcon>
+        <ListItem button component={Link} to="/login">
+          <ListItemIcon onClick={() => dispatch(logout())}>CERRAR SESION</ListItemIcon>
           <ListItemText />
         </ListItem>
-      </List>
-      <Divider />
-      <List>
-        {["BUSCAR MENTOR", "MI PERFIL"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
       </List>
     </div>
   )
