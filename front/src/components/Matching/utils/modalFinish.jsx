@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function TransitionsModal() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   const handleOpen = () => {
     setOpen(true);
@@ -47,8 +47,8 @@ export default function TransitionsModal() {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 id="transition-modal-title">Como matchear con tu mentor adecuado</h2>
-            <p id="transition-modal-description">Compara las habilidades y los perfiles de los mentores y selecciona al que mas te guste!!</p>
+            <h2 id="transition-modal-title">Felicitaciones !! haz encontrado mentor!</h2>
+            <p id="transition-modal-description">Verifica en tu apartado de mentor para checkear sus datos y ver cuando acuerda una reunion!!</p>
           </div>
         </Fade>
       </Modal>

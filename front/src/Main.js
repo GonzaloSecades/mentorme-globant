@@ -28,8 +28,7 @@ function Main() {
   const location = useLocation().pathname
   const history = useHistory()
   // HOOK PERSISTENCIA DE SESION
-  useEffect(() => {
-    console.log(location)
+  useEffect(() => {    
 
     // persistencia
     if (document.cookie) {
