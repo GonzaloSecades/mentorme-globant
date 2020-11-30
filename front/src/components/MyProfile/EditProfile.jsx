@@ -1,10 +1,5 @@
-import React from 'react'
+import React from "react"
 
 export default function EditProfile() {
-  return (
-    <div>
-        EDITAR PERFIL
-    </div>
-  )
+  return <div>EDITAR PERFIL</div>
 }
-

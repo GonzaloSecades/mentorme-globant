@@ -1,5 +1,7 @@
 const initialState = {
   skills: [],
+  skillsToTeach: [],
+  skillsToLearn: [],
 }
 
 function currentUserReducer(state = initialState, action) {
