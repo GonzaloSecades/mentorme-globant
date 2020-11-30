@@ -30,10 +30,6 @@ function Main() {
   const lock = useLocation().pathname
   // HOOK PERSISTENCIA DE SESION
   useEffect(() => {
-<<<<<<< HEAD
-
-=======
->>>>>>> 7becbbf67159ec05140d8b8507af2b897b1b0128
     // persistencia
     if (document.cookie) {
       const token = document.cookie
