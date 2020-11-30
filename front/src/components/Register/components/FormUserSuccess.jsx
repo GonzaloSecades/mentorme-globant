@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button"
 import { Link } from "react-router-dom"
 import { formUserSuccessStyles } from "./materialStyles"
 
-function FormUserSuccess({}) {
+function FormUserSuccess() {
   const classes = formUserSuccessStyles()
   const theme = useTheme()
 
