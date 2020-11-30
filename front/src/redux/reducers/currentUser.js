@@ -2,6 +2,7 @@ const initialState = {
   skills: [],
   skillsToTeach: [],
   skillsToLearn: [],
+  mentors: [{ objectives: [{ name: "Ver video de React", description: "lalala", _id: "1", isCompleted: true }, { name: "practicar Props", description: "lalala2222", _id: "2", isCompleted: true }, { name: "setear estado local", description: "lelelel", _id: "3", isCompleted: false }] }]
 }
 
 function currentUserReducer(state = initialState, action) {

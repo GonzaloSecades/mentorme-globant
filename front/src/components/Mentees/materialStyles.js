@@ -44,7 +44,7 @@ export const formUserDataStyles = makeStyles({
       margin: "10px",
     },
     "& .MuiInputBase-input": {
-      width: "18rem",
+
     },
 
     "& .MuiInputLabel-root.Mui-focused": {
