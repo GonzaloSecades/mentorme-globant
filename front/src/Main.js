@@ -49,7 +49,7 @@ function Main() {
           )}
         />
       </div>
-      {location === "/" || location === "/register" ? null : <Menu />}
+      {lock === "/" || lock === "/register" ? null : <Menu />}
     </div>
   )
 }
