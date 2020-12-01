@@ -51,3 +51,12 @@ export const putSkillsToLearn = (selectedSkills) => (dispatch, getState) => {
     .then((res) => dispatch({ type: "UPDATE_SKILLS_TO_LEARN", payload: res.data }))
     .catch((err) => errorLogger(err))
 }
+
+export const postMentor = (selectedMentor) => (dispatch, getState) => {
+  const userId = getState().currentUser._id
+  console.log(userId)
+  axios
+    .post(`/api/users/${userId}/mentors/add`, selectedMentor)
+    .then((res) => dispatch({ type: "ADD_MENTOR", payload: res.data }))
+    .catch((err) => errorLogger(err))
+}

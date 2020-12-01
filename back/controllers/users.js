@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 const _ = require("lodash")
 const User = require("../models/user")
+const Objective = require("../models/objective")
 
 const getUsers = (req, res) => {
   if (!_.isEmpty(req.query)) {
@@ -26,27 +27,6 @@ const getUser = (req, res) => {
     .select("-_id -__v")
     .then((data) => res.status(200).send(data))
     .catch((err) => console.log(err))
-}
-
-const matchMentor = async (req, res) => {
-  const selectedUser = await User.findOne({ _id: req.body.id }).select("-__v").lean()
-  const skillsToLearnArr = selectedUser.skillsToLearn.map((e) => e._id)
-  const users = await User.aggregate([
-    { $unwind: "$skillsToTeach" },
-    { $match: { "skillsToTeach._id": { $in: skillsToLearnArr } } },
-    {
-      $group: {
-        _id: "$_id",
-        firstName: { $first: "$firstName" },
-        lastName: { $first: "$lastName" },
-        country: { $first: "$country" },
-        skillsToTeach: { $push: { _id: "$skillsToTeach._id", name: "$skillsToTeach.name" } },
-        count: { $sum: 1 },
-      },
-    },
-    { $sort: { count: 1 } },
-  ])
-  res.send(users)
 }
 
 const matchMentors = async (req, res) => {
@@ -94,15 +74,27 @@ const uploadAvatar = (req, res, next) => {
     .catch((error) => res.status(400).send({ error }))
 }
 
-const addMentor = (req, res, next) => {
+const postMentor = (req, res, next) => {
   const _id = req.params.userId
   User.findOne({ _id })
-    .then((user) => {    
-      console.log(user.mentors)  
+    .then((user) => {
+      console.log(user.mentors)
       user.mentors.push(req.body)
-      console.log(user.mentors)  
+      console.log(user.mentors)
       user.save()
-      return user.mentors      
+      return user.mentors
+    })
+    .then((mentors) => res.status(201).send(mentors))
+    .catch((error) => res.status(500).send({ error }))
+}
+
+const postMentee = (req, res, next) => {
+  const _id = req.params.userId
+  User.findOne({ _id })
+    .then((user) => {
+      user.mentees.push(req.body)
+      user.save()
+      return user.mentees
     })
     .then((mentors) => res.status(201).send(mentors))
     .catch((error) => res.status(500).send({ error }))
@@ -139,7 +131,109 @@ const putSkillsToLearn = (req, res) => {
     })
 }
 
-module.exports = { getUsers, getUser, matchMentors, uploadAvatar, addMentor, putSkillsToLearn, putSkillsToTeach }
+// /:userId/mentees/:menteeId/objectives/add
+const postObjective = async (req, res) => {
+  const { userId, menteeId } = req.params
+  const objective = await Objective.create(req.body) // {name:"estudiar react"}
+
+  User.findOne({ _id: menteeId }).then((user) => {
+    const mentorIdx = user.mentor.findIndex((e) => e._id.toString() === userId)
+    user.mentors[mentorIdx].objectives.push(objective)
+    user.save()
+  })
+
+  User.findOne({ _id: userId })
+    .then((user) => {
+      const menteeIdx = user.mentee.findIndex((e) => e._id.toString() === menteeId)
+      user.mentees[menteeIdx].objectives.push(objective)
+      user.save()
+      res.status(200).send(user.mentors[menteeIdx].objectives)
+    })
+    .catch((error) => {
+      console.log(error)
+      res.status(500).send({ error })
+    })
+}
+
+// router.patch("/:userId/mentors/:mentorId/objectives/:objectiveId/changeStatus")
+const patchObjectiveStatus = (req, res) => {
+  const { userId, objectiveId, mentorId } = req.params
+  User.findOne({ _id: userId })
+    .then((user) => {
+      const mentorIdx = user.mentors.findIndex((e) => e._id.toString() === mentorId)
+      const { objectives } = user.mentors[mentorIdx]
+      for (let i = 0; i < objectives.length; i++) {
+        if (objectives[i]._id.toString() === objectiveId) {
+          objectives[i].isCompleted = !objectives[i].isCompleted
+          user.save()
+          res.status(200).send(objectives[i])
+        } else {
+          console.log("NO OBJECTIVE ID FOUND")
+        }
+      }
+    })
+    .catch((error) => {
+      console.log(error)
+      res.status(500).send({ error })
+    })
+}
+
+// const patchObjectiveStatusDos = (req, res) => {
+//   // findOneAndUpdate
+//   // User.findOneAndUpdate(
+//   //   { 'mentors': "Jon Snow" },
+//   //   { title: "King in the North" },
+//   //   // If `new` isn't true, `findOneAndUpdate()` will return the
+//   //   // document as it was _before_ it was updated.
+//   //   { new: true }
+//   // ).then((objective) => res.status(200).send(objective))
+
+//   User.findOneAndUpdate({ "_id": { $in: teamIds } })
+//   // Aggregate
+//   // User.aggregate([
+
+//   // ])
+// }
+
+// const patchObjectiveStatusTres = async (req, res) => {
+//   const objective = await User.findOne({ _id: req.body.id }).select("-__v").lean()
+//   const skillsToLearnArr = selectedUser.skillsToLearn.map((e) => e._id)
+//   const users = await User.aggregate([
+//     { $unwind: "$skillsToTeach" },
+//     { $match: { "skillsToTeach._id": { $in: skillsToLearnArr } } },
+//     {
+//       $group: {
+//         _id: "$_id",
+//         firstName: { $first: "$firstName" },
+//         lastName: { $first: "$lastName" },
+//         country: { $first: "$country" },
+//         skillsToTeach: { $push: { _id: "$skillsToTeach._id", name: "$skillsToTeach.name" } },
+//         count: { $sum: 1 },
+//       },
+//     },
+//     { $sort: { count: 1 } },
+//   ])
+//   res.send(users)
+// }
+
+module.exports = {
+  getUsers,
+  getUser,
+  matchMentors,
+  uploadAvatar,
+  postMentor,
+  putSkillsToLearn,
+  putSkillsToTeach,
+  postObjective,
+  patchObjectiveStatus,
+  postMentee,
+}
+
+/* ruta setear objetivo mentor/mentee
+ruta setear reunion mentor/mentee
+ruta setear notificacion mentor/mentee
+ruta setear notificacion "leido" true
+*/
 
 /*
   // const _id = req.params.userId
