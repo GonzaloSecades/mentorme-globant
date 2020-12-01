@@ -26,7 +26,11 @@ const adminAuth = (req, res, next) => {
     const { userId } = decodedToken
     if (req.body.userId && req.body.userId === userId) {
       if (req.body.isAdmin) next()
-      else throw new Error("user does not have admin status, permission denied!")
+      res.status(403).send({
+        message:
+          "You do not have sufficient permissions to modify this object or the resource you are trying to access is restricted to admins.",
+        error,
+      })
     } else throw new Error("invalid userId!")
   } catch {
     res.status(401).json({ error: new Error("Invalid request!") })

@@ -16,10 +16,6 @@ function currentUserReducer(state = initialState, action) {
       return { ...state, mentors: action.payload }
     case "GET_MENTEES":
       return { ...state, mentees: action.payload }
-    case "SET_SKILLS_TO_LEARN":
-      return { ...state, skillsToLearn: action.payload }
-    case "SET_SKILLS_TO_TEACH":
-      return { ...state, skillsToTeach: action.payload }
     case "UPDATE_SKILLS_TO_LEARN":
       return { ...state, skillsToLearn: action.payload }
     case "UPDATE_SKILLS_TO_TEACH":

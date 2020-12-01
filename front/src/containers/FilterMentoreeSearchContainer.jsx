@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory, useLocation } from "react-router-dom"
-import axios from "axios"
 import { matrixLog } from "../utils/logger"
 
 import { getSkillsList } from "../redux/action-creators/skills"
 import SelectSkills from "../components/SelectSkills/SelectSkills"
-// import { postSkillsToTeach, postSkillsToLearn } from "../redux/action-creators/currentUser"
+import { putSkillsToTeach, putSkillsToLearn } from "../redux/action-creators/currentUser"
 
 function SelectSkillsContainer() {
   matrixLog("FILTER MENTOREE SEARCH CONTAINER")
@@ -19,36 +18,32 @@ function SelectSkillsContainer() {
 
   const [selectedSkillsToLearn, setSelectedSkillsToLearn] = useState([])
   const [selectedSkillsToTeach, setSelectedSkillsToTeach] = useState([])
-  const [user, setUser] = useState([])
 
   useEffect(() => {
-    if (location.state === "mentor") {
-      if (skillsToLearn.length) history.push({ pathname: "/find/mentor", search: "ACA VAN FUTUROS FILTROS" })
+    if (location.state === "mentor" && skillsToLearn.length) {
+      history.push({ pathname: "/find/mentor", search: "ACA VAN FUTUROS FILTROS" })
     }
-    if (location.state === "mentee") {
-      if (skillsToTeach.length) history.push({ pathname: "/find/mentor", search: "ACA VAN FUTUROS FILTROS" })
+    if (location.state === "mentee" && skillsToTeach.length) {
+      history.push({ pathname: "/find/mentees", search: "ACA VAN FUTUROS FILTROS" })
     }
   }, [history, location.state, skillsToLearn.length, skillsToTeach.length])
 
   useEffect(() => {
-    if (!skillsList.length) {
-      console.log("fetching skills....")
-      dispatch(getSkillsList())
-    }
+    if (!skillsList.length) dispatch(getSkillsList())
   }, [dispatch, skillsList.length])
 
-  const handleSubmit = (selectedSkills) => {
-    console.log(location.state)
+  const handleSubmit = () => {
     if (location.state === "mentor") {
-      // dispatch(postSkillsToLearn(selectedSkillsToLearn))
+      dispatch(putSkillsToLearn(selectedSkillsToLearn))
       history.push({ pathname: "/find/mentor", search: "ACA VAN FUTUROS FILTROS" })
     } else {
-      // dispatch(postSkillsToTeach(selectedSkillsToTeach))
+      dispatch(putSkillsToTeach(selectedSkillsToTeach))
       history.push({ pathname: "/find/mentees", search: "ACA VAN FUTUROS FILTROS" })
     }
   }
 
   const handleChange = (e, v, n) => {
+    console.log(v)
     if (location.state === "mentor") {
       setSelectedSkillsToLearn({ ...selectedSkillsToLearn, [n]: v })
     }
