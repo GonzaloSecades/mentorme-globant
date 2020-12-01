@@ -9,9 +9,14 @@ const userSkillsSchema = new Schema({
   proficiency: { type: Number, min: 1, max: 5, default: 1 },
 })
 
+const objectiveSchema = new Schema({
+  isCompleted: { type: Boolean },
+  name: { type: String },
+})
+
 const userMenteeMentor = new Schema({
   _id: { type: Schema.Types.ObjectId, ref: "User" },
-  email: { type: String, required: true },
+  email: { type: String },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   country: { type: String, required: true },
@@ -24,7 +29,13 @@ const userMenteeMentor = new Schema({
 
   // Relationship details
   meetings: [],
-  objectives: [],
+  objectives: [
+    {
+      isCompleted: { type: Boolean, default: false },
+      name: { type: String },
+    },
+  ],
+  active: { type: Boolean },
 
   // avance, reuniones, fecha, notificacion
   /*
@@ -61,3 +72,14 @@ const userSchema = new Schema({
 
 userSchema.plugin(uniqueValidator)
 module.exports = mongoose.model("User", userSchema)
+
+
+//
+/* PARA POPULAR CON CAMPOS EXTRA
+const ListSchema = mongoose.Schema({
+  title: { type: String, required: true, max: 100 },
+  items: [{
+      type: mongoose.Schema.Types.Mixed, ref: 'Item', quantity: 'String'
+  }],
+});
+*/

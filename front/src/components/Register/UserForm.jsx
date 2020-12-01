@@ -1,4 +1,4 @@
-import React, { createFactory, useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 
 import { useDispatch, useSelector } from "react-redux"
 import FormUserNew from "./components/FormUserNew"

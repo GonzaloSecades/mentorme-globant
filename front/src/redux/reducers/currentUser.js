@@ -2,6 +2,7 @@ const initialState = {
   skills: [],
   skillsToTeach: [],
   skillsToLearn: [],
+  mentors: [{ objectives: [{ name: "Ver video de React", _id: "1", isCompleted: true }, { name: "practicar Props", _id: "2", isCompleted: true }, { name: "setear estado local", _id: "3", isCompleted: false }] }]
 }
 
 function currentUserReducer(state = initialState, action) {
@@ -16,10 +17,6 @@ function currentUserReducer(state = initialState, action) {
       return { ...state, mentors: action.payload }
     case "GET_MENTEES":
       return { ...state, mentees: action.payload }
-    case "SET_SKILLS_TO_LEARN":
-      return { ...state, skillsToLearn: action.payload }
-    case "SET_SKILLS_TO_TEACH":
-      return { ...state, skillsToTeach: action.payload }
     case "UPDATE_SKILLS_TO_LEARN":
       return { ...state, skillsToLearn: action.payload }
     case "UPDATE_SKILLS_TO_TEACH":

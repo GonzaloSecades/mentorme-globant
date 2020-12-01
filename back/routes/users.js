@@ -1,12 +1,47 @@
 const express = require("express")
 
 const router = express.Router()
-const { getUsers, getUser, matchMentor, uploadAvatar } = require("../controllers/users")
+const {
+  getUsers,
+  getUser,
+  matchMentors,
+  uploadAvatar,
+  postMentor,
+  postMentee,
+  putSkillsToTeach,
+  putSkillsToLearn,
+  postObjective,
+  patchObjectiveStatus,
+} = require("../controllers/users")
 const { auth } = require("../middleware/auth")
 const multer = require("../middleware/multer-config")
 
+// MENTEES
+router.post("/:userId/mentees/add", postMentee)
+router.post("/:userId/mentees/:menteeId/objectives/add", postObjective)
+
+// router.get("/:userId/mentees/:menteeId/objectives", getMenteeObjectives)
+// router.get("/:userId/mentees/:menteeId", getMenteeById)
+// router.get("/:userId/mentees/", getMentees)
+
+// MENTORS
+router.get("/:userId/matchMentors", matchMentors)
+
+router.patch("/:userId/mentors/:mentorId/objectives/:objectiveId/changeStatus", patchObjectiveStatus)
+
+// router.put("/:userId/mentors/:mentorId/objectives/:objectiveId/edit", putObjective)
+
+// router.get("/:userId/mentors/:mentorId/objectives", getUserMentorObjectives)
+router.post("/:userId/mentors/add", postMentor)
+// router.get("/:userId/mentors/:mentorId", getUserMentorById)
+// router.get("/:userId/mentors", getUserMentors)
+
+// USER
 router.post("/:userId/uploadAvatar", multer, uploadAvatar)
-router.get("/:userId/matchMentor", matchMentor)
+
+router.put("/:userId/putSkillsToTeach", putSkillsToTeach)
+router.put("/:userId/putSkillsToLearn", putSkillsToLearn)
+
 router.get("/:userId", getUser)
 router.get("/", getUsers)
 

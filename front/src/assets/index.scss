@@ -7,12 +7,17 @@
 @import "./myprofile";
 @import "./_login.scss";
 @import "./register.scss";
+@import "./myMentorDashboard";
+@import "./mymenteecard";
+@import "./_menteepage";
+@import "./matching";
 
 * {
   box-sizing: border-box;
 }
 
 body {
+  
   margin: 0;
   font-family: "Poppins", sans-serif;
   background-color: $backgorundColor;
@@ -34,26 +39,26 @@ body {
   min-height: 100vh;
 }
 
-.page{
+.page {
   position: absolute;
   top: 100px;
   left: 0;
   right: 0;
 }
 .fade-appear,
-.fade-enter{
-  opacity:0;
-  z-index:1
+.fade-enter {
+  opacity: 0;
+  z-index: 1;
 }
 .fade-appear-active,
-.fade-enter.fade-enter-active{
+.fade-enter.fade-enter-active {
   opacity: 1;
   transition: opacity 1000ms linear 300ms;
 }
-.fade-exit{
-  opacity:1
-};
-.fade-exit.fade-exit-active{
-  opacity:0;
-  transition: opacity 10ms linear
+.fade-exit {
+  opacity: 1;
+}
+.fade-exit.fade-exit-active {
+  opacity: 0;
+  transition: opacity 10ms linear;
 }
