@@ -50,30 +50,34 @@ const matchMentor = async (req, res) => {
 }
 
 const matchMentors = async (req, res) => {
-  const pageOptions = {
-    page: parseInt(req.query.page, 10) || 0,
-    limit: parseInt(req.query.limit, 10) || 999,
-  }
-  const selectedUser = await User.findOne({ _id: req.params.userId }).select("-__v").lean()
-  const skillsToLearnArr = selectedUser.skillsToLearn.map((e) => e._id)
-  const users = await User.aggregate([
-    { $unwind: "$skillsToTeach" },
-    { $match: { "skillsToTeach._id": { $in: skillsToLearnArr } } },
-    {
-      $group: {
-        _id: "$_id",
-        firstName: { $first: "$firstName" },
-        lastName: { $first: "$lastName" },
-        country: { $first: "$country" },
-        skillsToTeach: { $push: { _id: "$skillsToTeach._id", name: "$skillsToTeach.name" } },
-        count: { $sum: 1 },
+  try {
+    const pageOptions = {
+      page: parseInt(req.query.page, 10) || 0,
+      limit: parseInt(req.query.limit, 10) || 999,
+    }
+    const selectedUser = await User.findOne({ _id: req.params.userId }).select("-__v").lean()
+    const skillsToLearnArr = selectedUser.skillsToLearn.map((e) => e._id)
+    const users = await User.aggregate([
+      { $unwind: "$skillsToTeach" },
+      { $match: { "skillsToTeach._id": { $in: skillsToLearnArr } } },
+      {
+        $group: {
+          _id: "$_id",
+          firstName: { $first: "$firstName" },
+          lastName: { $first: "$lastName" },
+          country: { $first: "$country" },
+          skillsToTeach: { $push: { _id: "$skillsToTeach._id", name: "$skillsToTeach.name" } },
+          count: { $sum: 1 },
+        },
       },
-    },
-    { $sort: { count: 1 } },
-    { $skip: pageOptions.page * pageOptions.limit },
-    { $limit: pageOptions.limit },
-  ])
-  res.send(users)
+      { $sort: { count: 1 } },
+      { $skip: pageOptions.page * pageOptions.limit },
+      { $limit: pageOptions.limit },
+    ])
+    res.status(200).send(users)
+  } catch (error) {
+    res.status(500).send({ error })
+  }
 }
 
 const uploadAvatar = (req, res, next) => {
@@ -87,7 +91,7 @@ const uploadAvatar = (req, res, next) => {
     })
     .then((user) => user.save())
     .then((user) => res.status(201).send(user))
-    .catch((error) => res.status(400).json({ error }))
+    .catch((error) => res.status(400).send({ error }))
 }
 
 const addMentor = (req, res, next) => {
@@ -100,15 +104,42 @@ const addMentor = (req, res, next) => {
       user.save()
       return user.mentors      
     })
-    .then((mentors) => res.status(201).json(mentors))
-    .catch((err) => new Error(err))
+    .then((mentors) => res.status(201).send(mentors))
+    .catch((error) => res.status(500).send({ error }))
 }
 
-// const postSkillsToTeach = (req, res) => {}
+// PUT
+const putSkillsToTeach = (req, res) => {
+  console.log(req.body.null)
+  const _id = req.params.userId
+  User.findOne({ _id })
+    .then((user) => {
+      user.skillsToTeach = req.body.null
+      user.save()
+      res.status(201).send(user.skillsToTeach)
+    })
+    .catch((error) => {
+      console.log(error)
+      res.status(500).send({ error })
+    })
+}
 
-// const postSkillsToLearn = (req, res) => {}
+const putSkillsToLearn = (req, res) => {
+  console.log(req.body.null)
+  const _id = req.params.userId
+  User.findOne({ _id })
+    .then((user) => {
+      user.skillsToLearn = req.body.null
+      user.save()
+      res.status(201).send(user.skillsToLearn)
+    })
+    .catch((error) => {
+      console.log(error)
+      res.status(500).send({ error })
+    })
+}
 
-module.exports = { getUsers, getUser, matchMentors, uploadAvatar, addMentor }
+module.exports = { getUsers, getUser, matchMentors, uploadAvatar, addMentor, putSkillsToLearn, putSkillsToTeach }
 
 /*
   // const _id = req.params.userId
@@ -136,7 +167,7 @@ module.exports = { getUsers, getUser, matchMentors, uploadAvatar, addMentor }
   //       if (req.query.country) condition = condition && user.country === req.query.country
   //       if (req.query.type) condition = condition && user.type === req.query.type
 
-  //       //construction of JSON
+  //       //construction of send
   //       if (condition) {
   //         result.push(users[i]);
   //         aux = true

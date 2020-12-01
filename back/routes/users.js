@@ -7,16 +7,19 @@ const {
   matchMentors,
   uploadAvatar,
   addMentor,
-  // postSkillsToLearn,
-  // postSkillsToTeach,
+  putSkillsToTeach,
+  putSkillsToLearn,
 } = require("../controllers/users")
 const { auth } = require("../middleware/auth")
 const multer = require("../middleware/multer-config")
 
-// router.post("/:userId/postSkillsToTeach", patchSkillsToTeach)
-// router.post("/:userId/postSkillsToLearn", patchSkillsToLearn)
+router.put("/:userId/putSkillsToTeach", putSkillsToTeach)
+router.put("/:userId/putSkillsToLearn", putSkillsToLearn)
+
 router.patch("/:userId/addMentor", addMentor)
+
 router.post("/:userId/uploadAvatar", multer, uploadAvatar)
+
 router.get("/:userId/matchMentors", matchMentors)
 router.get("/:userId", getUser)
 router.get("/", getUsers)
