@@ -17,6 +17,7 @@ import MyProfileContainer from "./components/MyProfile/MyProfileContainer"
 import AvatarUploadContainer from "./components/MyProfile/AvatarUpload"
 import SelectSkillsContainer from "./containers/FilterMentoreeSearchContainer"
 import FindMentoreeContainer from "./containers/FindMentoreeContainer"
+import MentorsMentees from "./components/MeyMentors-Mentees/MentorsMentees"
 import Mentees from "./containers/Mentees"
 import MyMentees from "./containers/Mentee"
 import MatchingContainer from "./components/Matching/MatchingContainer"
@@ -37,15 +38,15 @@ function Main() {
         .find((row) => row.startsWith("token"))
         .split("=")[1]
       dispatch(me(token))
-      if (location === "/") {
-        setTimeout(() => {
-          history.push("/myprofile")
-        }, 1500)
-      }
-    } else if (location === "/") {
-      setTimeout(() => {
-        history.push("/login")
-      }, 1500)
+      //   if (lock === "/") {
+      //     setTimeout(() => {
+      //       history.push("/myprofile")
+      //     }, 1500)
+      //   }
+      // } else if (lock === "/") {
+      //   setTimeout(() => {
+      //     history.push("/login")
+      //   }, 1500)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -70,6 +71,7 @@ function Main() {
                 <Route path="/find/mentees" component={FindMentoreeContainer} />
                 <Route path="/find/mentor" component={FindMentoreeContainer} />
                 <Route path="/avatar" component={AvatarUploadContainer} />
+                <Route path="/mymentors" component={MentorsMentees} />
                 <Route exact path="/" component={Landing} />
               </Switch>
             </CSSTransition>
@@ -77,7 +79,7 @@ function Main() {
           )}
         />
       </div>
-      {lock === "/" || lock === "/register" ? null : <Menu />}
+      {lock === "/" || lock === "/login" || lock === "/register" ? null : <Menu />}
     </div>
   )
 }

@@ -13,8 +13,14 @@ import InboxIcon from "@material-ui/icons/MoveToInbox"
 import MailIcon from "@material-ui/icons/Mail"
 import IconButton from "@material-ui/core/IconButton"
 import MenuIcon from "@material-ui/icons/Menu"
+import SchoolIcon from "@material-ui/icons/School"
+import { faChalkboardTeacher } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import AccountCircleIcon from "@material-ui/icons/AccountCircle"
 import { matrixLog } from "../../../utils/logger"
 import { logout } from "../../../redux/action-creators/currentUser"
+// color="#3b3b3b" size="2x"
+const searchMentees = <FontAwesomeIcon icon={faChalkboardTeacher} />
 
 const useStyles = makeStyles({
   list: {
@@ -77,22 +83,20 @@ export default function TemporaryDrawer() {
 
       <ListItem button component={Link} to="/myprofile">
         <ListItemIcon>
-          <InboxIcon />
+          <AccountCircleIcon />
         </ListItemIcon>
         <ListItemText primary="MI PERFIL" />
       </ListItem>
 
       <ListItem button component={Link} to={{ pathname: "/skills/select", state: "mentor" }}>
         <ListItemIcon>
-          <MailIcon />
+          <SchoolIcon />
         </ListItemIcon>
         <ListItemText primary="BUSCAR MENTOR" />
       </ListItem>
 
       <ListItem button component={Link} to={{ pathname: "/skills/select", state: "mentee" }}>
-        <ListItemIcon>
-          <MailIcon />
-        </ListItemIcon>
+        <ListItemIcon>{searchMentees}</ListItemIcon>
         <ListItemText primary="BUSCAR MENTEES" />
       </ListItem>
 

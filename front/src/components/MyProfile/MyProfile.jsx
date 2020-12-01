@@ -1,24 +1,14 @@
 import React from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faComments, faPencilAlt, faAd } from "@fortawesome/free-solid-svg-icons"
-import BookmarksIcon from "@material-ui/icons/Bookmarks"
-import MeetAcordion from "./MeetAcordion"
-import EditProfile from "./EditProfile"
+import { faPencilAlt, faTasks } from "@fortawesome/free-solid-svg-icons"
+
+import { Link } from "react-router-dom"
+
 import MyInfo from "./MyInfo"
 
-function myProfile({
-  user,
-  handleClick,
-  editProfile,
-  meeting,
-  skillsToLearnOrTeach,
-  menteesOrMentors,
-  matching,
-  setName,
-}) {
-  const iconMeet = <FontAwesomeIcon icon={faComments} color="#3b3b3b" size="2x" />
+function myProfile({ user }) {
   const iconEditProfile = <FontAwesomeIcon icon={faPencilAlt} color="#3b3b3b" size="2x" />
-  const iconComodin = <FontAwesomeIcon icon={faAd} color="#3b3b3b" size="2x" />
+  const iconComodin = <FontAwesomeIcon icon={faTasks} color="#3b3b3b" size="2x" />
 
   return (
     <div className="MyProfileFather">
@@ -26,34 +16,18 @@ function myProfile({
         <img alt="user-avatar" src="http://localhost:3000/images/drKreshel1605900136299.png" />
 
         <div className="iconsFather">
-          <div
-            onClick={(e) => {
-              setName("meeting")
-              handleClick(e)
-            }}
-          >
-            {iconMeet}
+          <div>
+            <Link to="/myprogress">{iconComodin}</Link>
           </div>
-          <div
-            onClick={(e) => {
-              setName("editProfile")
-              handleClick(e)
-            }}
-          >
+
+          <div>
             {" "}
-            {iconEditProfile}
+            <Link to="/editprofile">{iconEditProfile}</Link>
           </div>
         </div>
       </section>
-      <img alt="backgroud-animation1" className="backgroundAnimation1" src="https://i.ibb.co/7nhLm8S/02.png" />
-      <img alt="backgroud-animation2" className="backgroundAnimation2" src="https://i.ibb.co/YX02RmT/01.png" />
-
-      {/* DISTINTAS SECCIONES */}
 
       <MyInfo user={user} />
-
-      {/* {editProfile ? <EditProfile/> : null}
-        {meeting ? <MeetAcordion/> : null} */}
     </div>
   )
 }
