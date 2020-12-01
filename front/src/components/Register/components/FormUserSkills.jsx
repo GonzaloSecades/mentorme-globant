@@ -16,6 +16,7 @@ function FormUserSkills({ steps, user, skillsList, handleChange, selectedStep, n
   const icon = <CheckBoxOutlineBlankIcon fontSize="small" />
   const checkedIcon = <CheckBoxIcon fontSize="small" />
   const classes = formUserSkillsStyles()
+
   const theme = useTheme()
 
   let name
@@ -72,7 +73,7 @@ function FormUserSkills({ steps, user, skillsList, handleChange, selectedStep, n
           }
           backButton={
             <Button size="small" onClick={prevStep} disabled={selectedStep === 0}>
-              {theme.direction === "rtl" ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+              {theme.direction === "rtl" ? <KeyboardArrowRight className={classes.root} /> : <KeyboardArrowLeft className={classes.root} />}
               <p className="btn-steppers">Back</p>
             </Button>
           }

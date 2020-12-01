@@ -68,7 +68,6 @@ function FormUserNew({ prevStep, selectedStep, steps, user, handleSubmit }) {
         style={{
           backgroundColor: "rgba(18,41,68,1)",
           borderRadius: "20px",
-          width: "100%",
           margin: "20px auto",
         }}
         className={classes.buttonSignin}
@@ -94,7 +93,7 @@ function FormUserNew({ prevStep, selectedStep, steps, user, handleSubmit }) {
           }
           backButton={
             <Button size="small" onClick={prevStep} disabled={selectedStep === 0}>
-              {theme.direction === "rtl" ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+              {theme.direction === "rtl" ? <KeyboardArrowRight className={classes.root} /> : <KeyboardArrowLeft className={classes.root} />}
               <p className="btn-steppers">Back</p>
             </Button>
           }
