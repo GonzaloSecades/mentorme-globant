@@ -10,6 +10,7 @@
   justify-content: space-between;
 }
  .logo {
+    margin-left: auto;
     margin-top: 6%;
     padding-right: 30px;
     text-align: center;
@@ -21,7 +22,7 @@
     position: relative;
     flex-wrap: wrap;
     align-items: flex-end;
-    justify-content: flex-start;
+    justify-content: right;
     flex-direction: column;
     user-select: none;
      -webkit-user-select: none;

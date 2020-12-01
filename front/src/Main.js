@@ -16,6 +16,7 @@ import MyProfileContainer from "./components/MyProfile/MyProfileContainer"
 import AvatarUploadContainer from "./components/MyProfile/AvatarUpload"
 import SelectSkillsContainer from "./containers/FilterMentoreeSearchContainer"
 import FindMentoreeContainer from "./containers/FindMentoreeContainer"
+import MentorsMentees from "./components/MeyMentors-Mentees/MentorsMentees"
 
 // ACTIONS
 import { me } from "./redux/action-creators/currentUser"
@@ -65,6 +66,7 @@ function Main() {
                 <Route path="/find/mentees" component={FindMentoreeContainer} />
                 <Route path="/find/mentor" component={FindMentoreeContainer} />
                 <Route path="/avatar" component={AvatarUploadContainer} />
+                <Route path="/mymentors" component={MentorsMentees} />
                 <Route exact path="/" component={Landing} />
               </Switch>
             </CSSTransition>
@@ -72,7 +74,7 @@ function Main() {
           )}
         />
       </div>
-      {location === "/" || location === "/register" ? null : <Menu />}
+      {location === "/" || location === "/login" || location === "/register" ? null : <Menu />}
     </div>
   )
 }

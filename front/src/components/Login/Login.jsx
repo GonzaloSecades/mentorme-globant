@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { makeStyles, TextField, Button } from "@material-ui/core"
 import { Link, useHistory } from "react-router-dom"
@@ -40,12 +40,15 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 function Login() {
-
   const dispatch = useDispatch()
   const classes = useStyles()
   const history = useHistory()
   const [useEmail, setEmail] = useState("")
   const [usePassword, setPassword] = useState("")
+
+  // useEffect(() => {
+  //   document.getElementById("footer").style.display = "none"
+  // })
 
   function onChange(e) {
     console.log(e.target.value)
@@ -100,19 +103,19 @@ function Login() {
             {" "}
             Sign in{" "}
           </Button>
-          <Link to='/register' style={{textDecoration:"none"}}>
-          <Button
-            style={{
-              color: "rgba(18,41,68,1)",
-              border: "2px solid rgba(18,41,68,1)",
-            }}
-            className="buttoncreateacc"
-            variant="outlined"
-            color="primary"
-          >
-            {" "}
-            Create Your Account{" "}
-          </Button>
+          <Link to="/register" style={{ textDecoration: "none" }}>
+            <Button
+              style={{
+                color: "rgba(18,41,68,1)",
+                border: "2px solid rgba(18,41,68,1)",
+              }}
+              className="buttoncreateacc"
+              variant="outlined"
+              color="primary"
+            >
+              {" "}
+              Create Your Account{" "}
+            </Button>
           </Link>
         </div>
       </form>

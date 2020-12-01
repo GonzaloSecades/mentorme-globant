@@ -1,6 +1,7 @@
 @import "./colors";
 
 .MyProfileFather {
+  
   color: black;
 
   .backgroundAnimation1 {
@@ -97,6 +98,18 @@
     }
     
   }
+}
+
+.dashContainer{
+  width: 90%;
+  background-color: #f8fafa;
+  border: 1px solid #d7d9da;
+  margin: 12px auto;
+  padding: 10px;
+  box-shadow: 0px 2px 17px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  opacity: 0.99;
+  display: block;
 }
 
 .LinkInferior {

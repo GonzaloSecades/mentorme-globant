@@ -84,6 +84,16 @@ function FormUserData({ nextStep, prevStep, user, handleChange, selectedStep, st
           variant="outlined"
           onChange={handleChange}
         />
+        <TextField
+          className={classes.formLogininput}
+          value={user.phoneNumber}
+          id="outlined-search"
+          label="Idiomas *"
+          name="phoneNumber"
+          type="tel"
+          variant="outlined"
+          onChange={handleChange}
+        />
 
         <InputLabel id="demo-simple-select-outlined-label" style={{ marginTop: "18px" }}>
           Pais
