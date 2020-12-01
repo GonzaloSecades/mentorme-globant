@@ -127,12 +127,20 @@ function FormUserData({ nextStep, prevStep, user, handleChange, selectedStep, st
             <Button size="small" onClick={next} disabled={selectedStep === steps}>
               <p className="btn-steppers">Next</p>
               {console.log(classes.arrow)}
-              {theme.direction === "rtl" ? <KeyboardArrowLeft style={{ color: "#fff" }} /> : <KeyboardArrowRight style={{ color: "#fff" }} />}
+              {theme.direction === "rtl" ? (
+                <KeyboardArrowLeft style={{ color: "#fff" }} />
+              ) : (
+                  <KeyboardArrowRight style={{ color: "#fff" }} />
+                )}
             </Button>
           }
           backButton={
             <Button size="small" onClick={prev} disabled={selectedStep === 0}>
-              {theme.direction === "rtl" ? <KeyboardArrowRight style={{ color: "#fff" }} /> : <KeyboardArrowLeft style={{ color: "#fff" }} />}
+              {theme.direction === "rtl" ? (
+                <KeyboardArrowRight style={{ color: "#fff" }} />
+              ) : (
+                  <KeyboardArrowLeft style={{ color: "#fff" }} />
+                )}
               <p className="btn-steppers">Back</p>
             </Button>
           }
