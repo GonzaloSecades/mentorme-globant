@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
@@ -30,15 +29,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const MyMentorDashbord = () => {
-
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
-  /* const objectiveList = useSelector(state => state.currentUser.mentors[0].objectives) */
-  /*   const mentors = useSelector(state => state.currentUser.mentors) */
-
-  /*   const objectiveNames = objectiveList.map(e => e.name) */
-
-
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
@@ -97,43 +89,3 @@ const MyMentorDashbord = () => {
 }
 
 export default MyMentorDashbord
-
-
-
-{/*  
-        <Accordion expanded={expanded === `panel2`} onChange={handleChange(`panel2`)}>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel2bh-content"
-            id="panel2bh-header"
-          >
-            <Typography className={classes.heading}>Hooks</Typography>
-            <Typography className={classes.secondaryHeading}>
-              Mentor: Dr. Kreshel
-          </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <div className="checkBoxListContainer">
-              <CheckboxList objectiveList={objectiveList} />
-              <Progresscheck className="progressCheck" objectiveList={objectiveList} />
-            </div>
-          </AccordionDetails>
-        </Accordion>
-        <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel2bh-content"
-            id="panel2bh-header"
-          >
-            <Typography className={classes.heading}>Redux</Typography>
-            <Typography className={classes.secondaryHeading}>
-              Mentor: Dr. Kreshel
-          </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <div className="checkBoxListContainer">
-              <CheckboxList objectiveList={objectiveList} />
-              <Progresscheck className="progressCheck" objectiveList={objectiveList} />
-            </div>
-          </AccordionDetails>
-        </Accordion> */}
