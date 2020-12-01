@@ -1,26 +1,34 @@
-import React from "react"
-import { useTheme, withStyles, makeStyles } from "@material-ui/core/styles"
-import { TextField, Button, Paper, TableRow, TableContainer, TableCell, TableBody, Table } from "@material-ui/core"
+import React, { useState } from "react";
+import { useTheme, withStyles, makeStyles } from "@material-ui/core/styles";
+import {
+  TextField,
+  Button,
+  Paper,
+  TableRow,
+  TableContainer,
+  TableCell,
+  TableBody,
+  Table,
+} from "@material-ui/core";
 
-import Accordion from "@material-ui/core/Accordion"
-import AccordionDetails from "@material-ui/core/AccordionDetails"
-import AccordionSummary from "@material-ui/core/AccordionSummary"
-import Typography from "@material-ui/core/Typography"
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
-import { formUserDataStyles } from "../components/Mentees/materialStyles"
+import Accordion from "@material-ui/core/Accordion";
+import AccordionDetails from "@material-ui/core/AccordionDetails";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
+import Typography from "@material-ui/core/Typography";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { formUserDataStyles } from "../components/Mentees/materialStyles";
 
 function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein }
+  return { name, calories, fat, carbs, protein };
 }
 
 const useStyles = makeStyles((theme) => ({
-
   Accordion: {
     "& .MuiAccordionDetails-root": {
       padding: "8px 6px 14px",
-      display: "block"
-    }
-  }
+      display: "block",
+    },
+  },
 }));
 
 const rows = [
@@ -29,12 +37,37 @@ const rows = [
   createData("EMAIL:", "email@email.com "),
   createData("TELEFONO:", "3242342"),
   createData("PAIS:", "argentina"),
-]
+];
 
 export default function Mentee() {
-  const classes = formUserDataStyles()
-  const classes2 = useStyles()
-  const theme = useTheme()
+  const [meet, setMeet] = useState({
+    meetCause: "",
+    link: "",
+    date: "",
+  });
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    const { value } = e.target;
+    console.log(value);
+    console.log(e.target.name);
+    setMeet({ ...meet, [e.target.name]: value });
+    console.log(meet);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(e.target[0].value);
+    console.log(meet);
+  };
+  const handleSubmitMeet = (e) => {
+    e.preventDefault();
+
+    console.log(meet);
+  };
+  const classes = formUserDataStyles();
+  const classes2 = useStyles();
+  const theme = useTheme();
   const StyledTableCell = withStyles(() => ({
     head: {
       backgroundColor: theme.palette.common.black,
@@ -44,7 +77,7 @@ export default function Mentee() {
       fontSize: 14,
       margin: 0,
     },
-  }))(TableCell)
+  }))(TableCell);
 
   const StyledTableRow = withStyles(() => ({
     root: {
@@ -52,16 +85,25 @@ export default function Mentee() {
         backgroundColor: theme.palette.action.hover,
       },
     },
-  }))(TableRow)
+  }))(TableRow);
   return (
     <div className="conteiner-card">
       <Accordion className={classes2.Accordion} style={{ width: "100%" }}>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-          <Typography>DATOS PERSONALES</Typography>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Typography>
+            <div>DATOS PERSONALES</div>
+          </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            <TableContainer className={classes.acordionCenter} component={Paper}>
+            <TableContainer
+              className={classes.acordionCenter}
+              component={Paper}
+            >
               <Table aria-label="customized table">
                 <TableBody>
                   {rows.map((row) => (
@@ -69,7 +111,9 @@ export default function Mentee() {
                       <StyledTableCell component="th" scope="row">
                         {row.name}
                       </StyledTableCell>
-                      <StyledTableCell align="right">{row.calories}</StyledTableCell>
+                      <StyledTableCell align="right">
+                        {row.calories}
+                      </StyledTableCell>
                     </StyledTableRow>
                   ))}
                 </TableBody>
@@ -79,14 +123,19 @@ export default function Mentee() {
         </AccordionDetails>
       </Accordion>
       <Accordion className={classes2.Accordion} style={{ width: "100%" }}>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-          <Typography>INGRESA UN OBJETIVO</Typography>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Typography>
+            <div>INGRESA UN OBJETIVO</div>
+          </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            <form>
+            <form onSubmit={handleSubmit}>
               <TextField
-                /*  value="" */
                 onChange="handleChange"
                 className={classes.formLogininput}
                 id="outlined-search"
@@ -99,13 +148,12 @@ export default function Mentee() {
                 style={{
                   backgroundColor: "rgba(18,41,68,1)",
                   borderRadius: "20px",
-
                   margin: "20px auto",
                 }}
                 className={classes.buttonSignin}
                 variant="contained"
                 color="primary"
-              /*  onClick={handleSubmit} */
+                type="submit"
               >
                 agregar
               </Button>
@@ -114,15 +162,19 @@ export default function Mentee() {
         </AccordionDetails>
       </Accordion>
       <Accordion className={classes2.Accordion} style={{ width: "100%" }}>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
           <Typography>PLANIFICA UNA REUNION</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
             <form>
               <TextField
-                /*  value="" */
-                onChange="handleChange"
+                value={meet.meetCause}
+                onChange={handleChange}
                 className={classes.formLogininput}
                 id="outlined-search"
                 label=" Motivo *"
@@ -131,18 +183,20 @@ export default function Mentee() {
                 variant="outlined"
               />
               <TextField
-                /*  value="" */
-                onChange="handleChange"
+                value={meet.link}
+                onChange={handleChange}
                 className={classes.formLogininput}
                 id="outlined-search"
                 label=" Link *"
-                name="meetLink"
+                name="link"
                 type="text"
                 variant="outlined"
               />
               <br />
               <TextField
-                id="datetime-local"
+                value={meet.date}
+                onChange={handleChange}
+                name="date"
                 label="Next appointment"
                 type="datetime-local"
                 defaultValue="2017-05-24T10:30"
@@ -161,7 +215,8 @@ export default function Mentee() {
                 className={classes.buttonSignin}
                 variant="contained"
                 color="primary"
-              /*  onClick={handleSubmit} */
+                type="submit"
+                onClick={handleSubmitMeet}
               >
                 agregar
               </Button>
@@ -170,5 +225,5 @@ export default function Mentee() {
         </AccordionDetails>
       </Accordion>
     </div>
-  )
+  );
 }
