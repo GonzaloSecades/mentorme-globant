@@ -4,7 +4,6 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 
 
-
 export default function CheckboxesGroup({ objectiveList }) {
   const defaultNames = [];
   const { control, handleSubmit } = useForm({
