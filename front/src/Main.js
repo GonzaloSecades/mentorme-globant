@@ -38,15 +38,15 @@ function Main() {
         .find((row) => row.startsWith("token"))
         .split("=")[1]
       dispatch(me(token))
-      if (location === "/") {
-        setTimeout(() => {
-          history.push("/myprofile")
-        }, 1500)
-      }
-    } else if (location === "/") {
-      setTimeout(() => {
-        history.push("/login")
-      }, 1500)
+      //   if (lock === "/") {
+      //     setTimeout(() => {
+      //       history.push("/myprofile")
+      //     }, 1500)
+      //   }
+      // } else if (lock === "/") {
+      //   setTimeout(() => {
+      //     history.push("/login")
+      //   }, 1500)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -79,7 +79,7 @@ function Main() {
           )}
         />
       </div>
-      {location === "/" || location === "/login" || location === "/register" ? null : <Menu />}
+      {lock === "/" || lock === "/login" || lock === "/register" ? null : <Menu />}
     </div>
   )
 }

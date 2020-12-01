@@ -105,14 +105,7 @@ function Login() {
           </Button>
           <Link to="/register" style={{ textDecoration: "none" }}>
             <Button
-<<<<<<< HEAD
-              style={{
-                color: "rgba(18,41,68,1)",
-                border: "2px solid rgba(18,41,68,1)",
-              }}
-=======
               style={{ color: "rgba(18,41,68,1)", border: "2px solid rgba(18,41,68,1)" }}
->>>>>>> 040cd28cb4f38420babb482b42c6f06559c90831
               className="buttoncreateacc"
               variant="outlined"
               color="primary"
