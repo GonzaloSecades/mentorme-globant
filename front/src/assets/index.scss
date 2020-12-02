@@ -23,6 +23,10 @@ body {
   background-color: $backgorundColor;
 }
 
+#root{
+  min-height: 100vh;
+}
+
 .separador {
   display: block;
 }
@@ -31,6 +35,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
+  min-height: 100vh;
 }
 
 .page {

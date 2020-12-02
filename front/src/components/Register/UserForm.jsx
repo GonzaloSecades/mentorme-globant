@@ -32,7 +32,7 @@ function UserForm() {
     isAdmin: false,
   })
 
-  console.log(user)
+
 
   const handleChange = (e, v, n) => {
     console.log(v)

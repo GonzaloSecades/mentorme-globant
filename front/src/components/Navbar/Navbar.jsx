@@ -7,7 +7,7 @@ export default function Navbar() {
   matrixLog("NAVBAR")
   const path = useLocation().pathname
   return (
-    <div className="container">
+    <div id="navbar" className="container">
       {path === "/login" ? null : <Burger />}
       <div className="logo">
         mentor<span>me</span>

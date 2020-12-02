@@ -57,7 +57,7 @@ function SelectSkills({ skillsList, title, handleChange, handleSubmit }) {
           return <TextField {...params} variant="outlined" label="Skills" />
         }}
       />
-      <Button onClick={handleSubmit} variant="contained" className={classes.root}>
+      <Button style={{ flexGrow: "0" }} onClick={handleSubmit} variant="contained" className={classes.root}>
         Continuar
       </Button>
     </div>
