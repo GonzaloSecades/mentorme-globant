@@ -17,9 +17,9 @@ import MyProfileContainer from "./components/MyProfile/MyProfileContainer"
 import AvatarUploadContainer from "./components/MyProfile/AvatarUpload"
 import SelectSkillsContainer from "./containers/FilterMentoreeSearchContainer"
 import FindMentoreeContainer from "./containers/FindMentoreeContainer"
+import MenteesList from "./containers/MenteesList"
+import MenteeIndividual from "./containers/MenteeIndividual"
 import MentorsMentees from "./components/MeyMentors-Mentees/MentorsMentees"
-import Mentees from "./containers/Mentees"
-import MyMentees from "./containers/Mentee"
 import MatchingContainer from "./components/Matching/MatchingContainer"
 
 // ACTIONS
@@ -64,8 +64,8 @@ function Main() {
                 <Route path="/register" component={UserForm} />
                 <Route path="/myprofile" component={MyProfileContainer} />
                 <Route exact path="/myprogress" component={MyMentorDashboard} />
-                <Route path="/mymentees" component={Mentees} />
-                <Route path="/menteepage" component={MyMentees} />
+                <Route path="/menteelist" component={MenteesList} />
+                <Route path="/menteeindividual" component={MenteeIndividual} />
                 <Route path="/matching" component={MatchingContainer} />
                 <Route path="/skills/select" component={SelectSkillsContainer} />
                 <Route path="/find/mentees" component={FindMentoreeContainer} />
