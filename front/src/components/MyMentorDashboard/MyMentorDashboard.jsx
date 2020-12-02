@@ -61,7 +61,7 @@ const MyMentorDashbord = () => {
   ]
 
   return (
-    <div className="dashContainer">
+    <div className="dashProfile2Container">
 
       {mentors.map((mentor) => {
         return mentor.skills.map((e) => {

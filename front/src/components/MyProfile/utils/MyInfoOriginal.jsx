@@ -1,4 +1,5 @@
 import React from "react"
+import {useSelector} from 'react-redux'
 import { makeStyles } from "@material-ui/core/styles"
 // import ListSubheader from "@material-ui/core/ListSubheader"
 import List from "@material-ui/core/List"
@@ -27,26 +28,26 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NestedList({ user }) {
   const classes = useStyles()
-  const [open, setOpen] = React.useState(true)
-
+  const [open, setOpen] = React.useState(true)  
+ 
   const handleClick = () => {
     setOpen(!open)
   }
 
   return (
-    <div className="dashContainer">
+    <div className="dashProfile2Container">
       <List component="nav" aria-labelledby="nested-list-subheader">
         <ListItem button>
           <ListItemIcon>
             <PersonIcon />
           </ListItemIcon>
-          <ListItemText primary={`${user.firstName} ${user.lastName}`} />
+          <ListItemText primary={`${ user && user.firstName} ${user && user.lastName}`} />
         </ListItem>
         <ListItem button>
           <ListItemIcon>
             <PublicIcon />
           </ListItemIcon>
-          <ListItemText primary={user.country} />
+          <ListItemText primary={user && user.country} />
         </ListItem>
         <ListItem button>
           <ListItemIcon>
@@ -58,7 +59,7 @@ export default function NestedList({ user }) {
           <ListItemIcon>
             <MailIcon />
           </ListItemIcon>
-          <ListItemText primary={`${user.email}`} />
+          <ListItemText primary={`${user && user.email}`} />
         </ListItem>
         <ListItem button onClick={handleClick}>
           <ListItemIcon>
@@ -71,6 +72,7 @@ export default function NestedList({ user }) {
           {document.cookie &&
             user &&
             user.skills.map((skill) => {
+             
               return (
                 <List key={skill._id} component="div" disablePadding>
                   <ListItem button className={classes.nested}>
