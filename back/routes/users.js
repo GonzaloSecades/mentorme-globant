@@ -7,7 +7,7 @@ const {
   matchMentors,
   uploadAvatar,
   postUserMentor,
-  postMentee,
+  postUserMentee,
   putSkillsToTeach,
   putSkillsToLearn,
   postObjective,
@@ -17,7 +17,7 @@ const { auth } = require("../middleware/auth")
 const multer = require("../middleware/multer-config")
 
 // USER MENTEES
-router.post("/:userId/mentees/:menteeId/add", postMentee)
+router.post("/:userId/mentees/:menteeId/add", postUserMentee)
 router.post("/:userId/mentees/:menteeId/objectives/add", postObjective)
 // router.get("/:userId/mentees/:menteeId/objectives", getMenteeObjectives)
 // router.get("/:userId/mentees/:menteeId", getMenteeById)

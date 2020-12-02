@@ -27,7 +27,8 @@ import { me } from "./redux/action-creators/currentUser"
 function Main() {
   matrixLog("MAIN")
   const dispatch = useDispatch()
-  const lock = useLocation().pathname
+  const history = useHistory()
+  const location = useLocation().pathname
   // HOOK PERSISTENCIA DE SESION
   useEffect(() => {
     // persistencia
@@ -52,7 +53,7 @@ function Main() {
 
   return (
     <div className="order">
-      {lock === "/" ? null : <Navbar />}
+      {location === "/" ? null : <Navbar />}
       <div>
         <Route
           render={({ location }) => (
@@ -77,7 +78,7 @@ function Main() {
           )}
         />
       </div>
-      {lock === "/" || lock === "/register" ? null : <Menu />}
+      {location === "/" || location === "/register" ? null : <Menu />}
     </div>
   )
 }

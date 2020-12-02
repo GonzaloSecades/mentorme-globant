@@ -78,9 +78,8 @@ const uploadAvatar = (req, res, next) => {
 
 // router.post("/:userId/mentors/:mentorId/add", postUserMentor)
 const postUserMentor = async (req, res, next) => {
-  console.log("ENTRO A LA RUTA--------")
   const { userId, mentorId } = req.params
-  const { learningSkills } = req.body
+  const { learningSkills } = req.body // ejemplo para mandar por axios: {"learningSkills": [{ "_id": "5fb818a7ae6e9a634901711b", "name": "mongo" }, { "_id": "5fb818a7ae6e9a634901711c", "name": "sequelize" }] }
 
   try {
     const user = await User.findOne({ _id: userId })
@@ -136,23 +135,74 @@ const postUserMentor = async (req, res, next) => {
       return res.status(403).send({ error: "mentor already has an active relationship with user!" })
     }
 
-    res.status(201).send("mentor added succesfully!")
+    return res.status(201).send("mentor added succesfully!")
   } catch (error) {
     return res.status(500).send({ error })
   }
 }
 
-// TODO
-const postMentee = (req, res, next) => {
-  const _id = req.params.userId
-  User.findOne({ _id })
-    .then((user) => {
-      user.mentees.push(req.body)
+// router.post("/:userId/mentees/:menteeId/add", postUserMentee)
+const postUserMentee = async (req, res, next) => {
+  const { userId, menteeId } = req.params
+  const { learningSkills } = req.body
+
+  try {
+    const user = await User.findOne({ _id: userId })
+    // console.log("user", user)
+    const mentee = await User.findOne({ _id: menteeId })
+
+    const idx = user.mentees.findIndex((e) => e._id.toString() === menteeId)
+    console.log("idx", idx)
+    if (idx === -1 || !user.mentees[idx].active) {
+      console.log("CONDITION ", idx === -1)
+      console.log("ENTRO A AGREGAR")
+      const { _id, email, firstName, lastName, country, phoneNumber, languages, avatar } = mentee
+
+      user.mentees.push({
+        _id,
+        email,
+        firstName,
+        lastName,
+        country,
+        phoneNumber,
+        languages,
+        avatar,
+        learningSkills,
+        meetings: [],
+        objectives: [],
+        active: true,
+      })
       user.save()
-      return user.mentors
-    })
-    .then((mentors) => res.status(201).send(mentors))
-    .catch((error) => res.status(500).send({ error }))
+    } else {
+      return res.status(403).send({ error: "user already has an active relationship with mentee!" })
+    }
+
+    const idy = mentee.mentors.findIndex((e) => e._id.toString() === userId)
+    if (idy === -1 || !mentee.mentors[idy].active) {
+      const { _id, email, firstName, lastName, country, phoneNumber, languages, avatar } = user
+      mentee.mentors.push({
+        _id,
+        email,
+        firstName,
+        lastName,
+        country,
+        phoneNumber,
+        languages,
+        avatar,
+        learningSkills,
+        meetings: [],
+        objectives: [],
+        active: true,
+      })
+      mentee.save()
+    } else {
+      return res.status(403).send({ error: "mentor already has an active relationship with user!" })
+    }
+
+    res.status(201).send("mentor added succesfully!")
+  } catch (error) {
+    return res.status(500).send({ error })
+  }
 }
 
 // PUT
@@ -277,11 +327,11 @@ module.exports = {
   matchMentors,
   uploadAvatar,
   postUserMentor,
+  postUserMentee,
   putSkillsToLearn,
   putSkillsToTeach,
   postObjective,
   patchObjectiveStatus,
-  postMentee,
 }
 
 /* ruta setear objetivo mentor/mentee
