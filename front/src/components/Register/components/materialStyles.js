@@ -17,6 +17,7 @@ export const formUserDataStyles = makeStyles({
     ".MuiMobileStepper-dotActive": {
       backgroundColor: "black",
     },
+
   },
   formLogininput: {
     "& .MuiInputLabel-formControl": {
@@ -43,6 +44,11 @@ export const formUserDataStyles = makeStyles({
       borderColor: "#a6d431",
     },
   },
+  arrow: {
+    "& .MuiButton-label": {
+      color: "#fff"
+    }
+  }
 })
 
 export const formUserNewStyles = makeStyles((theme) => ({
@@ -79,6 +85,9 @@ export const formUserNewStyles = makeStyles((theme) => ({
     "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
       borderColor: "#a6d431",
     },
+    "& .MuiButton-label": {
+      color: "#fff"
+    }
   },
 }))
 
@@ -92,6 +101,9 @@ export const formUserSaveStyles = makeStyles({
     "& .MuiMobileStepper-dotActive": {
       backgroundColor: "#a6d431",
     },
+    "& .MuiButton-label": {
+      color: "#fff"
+    }
   },
 })
 
@@ -105,6 +117,10 @@ export const formUserSkillsStyles = makeStyles({
     "& .MuiMobileStepper-dotActive": {
       backgroundColor: "#a6d431",
     },
+    "& .MuiButton-label": {
+      color: "#fff"
+    }
+
   },
 })
 
@@ -118,7 +134,11 @@ export const formUserSuccessStyles = makeStyles({
     "& .MuiMobileStepper-dotActive": {
       backgroundColor: "#a6d431",
     },
+    "& .MuiButton-label": {
+      color: "#fff"
+    }
   },
 });
+
 
 

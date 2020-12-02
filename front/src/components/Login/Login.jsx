@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { makeStyles, TextField, Button } from "@material-ui/core"
 import { Link, useHistory } from "react-router-dom"
@@ -45,6 +45,10 @@ function Login() {
   const history = useHistory()
   const [useEmail, setEmail] = useState("")
   const [usePassword, setPassword] = useState("")
+
+  // useEffect(() => {
+  //   document.getElementById("footer").style.display = "none"
+  // })
 
   function onChange(e) {
     console.log(e.target.value)

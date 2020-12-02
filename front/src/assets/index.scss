@@ -17,9 +17,14 @@
 }
 
 body {
+  
   margin: 0;
   font-family: "Poppins", sans-serif;
   background-color: $backgorundColor;
+}
+
+#root{
+  min-height: 100vh;
 }
 
 .separador {
@@ -30,6 +35,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
+  min-height: 100vh;
 }
 
 .page {

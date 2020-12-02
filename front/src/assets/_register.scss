@@ -7,6 +7,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 65vmax;
 
   p,
   h3 {
@@ -23,5 +24,8 @@
     position: fixed;
     bottom: 0%;
     margin-bottom: 15px;
+  }
+  .arrowbutton{
+    color:#fff
   }
 }
