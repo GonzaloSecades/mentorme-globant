@@ -1,4 +1,5 @@
 const multer = require("multer")
+const maxSize = 1 * 250 * 250;
 
 const MIME_TYPES = {
   "image/jpg": "jpg",
@@ -18,4 +19,5 @@ const storage = multer.diskStorage({
   },
 })
 
-module.exports = multer({ storage }).single("image")
+module.exports = multer({ storage, limits: { fileSize: maxSize }}).single("image")
+
