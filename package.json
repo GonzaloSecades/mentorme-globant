@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "react-card-flip": "^1.0.11",
     "react-jitsi": "^1.0.4"
   },
   "devDependencies": {
