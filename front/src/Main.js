@@ -28,7 +28,8 @@ import { me } from "./redux/action-creators/currentUser"
 function Main() {
   matrixLog("MAIN")
   const dispatch = useDispatch()
-  const lock = useLocation().pathname
+  const history = useHistory()
+  const location = useLocation().pathname
   // HOOK PERSISTENCIA DE SESION
   useEffect(() => {
     // persistencia
@@ -38,22 +39,21 @@ function Main() {
         .find((row) => row.startsWith("token"))
         .split("=")[1]
       dispatch(me(token))
-      //   if (lock === "/") {
-      //     setTimeout(() => {
-      //       history.push("/myprofile")
-      //     }, 1500)
-      //   }
-      // } else if (lock === "/") {
-      //   setTimeout(() => {
-      //     history.push("/login")
-      //   }, 1500)
+      if (location === "/") {
+        setTimeout(() => {
+          history.push("/myprofile")
+        }, 1500)
+      }
+    } else if (location === "/") {
+      setTimeout(() => {
+        history.push("/login")
+      }, 1500)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [dispatch, history, location])
 
   return (
     <div className="order">
-      {lock === "/" ? null : <Navbar />}
+      {location === "/" ? null : <Navbar />}
       <div>
         <Route
           render={({ location }) => (
@@ -79,7 +79,7 @@ function Main() {
           )}
         />
       </div>
-      {lock === "/" || lock === "/login" || lock === "/register" ? null : <Menu />}
+      {location === "/" || location === "/register" ? null : <Menu />}
     </div>
   )
 }

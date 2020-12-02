@@ -1,26 +1,26 @@
-import React, { useState } from "react";
-import MenteePage from "../components/Mentees/MenteePage";
+import React, { useState } from "react"
+import MenteePage from "../components/Mentees/MenteePage"
 
 export default function MenteeIndividual() {
   const [meet, setMeet] = useState({
     meetCause: "",
     link: "",
     date: "",
-  });
+  })
 
   const handleChange = (e) => {
-    e.preventDefault();
-    const { value } = e.target;
-    setMeet({ ...meet, [e.target.name]: value });
-  };
+    e.preventDefault()
+    const { value } = e.target
+    setMeet({ ...meet, [e.target.name]: value })
+  }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-  };
+    e.preventDefault()
+  }
   const handleSubmitMeet = (e) => {
-    e.preventDefault();
-    console.log(meet);
-  };
+    e.preventDefault()
+    console.log(meet)
+  }
   return (
     <MenteePage
       handleChange={handleChange}
@@ -28,5 +28,5 @@ export default function MenteeIndividual() {
       handleSubmitMeet={handleSubmitMeet}
       meet={meet}
     />
-  );
+  )
 }
