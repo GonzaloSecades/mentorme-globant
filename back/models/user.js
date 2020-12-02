@@ -2,6 +2,7 @@ const mongoose = require("mongoose")
 
 const { Schema } = mongoose
 const uniqueValidator = require("mongoose-unique-validator")
+const { objectiveSchema } = require("./objective")
 
 const userSkillsSchema = new Schema({
   name: { type: String, required: true },
@@ -9,13 +10,8 @@ const userSkillsSchema = new Schema({
   proficiency: { type: Number, min: 1, max: 5, default: 1 },
 })
 
-const objectiveSchema = new Schema({
-  isCompleted: { type: Boolean },
-  name: { type: String },
-})
-
 const userMenteeMentor = new Schema({
-  _id: { type: Schema.Types.ObjectId, ref: "User" },
+  _id: { type: Schema.Types.ObjectId },
   email: { type: String },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
@@ -24,18 +20,13 @@ const userMenteeMentor = new Schema({
   languages: [
     { type: String, enum: ["spanish", "portuguese", "english", "french", "german", "italian"], default: "spanish" },
   ],
-  skills: [{ _id: { type: Schema.Types.ObjectId, ref: "Skill" }, name: { type: String } }],
   avatar: { type: String },
 
   // Relationship details
+  learningSkills: [{ _id: { type: Schema.Types.ObjectId }, name: { type: String } }],
   meetings: [],
-  objectives: [
-    {
-      isCompleted: { type: Boolean, default: false },
-      name: { type: String },
-    },
-  ],
-  active: { type: Boolean },
+  objectives: [{ isCompleted: { type: String }, name: { type: Boolean } }],
+  active: { type: Boolean, default: true },
 
   // avance, reuniones, fecha, notificacion
   /*
@@ -72,7 +63,6 @@ const userSchema = new Schema({
 
 userSchema.plugin(uniqueValidator)
 module.exports = mongoose.model("User", userSchema)
-
 
 //
 /* PARA POPULAR CON CAMPOS EXTRA

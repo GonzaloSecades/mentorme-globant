@@ -14,14 +14,13 @@ function createData(name, calories, fat, carbs, protein) {
 }
 
 const useStyles = makeStyles((theme) => ({
-
   Accordion: {
     "& .MuiAccordionDetails-root": {
       padding: "8px 6px 14px",
-      display: "block"
-    }
-  }
-}));
+      display: "block",
+    },
+  },
+}))
 
 const rows = [
   createData("NOMBRE:", "nombre"),
@@ -105,7 +104,7 @@ export default function Mentee() {
                 className={classes.buttonSignin}
                 variant="contained"
                 color="primary"
-              /*  onClick={handleSubmit} */
+                /*  onClick={handleSubmit} */
               >
                 agregar
               </Button>
@@ -161,7 +160,7 @@ export default function Mentee() {
                 className={classes.buttonSignin}
                 variant="contained"
                 color="primary"
-              /*  onClick={handleSubmit} */
+                /*  onClick={handleSubmit} */
               >
                 agregar
               </Button>
