@@ -52,7 +52,7 @@ function SelectSkillsContainer() {
   }
 
   return (
-    <>
+    <div className="searchMentorContainer">
       <h1> {location.state === "mentor" ? "BUSCAR MENTOR" : "BUSCAR MENTEES"} </h1>
       <SelectSkills
         title={location.state === "mentor" ? "¿Qué quieres aprender?" : "¿Qué quieres enseñar?"}
@@ -63,7 +63,7 @@ function SelectSkillsContainer() {
       {/* <SelectedSkillsList /> Aca podria ir la proficiencia (ULTRA OPCIONAL) */}
       {/* <SelectCountry /> */}
       {/* <SelectLanguage /> */}
-    </>
+    </div>
   )
 }
 export default SelectSkillsContainer

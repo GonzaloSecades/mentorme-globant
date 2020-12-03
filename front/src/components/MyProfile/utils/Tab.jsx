@@ -14,7 +14,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function IconLabelTabs({ myInfo }) {
+export default function IconLabelTabs({ myInfo ,handleSkill,handleProgress,handleEdit}) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -33,9 +33,9 @@ export default function IconLabelTabs({ myInfo }) {
         textColor="primary"
         aria-label="icon label tabs example"
       >
-        <Tab icon={<EmojiObjectsIcon />} label="SKILLS" />
-        <Tab icon={<TrendingUpIcon />} label="Progress" />
-        <Tab icon={<PersonPinIcon />} label="Edit" />
+        <Tab onClick={handleSkill} icon={<EmojiObjectsIcon />} label="SKILLS" />
+        <Tab onClick={handleProgress} icon={<TrendingUpIcon />} label="Progress" />
+        <Tab onClick={handleEdit} icon={<PersonPinIcon />} label="Edit" />
       </Tabs>
     </Paper>
 
