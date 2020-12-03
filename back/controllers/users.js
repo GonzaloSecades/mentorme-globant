@@ -29,6 +29,8 @@ const getUser = (req, res) => {
     .catch((err) => console.log(err))
 }
 
+// TODO
+// router.get("/:userId/mentors/match", matchMentors)
 const matchMentors = async (req, res) => {
   try {
     const pageOptions = {
@@ -74,30 +76,133 @@ const uploadAvatar = (req, res, next) => {
     .catch((error) => res.status(400).send({ error }))
 }
 
-const postMentor = (req, res, next) => {
-  const _id = req.params.userId
-  User.findOne({ _id })
-    .then((user) => {
-      console.log(user.mentors)
-      user.mentors.push(req.body)
-      console.log(user.mentors)
+// router.post("/:userId/mentors/:mentorId/add", postUserMentor)
+const postUserMentor = async (req, res, next) => {
+  const { userId, mentorId } = req.params
+  const { learningSkills } = req.body // ejemplo para mandar por axios: {"learningSkills": [{ "_id": "5fb818a7ae6e9a634901711b", "name": "mongo" }, { "_id": "5fb818a7ae6e9a634901711c", "name": "sequelize" }] }
+
+  try {
+    const user = await User.findOne({ _id: userId })
+    // console.log("user", user)
+    const mentor = await User.findOne({ _id: mentorId })
+    // If the mentor is not in the users's mentors list or the teaching is inactive, we add the mentor to the user.
+    const idx = user.mentors.findIndex((e) => e._id.toString() === mentorId)
+    console.log("idx", idx)
+    if (idx === -1 || !user.mentors[idx].active) {
+      console.log("CONDITION ", idx === -1)
+      console.log("ENTRO A AGREGAR")
+      const { _id, email, firstName, lastName, country, phoneNumber, languages, avatar } = mentor
+
+      user.mentors.push({
+        _id,
+        email,
+        firstName,
+        lastName,
+        country,
+        phoneNumber,
+        languages,
+        avatar,
+        learningSkills,
+        meetings: [],
+        objectives: [],
+        active: true,
+      })
       user.save()
-      return user.mentors
-    })
-    .then((mentors) => res.status(201).send(mentors))
-    .catch((error) => res.status(500).send({ error }))
+    } else {
+      return res.status(403).send({ error: "user already has an active relationship with mentor!" })
+    }
+
+    // If the user is not in the mentor's mentees list or the teaching is inactive, we add user to the mentor.
+    const idy = mentor.mentees.findIndex((e) => e._id.toString() === userId)
+    if (idy === -1 || !mentor.mentees[idy].active) {
+      const { _id, email, firstName, lastName, country, phoneNumber, languages, avatar } = user
+      mentor.mentees.push({
+        _id,
+        email,
+        firstName,
+        lastName,
+        country,
+        phoneNumber,
+        languages,
+        avatar,
+        learningSkills,
+        meetings: [],
+        objectives: [],
+        active: true,
+      })
+      mentor.save()
+    } else {
+      return res.status(403).send({ error: "mentor already has an active relationship with user!" })
+    }
+
+    return res.status(201).send("mentor added succesfully!")
+  } catch (error) {
+    return res.status(500).send({ error })
+  }
 }
 
-const postMentee = (req, res, next) => {
-  const _id = req.params.userId
-  User.findOne({ _id })
-    .then((user) => {
-      user.mentees.push(req.body)
+// router.post("/:userId/mentees/:menteeId/add", postUserMentee)
+const postUserMentee = async (req, res, next) => {
+  const { userId, menteeId } = req.params
+  const { learningSkills } = req.body
+
+  try {
+    const user = await User.findOne({ _id: userId })
+    // console.log("user", user)
+    const mentee = await User.findOne({ _id: menteeId })
+
+    const idx = user.mentees.findIndex((e) => e._id.toString() === menteeId)
+    console.log("idx", idx)
+    if (idx === -1 || !user.mentees[idx].active) {
+      console.log("CONDITION ", idx === -1)
+      console.log("ENTRO A AGREGAR")
+      const { _id, email, firstName, lastName, country, phoneNumber, languages, avatar } = mentee
+
+      user.mentees.push({
+        _id,
+        email,
+        firstName,
+        lastName,
+        country,
+        phoneNumber,
+        languages,
+        avatar,
+        learningSkills,
+        meetings: [],
+        objectives: [],
+        active: true,
+      })
       user.save()
-      return user.mentees
-    })
-    .then((mentors) => res.status(201).send(mentors))
-    .catch((error) => res.status(500).send({ error }))
+    } else {
+      return res.status(403).send({ error: "user already has an active relationship with mentee!" })
+    }
+
+    const idy = mentee.mentors.findIndex((e) => e._id.toString() === userId)
+    if (idy === -1 || !mentee.mentors[idy].active) {
+      const { _id, email, firstName, lastName, country, phoneNumber, languages, avatar } = user
+      mentee.mentors.push({
+        _id,
+        email,
+        firstName,
+        lastName,
+        country,
+        phoneNumber,
+        languages,
+        avatar,
+        learningSkills,
+        meetings: [],
+        objectives: [],
+        active: true,
+      })
+      mentee.save()
+    } else {
+      return res.status(403).send({ error: "mentor already has an active relationship with user!" })
+    }
+
+    res.status(201).send("mentor added succesfully!")
+  } catch (error) {
+    return res.status(500).send({ error })
+  }
 }
 
 // PUT
@@ -134,20 +239,17 @@ const putSkillsToLearn = (req, res) => {
 // /:userId/mentees/:menteeId/objectives/add
 const postObjective = async (req, res) => {
   const { userId, menteeId } = req.params
-  const objective = await Objective.create(req.body) // {name:"estudiar react"}
-
-  User.findOne({ _id: menteeId }).then((user) => {
-    const mentorIdx = user.mentor.findIndex((e) => e._id.toString() === userId)
-    user.mentors[mentorIdx].objectives.push(objective)
-    user.save()
-  })
-
+  const objective = await Objective.create(req.body) // {name:"estudiar react", isCompleted: false}
   User.findOne({ _id: userId })
     .then((user) => {
-      const menteeIdx = user.mentee.findIndex((e) => e._id.toString() === menteeId)
-      user.mentees[menteeIdx].objectives.push(objective)
+      const idx = user.mentees.findIndex((e) => e._id.toString() === menteeId) // busca el indice donde esta el mentee con id "menteeId"
+      if (idx === -1)
+        res.status(403).send({
+          error: `User does not have the mentee with id ${menteeId}, please add the mentee before adding an objective`,
+        })
+      user.mentees[idx].objectives.push(objective) // {name: "nombre del objetivo", isCompleted: false}
       user.save()
-      res.status(200).send(user.mentors[menteeIdx].objectives)
+      res.status(200).send(user.mentees[idx].objectives)
     })
     .catch((error) => {
       console.log(error)
@@ -155,27 +257,30 @@ const postObjective = async (req, res) => {
     })
 }
 
+// TODO no cambia de true a false
 // router.patch("/:userId/mentors/:mentorId/objectives/:objectiveId/changeStatus")
-const patchObjectiveStatus = (req, res) => {
+const patchObjectiveStatus = async (req, res) => {
   const { userId, objectiveId, mentorId } = req.params
-  User.findOne({ _id: userId })
-    .then((user) => {
-      const mentorIdx = user.mentors.findIndex((e) => e._id.toString() === mentorId)
-      const { objectives } = user.mentors[mentorIdx]
-      for (let i = 0; i < objectives.length; i++) {
-        if (objectives[i]._id.toString() === objectiveId) {
-          objectives[i].isCompleted = !objectives[i].isCompleted
-          user.save()
-          res.status(200).send(objectives[i])
-        } else {
-          console.log("NO OBJECTIVE ID FOUND")
-        }
+
+  try {
+    const user = await User.findOne({ _id: userId })
+    const idx = user.mentors.findIndex((e) => e._id.toString() === mentorId)
+    console.log(idx)
+    const { objectives } = user.mentors[idx]
+
+    for (let i = 0; i < objectives.length; i++) {
+      if (objectives[i]._id.toString() === objectiveId) {
+        console.log("OBJECTIVES", objectives[i]._id.toString())
+        console.log("BEFORE", objectives)
+        user.mentors[idx].objectives[i].isCompleted = !user.mentors[idx].objectives[i].isCompleted
+        console.log("AFTER", objectives)
+        return user.save().then((data) => res.status(200).send(data.mentors[idx].objectives))
       }
-    })
-    .catch((error) => {
-      console.log(error)
-      res.status(500).send({ error })
-    })
+    }
+    return res.status(403).send({ error: "No objective by that id found" })
+  } catch (error) {
+    return res.status(500).send({ error })
+  }
 }
 
 // const patchObjectiveStatusDos = (req, res) => {
@@ -221,12 +326,12 @@ module.exports = {
   getUser,
   matchMentors,
   uploadAvatar,
-  postMentor,
+  postUserMentor,
+  postUserMentee,
   putSkillsToLearn,
   putSkillsToTeach,
   postObjective,
   patchObjectiveStatus,
-  postMentee,
 }
 
 /* ruta setear objetivo mentor/mentee
