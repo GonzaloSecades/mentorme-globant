@@ -29,7 +29,7 @@ const userMenteeMentor = new Schema({
   avatar: { type: String },
 
   // Relationship details
-  learningSkills: [{ _id: { type: Schema.Types.ObjectId }, name: { type: String } }],
+  teachingSkills: [{ _id: { type: Schema.Types.ObjectId }, name: { type: String } }],
   meetings: [],
   objectives: [{ isCompleted: { type: String }, name: { type: Boolean } }],
   active: { type: Boolean, default: true },
