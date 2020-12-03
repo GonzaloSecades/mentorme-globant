@@ -50,6 +50,7 @@ function FormUserNew({ prevStep, selectedStep, steps, user, handleSubmit }) {
   return (
     <div className="content-register">
       <h3>{title}</h3>
+
       <TableContainer component={Paper}>
         <Table className={StyledTableCell.table} aria-label="customized table">
           <TableBody>
@@ -93,7 +94,11 @@ function FormUserNew({ prevStep, selectedStep, steps, user, handleSubmit }) {
           }
           backButton={
             <Button size="small" onClick={prevStep} disabled={selectedStep === 0}>
-              {theme.direction === "rtl" ? <KeyboardArrowRight className={classes.root} /> : <KeyboardArrowLeft className={classes.root} />}
+              {theme.direction === "rtl" ? (
+                <KeyboardArrowRight className={classes.root} />
+              ) : (
+                  <KeyboardArrowLeft className={classes.root} />
+                )}
               <p className="btn-steppers">Back</p>
             </Button>
           }
