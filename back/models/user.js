@@ -8,6 +8,12 @@ const userSkillsSchema = new Schema({
   name: { type: String, required: true },
   keywords: { type: [String] },
   proficiency: { type: Number, min: 1, max: 5, default: 1 },
+  popularity: {
+    type: Number,
+    min: 1, // low popularity
+    max: 5, // high popularity
+    default: 3, // medium popularity
+  },
 })
 
 const userMenteeMentor = new Schema({
