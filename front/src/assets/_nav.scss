@@ -19,7 +19,8 @@
   font-size: 4vh;
   color: $mentorColor;
   display: flex;
-  position: relative;
+  position: absolute;
+  left: 47%;
   flex-wrap: wrap;
   align-items: flex-end;
   justify-content: flex-start;
@@ -35,7 +36,7 @@
     bottom: 2.5vh;
   }
 
-  @media screen and (max-width: 768px) {
+  /* @media screen and (max-width: 768px) {
     margin-top: 6%;
     padding-right: 30px;
     padding-left: 30px;
@@ -60,5 +61,5 @@
       position: relative;
       bottom: 2.5vh;
     }
-  }
+  } */
 }
