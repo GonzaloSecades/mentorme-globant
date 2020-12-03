@@ -68,7 +68,7 @@ function Main() {
               <Route path="/menteeindividual" component={MenteeIndividual} />
               <Route path="/matching" component={MatchingContainer} />
               <Route path="/skills/select" component={SelectSkillsContainer} />
-              <Route path="/find/mentees" component={FindMentoreeContainer} />
+              <Route path="/find/mentee" component={FindMentoreeContainer} />
               <Route path="/find/mentor" component={FindMentoreeContainer} />
               <Route path="/avatar" component={AvatarUploadContainer} />
               <Route path="/mymentors" component={MentorsMentees} />

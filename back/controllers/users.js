@@ -99,21 +99,6 @@ const matchMentors = async (req, res) => {
           },
         },
       },
-
-      /*
-        _id,
-        email,
-        firstName,
-        lastName,
-        country,
-        phoneNumber,
-        languages,
-        avatar,
-        learningSkills,
-        meetings: [],
-        objectives: [],
-        active: true,
-      */
       {
         $group: {
           _id: "$_id",
@@ -173,7 +158,7 @@ const uploadAvatar = (req, res, next) => {
 // router.post("/:userId/mentors/:mentorId/add", postUserMentor)
 const postUserMentor = async (req, res, next) => {
   const { userId, mentorId } = req.params
-  const { learningSkills } = req.body // ejemplo para mandar por axios: {"learningSkills": [{ "_id": "5fb818a7ae6e9a634901711b", "name": "mongo" }, { "_id": "5fb818a7ae6e9a634901711c", "name": "sequelize" }] }
+  const { teachingSkills } = req.body // ejemplo para mandar por axios: {"learningSkills": [{ "_id": "5fb818a7ae6e9a634901711b", "name": "mongo" }, { "_id": "5fb818a7ae6e9a634901711c", "name": "sequelize" }] }
 
   try {
     const user = await User.findOne({ _id: userId })
@@ -196,7 +181,7 @@ const postUserMentor = async (req, res, next) => {
         phoneNumber,
         languages,
         avatar,
-        learningSkills,
+        teachingSkills,
         meetings: [],
         objectives: [],
         active: true,
@@ -219,7 +204,7 @@ const postUserMentor = async (req, res, next) => {
         phoneNumber,
         languages,
         avatar,
-        learningSkills,
+        teachingSkills,
         meetings: [],
         objectives: [],
         active: true,
@@ -238,7 +223,8 @@ const postUserMentor = async (req, res, next) => {
 // router.post("/:userId/mentees/:menteeId/add", postUserMentee)
 const postUserMentee = async (req, res, next) => {
   const { userId, menteeId } = req.params
-  const { learningSkills } = req.body
+  const { teachingSkills } = req.body
+
 
   try {
     const user = await User.findOne({ _id: userId })
@@ -261,7 +247,7 @@ const postUserMentee = async (req, res, next) => {
         phoneNumber,
         languages,
         avatar,
-        learningSkills,
+        teachingSkills,
         meetings: [],
         objectives: [],
         active: true,
@@ -283,7 +269,7 @@ const postUserMentee = async (req, res, next) => {
         phoneNumber,
         languages,
         avatar,
-        learningSkills,
+        teachingSkills,
         meetings: [],
         objectives: [],
         active: true,
