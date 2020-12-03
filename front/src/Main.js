@@ -53,39 +53,35 @@ function Main() {
 
   return (
     <div className="order">
-      <div className='flex1Menus'>
-{location === "/" ? null : <Navbar />}
+      <div className="flex1Menus">{location === "/" ? null : <Navbar />}</div>
+
+      <Route
+        render={({ location }) => (
+          // <TransitionGroup>
+          <CSSTransition key={location.key} timeout={2000} classNames="fade">
+            <Switch location={location}>
+              <Route path="/login" component={Login} />
+              <Route path="/register" component={UserForm} />
+              <Route path="/myprofile" component={MyProfileContainer} />
+              <Route exact path="/myprogress" component={MyMentorDashboard} />
+              <Route path="/menteelist" component={MenteesList} />
+              <Route path="/menteeindividual" component={MenteeIndividual} />
+              <Route path="/matching" component={MatchingContainer} />
+              <Route path="/skills/select" component={SelectSkillsContainer} />
+              <Route path="/find/mentees" component={FindMentoreeContainer} />
+              <Route path="/find/mentor" component={FindMentoreeContainer} />
+              <Route path="/avatar" component={AvatarUploadContainer} />
+              <Route path="/mymentors" component={MentorsMentees} />
+              <Route exact path="/" component={Landing} />
+            </Switch>
+          </CSSTransition>
+          // </TransitionGroup>
+        )}
+      />
+
+      <div className="flex1Menus">
+        {location === "/" || location === "/register" || location === "/login" ? null : <Menu />}
       </div>
-      
-      <div className='mainComponentes'>
-        <Route
-          render={({ location }) => (
-            // <TransitionGroup>
-            <CSSTransition key={location.key} timeout={2000} classNames="fade">
-              <Switch location={location}>
-                <Route path="/login" component={Login} />
-                <Route path="/register" component={UserForm} />
-                <Route path="/myprofile" component={MyProfileContainer} />
-                <Route exact path="/myprogress" component={MyMentorDashboard} />
-                <Route path="/menteelist" component={MenteesList} />
-                <Route path="/menteeindividual" component={MenteeIndividual} />
-                <Route path="/matching" component={MatchingContainer} />
-                <Route path="/skills/select" component={SelectSkillsContainer} />
-                <Route path="/find/mentees" component={FindMentoreeContainer} />
-                <Route path="/find/mentor" component={FindMentoreeContainer} />
-                <Route path="/avatar" component={AvatarUploadContainer} />
-                <Route path="/mymentors" component={MentorsMentees} />
-                <Route exact path="/" component={Landing} />
-              </Switch>
-            </CSSTransition>
-            // </TransitionGroup>
-          )}
-        />
-      </div>
-      <div className='flex1Menus'>
-        {location === "/" || location === "/register" ? null : <Menu />}
-      </div>
-      
     </div>
   )
 }

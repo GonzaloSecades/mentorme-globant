@@ -30,6 +30,19 @@
   }
 }
 
-.skillsBox{
-  border-radius: 80%;
+.searchMent{
+  width: 100%;
+  padding: 0px 15px 0px 15px;
+  
+  color: #333;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+.searchMentorContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
