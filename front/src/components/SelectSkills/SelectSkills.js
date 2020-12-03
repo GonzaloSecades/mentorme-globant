@@ -30,36 +30,38 @@ function SelectSkills({ skillsList, title, handleChange, handleSubmit }) {
   let name
   console.log("ENTRO AL SELECTSKILLS TITLE", title)
   return (
-    <div className="content-register">
-      <h3>{title}</h3>
-      <Autocomplete
-        // value={user.skills}
-        ref={ref}
-        multiple
-        id="checkboxes-tags-demo"
-        options={skillsList}
-        onChange={(event, value) => {
-          name = ref.current.getAttribute("name")
-          handleChange(event, value, name)
-        }}
-        name={name}
-        disableCloseOnSelect
-        getOptionLabel={(option) => option.name}
-        renderOption={(option, { selected }) => (
-          <>
-            <Checkbox icon={icon} checkedIcon={checkedIcon} style={{ marginRight: 8 }} checked={selected} />
-            {option.name}
-          </>
-        )}
-        style={{ width: "43vh" }}
-        renderInput={(params) => {
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          return <TextField {...params} variant="outlined" label="Skills" />
-        }}
-      />
-      <Button style={{ flexGrow: "0" }} onClick={handleSubmit} variant="contained" className={classes.root}>
-        Continuar
-      </Button>
+    <div className="searchMentorContainer">
+      <div className="searchMent">
+        <h3>{title}</h3>
+        <Autocomplete
+          // value={user.skills}
+          ref={ref}
+          multiple
+          id="checkboxes-tags-demo"
+          options={skillsList}
+          onChange={(event, value) => {
+            name = ref.current.getAttribute("name")
+            handleChange(event, value, name)
+          }}
+          name={name}
+          disableCloseOnSelect
+          getOptionLabel={(option) => option.name}
+          renderOption={(option, { selected }) => (
+            <>
+              <Checkbox icon={icon} checkedIcon={checkedIcon} style={{ marginRight: 8 }} checked={selected} />
+              {option.name}
+            </>
+          )}
+          style={{ width: "43vh" }}
+          renderInput={(params) => {
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            return <TextField {...params} variant="outlined" label="Skills" />
+          }}
+        />
+        <Button style={{ flexGrow: "0" }} onClick={handleSubmit} variant="contained" className={classes.root}>
+          Continuar
+        </Button>
+      </div>
     </div>
   )
 }

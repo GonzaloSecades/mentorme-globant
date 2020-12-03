@@ -7,7 +7,13 @@ import Box from '@material-ui/core/Box';
 
 function CircularProgressWithLabel(props) {
   return (
-    <Box position="relative" display="inline-flex">
+    <Box position="relative" style={{
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      position: "relative",
+      marginBottom: "17px"
+    }}>
       <CircularProgress objectiveList style={{ color: "#a6d431" }} size="5em" variant="determinate" {...props} />
       <Box
         top={0}

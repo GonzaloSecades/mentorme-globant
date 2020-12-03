@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { useSelector } from "react-redux"
-import MyProfile from "./MyProfile"
+import MyProfile from "./MyProfile2"
 
 export default () => {
   const currentUser = useSelector((state) => state.currentUser)
@@ -11,6 +11,29 @@ export default () => {
   const [skillsToLearnOrTeach, setSkillsToLearnOrTeach] = React.useState(false)
   const [menteesOrMentors, setMenteesOrMentors] = React.useState(false)
   const [matching, setMatching] = React.useState(false)
+
+  const [skill, setSkill] = React.useState(false)
+  const [progress, setProgress] = React.useState(false)
+  const [edit, setEdit] = React.useState(false)
+
+  const handleSkill = (e)=>{
+    
+    setSkill(!skill)
+    setEdit(false)
+    setProgress(false)
+  }
+  const handleProgress = (e)=>{
+  
+    setProgress(!progress)
+    setSkill(false)
+    setEdit(false)
+  }
+  const handleEdit = (e)=>{
+    
+    setEdit(!edit)
+    setProgress(false)
+    setSkill(false)
+  }
 
   const handleClick = (e) => {
     if (name === "editProfile") {
@@ -73,6 +96,12 @@ export default () => {
         menteesOrMentors={menteesOrMentors}
         matching={matching}
         setName={setName}
+        skill={skill}
+        handleSkill={handleSkill}
+        progress={progress}
+        handleProgress={handleProgress}
+        edit={edit}
+        handleEdit={handleEdit}
       />
     </section>
   )

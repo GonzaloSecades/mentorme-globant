@@ -4,7 +4,9 @@ import { faPencilAlt, faTasks } from "@fortawesome/free-solid-svg-icons"
 
 import { Link } from "react-router-dom"
 
-import MyInfo from "./MyInfo"
+import Tab from './utils/Tab'
+ 
+import MyInfo from "./utils/MyInfo"
 
 function myProfile({ user }) {
   const iconEditProfile = <FontAwesomeIcon icon={faPencilAlt} color="#3b3b3b" size="2x" />

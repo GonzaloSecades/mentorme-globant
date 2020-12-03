@@ -1,15 +1,16 @@
 @import "./_colors.scss";
 .container {
   z-index: 200;
-  background: $landingBgColor;
   margin: 0;
-  box-shadow: 0 9px 20px rgba(0, 0, 0, 0.2), 0 2px 3px rgba(0, 0, 0, 0.04);
+  background-color: #537895;
+  background-image: linear-gradient(315deg, #537895 0%, #09203f 74%);
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 .logo {
-  margin-top: 2%;
+  margin-top: 6%;
   padding-right: 30px;
   padding-left: 30px;
   text-align: center;
@@ -18,7 +19,8 @@
   font-size: 4vh;
   color: $mentorColor;
   display: flex;
-  position: relative;
+  position: absolute;
+  left: 47%;
   flex-wrap: wrap;
   align-items: flex-end;
   justify-content: flex-start;
@@ -34,30 +36,30 @@
     bottom: 2.5vh;
   }
 
-  @media screen and (max-width: 768px) {
-    margin-top: 6%;
-    padding-right: 30px;
-    padding-left: 30px;
-    text-align: center;
-    text-transform: uppercase;
-    font-weight: 800;
-    font-size: 4vh;
-    color: $mentorColor;
-    display: flex;
-    position: relative;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    justify-content: right;
-    flex-direction: column;
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    span {
-      color: $meColor;
-      font-size: 1em;
-      position: relative;
-      bottom: 2.5vh;
-    }
-  }
+  // @media screen and (max-width: 768px) {
+  //   margin-top: 6%;
+  //   padding-right: 30px;
+  //   padding-left: 30px;
+  //   text-align: center;
+  //   text-transform: uppercase;
+  //   font-weight: 800;
+  //   font-size: 4vh;
+  //   color: $mentorColor;
+  //   display: flex;
+  //   position: relative;
+  //   flex-wrap: wrap;
+  //   align-items: flex-end;
+  //   justify-content: right;
+  //   flex-direction: column;
+  //   user-select: none;
+  //   -webkit-user-select: none;
+  //   -moz-user-select: none;
+  //   -ms-user-select: none;
+  //   span {
+  //     color: $meColor;
+  //     font-size: 1em;
+  //     position: relative;
+  //     bottom: 2.5vh;
+  //   }
+  // }
 }

@@ -5,6 +5,8 @@ import "./assets/index.scss"
 import { BrowserRouter, Route } from "react-router-dom"
 import { Provider } from "react-redux"
 import reportWebVitals from "./reportWebVitals"
+
+
 // import Navbar from "./components/Navbar/Navbar"
 import Main from "./Main"
 import store from "./redux/index"
@@ -18,4 +20,8 @@ ReactDOM.render(
   document.getElementById("root")
 )
 
+
 reportWebVitals()
+
+
+

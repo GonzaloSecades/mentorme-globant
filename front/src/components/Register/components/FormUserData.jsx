@@ -112,8 +112,8 @@ function FormUserData({ nextStep, prevStep, user, handleChange, selectedStep, st
           <MenuItem value="Ecuador">Ecuador</MenuItem>
           <MenuItem value="Paraguay">Paraguay</MenuItem>
           <MenuItem value="Peru">Peru</MenuItem>
-          <MenuItem value="Venezuela">Venezuela</MenuItem>
           <MenuItem value="Uruguay">Uruguay</MenuItem>
+          <MenuItem value="Venezuela">Venezuela</MenuItem>
         </Select>
       </form>
       <div className="container-stepper">
