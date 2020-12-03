@@ -96,21 +96,6 @@ const matchMentors = async (req, res) => {
           },
         },
       },
-
-      /*
-        _id,
-        email,
-        firstName,
-        lastName,
-        country,
-        phoneNumber,
-        languages,
-        avatar,
-        learningSkills,
-        meetings: [],
-        objectives: [],
-        active: true,
-      */
       {
         $group: {
           _id: "$_id",
