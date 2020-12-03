@@ -75,7 +75,7 @@ const MyMentorDashbord = () => {
       {mentors.map((mentor) => {
         return mentor.skills.map((e) => {
           return (
-            <Accordion
+            <Accordion key={e._id}
               expanded={expanded === `${e._id}`}
               className={classes.Accordion}
               onChange={handleChange(`${e._id}`)}
