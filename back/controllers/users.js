@@ -43,8 +43,6 @@ const matchMentors = async (req, res) => {
     console.log(skillsIdsToMatch) // react, bootstrap, swift, gdb
     const skillsKeywordsToMatch = selectedUser.skillsToLearn.map((e) => e.keywords).flat(1)
     const users = await User.aggregate([
-      { $project: { skills: 0, skillsToLearn: 0 } },
-      // { $match: { email: "LamontWoods@outlook.com" } },
       { $unwind: "$skillsToTeach" },
       { $unwind: "$skillsToTeach.keywords" },
       {
@@ -99,6 +97,20 @@ const matchMentors = async (req, res) => {
         },
       },
 
+      /*
+        _id,
+        email,
+        firstName,
+        lastName,
+        country,
+        phoneNumber,
+        languages,
+        avatar,
+        learningSkills,
+        meetings: [],
+        objectives: [],
+        active: true,
+      */
       {
         $group: {
           _id: "$_id",
@@ -113,7 +125,22 @@ const matchMentors = async (req, res) => {
           score: { $sum: { $add: [5, "$skillsToTeach.keywordsCount"] } },
         },
       },
-      { $sort: { skillsCount: -1, keywordsCount: -1 } },
+
+      // { $sort: { skillsCount: -1, keywordsCount: -1 } },
+      { $sort: { score: -1 } },
+      {
+        $project: {
+          skillsToTeach: {
+            "proficiency": 0,
+            "popularity": 0,
+            "keywords": 0,
+            "keywordsCount": 0,
+          },
+          skillsCount: 0,
+          keywordsCount: 0,
+          score: 0,
+        },
+      },
 
       { $skip: pageOptions.page * pageOptions.limit },
       { $limit: pageOptions.limit },
