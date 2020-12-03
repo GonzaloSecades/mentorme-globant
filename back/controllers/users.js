@@ -4,6 +4,7 @@ const User = require("../models/user")
 const Objective = require("../models/objective")
 
 const getUsers = (req, res) => {
+ 
   if (!_.isEmpty(req.query)) {
     const pageOptions = {
       page: parseInt(req.query.page, 10) || 0,
@@ -39,8 +40,12 @@ const matchMentors = async (req, res) => {
       limit: parseInt(req.query.limit, 10) || 999,
     }
     const selectedUser = await User.findOne({ _id: req.params.userId }).select("-__v -skills").lean()
+    console.log("SKILLSTOMATCHID",selectedUser) // react, bootstrap, swift, gdb
+    
     const skillsIdsToMatch = selectedUser.skillsToLearn.map((e) => e._id)
-    const skillsKeywordsToMatch = selectedUser.skillsToLearn.map((e) => e.keywords).flat(1)
+    console.log("id to match skilss", skillsIdsToMatch)
+    const skillsKeywordsToMatch = selectedUser.skillsToLearn.map((e) => e.keywords)
+    console.log("skills keywords to maytch",skillsKeywordsToMatch )
     const users = await User.aggregate([
       { $unwind: "$skillsToTeach" },
       { $unwind: "$skillsToTeach.keywords" },
@@ -50,12 +55,12 @@ const matchMentors = async (req, res) => {
       {
         $match: {
           $or: [
-            { "skillsToTeach._id": { $in: skillsIdsToMatch } }, //[id,id,id,id]
+            { "skillsToTeach._id": { $in: skillsIdsToMatch } }, // [id,id,id,id]
             { "skillsToTeach.keywords": { $in: skillsKeywordsToMatch } },
           ],
         },
       },
-      
+
       {
         $group: {
           _id: {
@@ -74,7 +79,7 @@ const matchMentors = async (req, res) => {
           keywordsCount: { $sum: 1 },
         },
       },
-      
+
       {
         $project: {
           _id: "$_id.userId",
@@ -83,7 +88,7 @@ const matchMentors = async (req, res) => {
           country: "$country",
           languages: "$languages",
           avatar: "$avatar",
-          
+
           skillsToTeach: {
             name: "$name",
             proficiency: "$proficiency",
@@ -93,7 +98,7 @@ const matchMentors = async (req, res) => {
           },
         },
       },
-      
+
       {
         $group: {
           _id: "$_id",
@@ -111,16 +116,16 @@ const matchMentors = async (req, res) => {
           skillsCount: 0,
           skillsToTeach: {
             keywords: 0,
-            keywordsCount: 0,
+            // keywordsCount: 0,
             popularity: 0,
           },
         },
       },
       { $skip: pageOptions.page * pageOptions.limit },
       { $limit: pageOptions.limit },
-      
+
       // {
-        //   $group: {
+      //   $group: {
       //     _id: "$_id.userId",
       //     firstName: { $first: "$firstName" },
       //     lastName: { $first: "$lastName" },
