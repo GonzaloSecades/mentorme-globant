@@ -35,7 +35,12 @@ export default function NestedList({ user }) {
   }
 
   return (
+<<<<<<< HEAD:front/src/components/MyProfile/MyInfo.jsx
+    <div className="
+    .dashContainerprof">
+=======
     <div className="dashProfile2Container">
+>>>>>>> 2cac4cb6e664a350d38bf8fc11d6b8813d40ffe0:front/src/components/MyProfile/utils/MyInfoOriginal.jsx
       <List component="nav" aria-labelledby="nested-list-subheader">
         <ListItem button>
           <ListItemIcon>
