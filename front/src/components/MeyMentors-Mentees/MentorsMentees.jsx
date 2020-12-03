@@ -13,13 +13,11 @@ export default function MentorsMentees() {
         style={{
           backgroundColor: "rgba(18,41,68,1)",
           borderRadius: "20px",
-          width: "50%",
-          margin: "35% auto",
         }}
       >
         {" "}
         <SchoolIcon style={{ color: "white" }} />
-        <span style={{ color: "white" }}>Mis mentores</span>
+        <span style={{ color: "white" }}> Mis mentores</span>
       </Button>
       <Button
         style={{

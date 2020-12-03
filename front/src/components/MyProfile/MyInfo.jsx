@@ -34,7 +34,8 @@ export default function NestedList({ user }) {
   }
 
   return (
-    <div className="dashContainer">
+    <div className="
+    .dashContainerprof">
       <List component="nav" aria-labelledby="nested-list-subheader">
         <ListItem button>
           <ListItemIcon>
