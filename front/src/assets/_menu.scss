@@ -9,7 +9,8 @@
   justify-content: space-between;
   align-items: center;
   min-height: 13vh;
-  background: $landingBgColor;
+  background-color: #537895;
+  background-image: linear-gradient(315deg, #537895 0%, #09203f 74%);
   box-shadow: 0 9px 20px rgba(0, 0, 0, 0.2), 0 2px 3px rgba(0, 0, 0, 0.04);
 }
 .footer-icons {

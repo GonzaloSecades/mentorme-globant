@@ -4,51 +4,51 @@ import { faPencilAlt, faTasks } from "@fortawesome/free-solid-svg-icons"
 import { Link } from "react-router-dom"
 
 //Components
-import Tab from './utils/Tab' 
+import Tab from './utils/Tab'
 import MyInfo from "./utils/MyInfo"
 import MyProgress from '../MyMentorDashboard/MyMentorDashboard'
 import PublicIcon from "@material-ui/icons/Public"
 import MailIcon from "@material-ui/icons/Mail"
 function myProfile({ user }) {
 
-    const myInfo = <MyInfo/>
-  
+  const myInfo = <MyInfo />
+
   return (
     <div className='myProfileContainer2'>
-        <div className='myProfileTop'>
-            <div className="myProfileBackground">
-                <div className="bg1"> </div>
-                <div className="bg2"> </div>
+      <div className='myProfileTop'>
+        <div className="myProfileBackground">
+          <div className="bg1"> </div>
+          <div className="bg2"> </div>
+        </div>
+        <div className="viewProfile">
+          <div className="avatarAndName">
+            <div>
+              <img src="https://www.bryanhealth.com/app/files/public/Kreshel,-Charles.jpg" alt="" srcset="" />
             </div>
-           <div className="viewProfile">
-                <div className="avatarAndName">
-                    <div>
-                      <img src="https://www.bryanhealth.com/app/files/public/Kreshel,-Charles.jpg" alt="" srcset=""/>
-                    </div>
-                    <div className='infoName'>
-                        <h3>Dr. Kreshel</h3> 
-                        <div className='infoo'>
-                        <span><MailIcon style={{marginRight: "2px", color: 'rgba(0,0,0,0.54)'}} />vito@vito.com</span>
-                        <span><PublicIcon style={{marginRight: "2px", color: 'rgba(0,0,0,0.54)'}}/>Noruega</span>
-                        </div>
-                    </div>
-                   
-                </div>
-                
-           </div>
-           
+            <div className='infoName'>
+              <h3>Dr. Kreshel</h3>
+              <div className='infoo'>
+                <span><MailIcon style={{ marginRight: "2px", color: 'rgba(0,0,0,0.54)' }} />vito@vito.com</span>
+                <span><PublicIcon style={{ marginRight: "2px", color: 'rgba(0,0,0,0.54)' }} />Noruega</span>
+              </div>
+            </div>
+
+          </div>
+
         </div>
 
+      </div>
 
 
-        <div className='myProfileBottom'>
-            <div className='tab'>
-               <Tab/>                 
-            </div>
-            {/* <MyProgress/> */}
-             <MyInfo
-            user={user}/> 
+
+      <div className='myProfileBottom'>
+        <div className='tab'>
+          <Tab />
         </div>
+        {/* <MyProgress/> */}
+        <MyInfo
+          user={user} />
+      </div>
     </div>
   )
 }
