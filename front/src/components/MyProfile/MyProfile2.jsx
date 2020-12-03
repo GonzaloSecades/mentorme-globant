@@ -6,18 +6,16 @@ import { Link } from "react-router-dom"
 //Components
 import Tab from './utils/Tab'
 import MyInfo from "./utils/MyInfo"
+import EditProfile from './utils/EditProfile'
 import MyProgress from '../MyMentorDashboard/MyMentorDashboard'
 import PublicIcon from "@material-ui/icons/Public"
 import MailIcon from "@material-ui/icons/Mail"
-function myProfile({ user }) {
-
-  const myInfo = <MyInfo />
-
+function myProfile({ user, handleBool, skill, progress, edit, handleSkill, handleProgress, handleEdit }) {
   return (
     <div className='myProfileContainer2'>
       <div className='myProfileTop'>
         <div className="myProfileBackground">
-          <div className="bg1"> </div>
+          <div className="bg1"></div>
           <div className="bg2"> </div>
         </div>
         <div className="viewProfile">
@@ -26,28 +24,26 @@ function myProfile({ user }) {
               <img src="https://www.bryanhealth.com/app/files/public/Kreshel,-Charles.jpg" alt="" srcset="" />
             </div>
             <div className='infoName'>
-              <h3>Dr. Kreshel</h3>
+              <h3>{user.firstName} {user.lastName}</h3>
               <div className='infoo'>
-                <span><MailIcon style={{ marginRight: "2px", color: 'rgba(0,0,0,0.54)' }} />vito@vito.com</span>
-                <span><PublicIcon style={{ marginRight: "2px", color: 'rgba(0,0,0,0.54)' }} />Noruega</span>
+                <span><MailIcon style={{ marginRight: "2px", color: 'rgba(0,0,0,0.54)' }} />{user.email} </span>
+                <span><PublicIcon style={{ marginRight: "2px", color: 'rgba(0,0,0,0.54)' }} />{user.country}</span>
               </div>
             </div>
-
           </div>
-
+          <Tab
+            handleSkill={handleSkill}
+            handleProgress={handleProgress}
+            handleEdit={handleEdit} />
         </div>
-
       </div>
-
-
-
       <div className='myProfileBottom'>
-        <div className='tab'>
-          <Tab />
+        <br />
+        <div className='componentesBottomScroll'>
+          {progress ? <MyProgress /> : null}
+          {skill ? <MyInfo user={user} /> : null}
+          {edit ? <EditProfile user={user} /> : null}
         </div>
-        {/* <MyProgress/> */}
-        <MyInfo
-          user={user} />
       </div>
     </div>
   )

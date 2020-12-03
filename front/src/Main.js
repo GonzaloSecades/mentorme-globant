@@ -53,8 +53,11 @@ function Main() {
 
   return (
     <div className="order">
-      {location === "/" ? null : <Navbar />}
-      <div>
+      <div className='flex1Menus'>
+{location === "/" ? null : <Navbar />}
+      </div>
+      
+      <div className='mainComponentes'>
         <Route
           render={({ location }) => (
             // <TransitionGroup>
@@ -79,7 +82,10 @@ function Main() {
           )}
         />
       </div>
-      {location === "/" || location === "/register" ? null : <Menu />}
+      <div className='flex1Menus'>
+        {location === "/" || location === "/register" ? null : <Menu />}
+      </div>
+      
     </div>
   )
 }
