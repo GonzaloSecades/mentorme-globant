@@ -17,7 +17,6 @@ export const formUserDataStyles = makeStyles({
     ".MuiMobileStepper-dotActive": {
       backgroundColor: "black",
     },
-
   },
   formLogininput: {
     "& .MuiInputLabel-formControl": {
@@ -28,7 +27,7 @@ export const formUserDataStyles = makeStyles({
       textAlign: "center",
     },
     "& .MuiOutlinedInput-root": {
-      borderRadius: "20px",
+      borderRadius: "2em",
     },
     "& .MuiInputBase-root": {
       margin: "10px",
@@ -46,9 +45,9 @@ export const formUserDataStyles = makeStyles({
   },
   arrow: {
     "& .MuiButton-label": {
-      color: "#fff"
-    }
-  }
+      color: "#fff",
+    },
+  },
 })
 
 export const formUserNewStyles = makeStyles((theme) => ({
@@ -70,7 +69,7 @@ export const formUserNewStyles = makeStyles((theme) => ({
       textAlign: "center",
     },
     "& .MuiOutlinedInput-root": {
-      borderRadius: "20px",
+      borderRadius: "2em",
     },
     "& .MuiInputBase-root": {
       margin: "10px",
@@ -86,8 +85,8 @@ export const formUserNewStyles = makeStyles((theme) => ({
       borderColor: "#a6d431",
     },
     "& .MuiButton-label": {
-      color: "#fff"
-    }
+      color: "#fff",
+    },
   },
 }))
 
@@ -102,8 +101,8 @@ export const formUserSaveStyles = makeStyles({
       backgroundColor: "#a6d431",
     },
     "& .MuiButton-label": {
-      color: "#fff"
-    }
+      color: "#fff",
+    },
   },
 })
 
@@ -118,9 +117,13 @@ export const formUserSkillsStyles = makeStyles({
       backgroundColor: "#a6d431",
     },
     "& .MuiButton-label": {
-      color: "#fff"
-    }
-
+      color: "#fff",
+    },
+  },
+  arrerglo: {
+    "& .MuiAutocomplete-inputRoot": {
+      borderRadius: "2em",
+    },
   },
 })
 
@@ -135,10 +138,7 @@ export const formUserSuccessStyles = makeStyles({
       backgroundColor: "#a6d431",
     },
     "& .MuiButton-label": {
-      color: "#fff"
-    }
+      color: "#fff",
+    },
   },
-});
-
-
-
+})

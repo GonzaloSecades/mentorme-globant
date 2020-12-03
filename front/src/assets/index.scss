@@ -12,6 +12,7 @@
 @import "./_menteepage";
 @import "./matching";
 @import "./myprofile2";
+@import "./editProfile";
 
 * {
   box-sizing: border-box;
@@ -32,12 +33,14 @@ body {
   display: block;
 }
 
+
+
 .order {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: relative;
+  position: relative; 
  
 }
 

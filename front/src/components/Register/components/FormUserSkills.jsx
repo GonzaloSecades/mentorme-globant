@@ -24,7 +24,7 @@ function FormUserSkills({ steps, user, skillsList, handleChange, selectedStep, n
 
   if (selectedStep === 3) {
     name = "skills"
-    title = "Ingresa tus Skills"
+    title = "Ingresa tus Skills "
   }
   // else if (selectedStep === 4) { name = "skillsToLearn"; title = "Elige skills que quieras aprender" }
   // else if (selectedStep === 6) { name = "skillsToTeach"; title = "Elige skills que quieras enseñar" }
@@ -55,7 +55,7 @@ function FormUserSkills({ steps, user, skillsList, handleChange, selectedStep, n
         style={{ width: "43vh" }}
         renderInput={(params) => {
           // eslint-disable-next-line react/jsx-props-no-spreading
-          return <TextField {...params} variant="outlined" label="Skills" />
+          return <TextField className={classes.arrerglo} {...params} variant="outlined" label="Skills" />
         }}
       />
       <div className="container-stepper">
@@ -73,7 +73,11 @@ function FormUserSkills({ steps, user, skillsList, handleChange, selectedStep, n
           }
           backButton={
             <Button size="small" onClick={prevStep} disabled={selectedStep === 0}>
-              {theme.direction === "rtl" ? <KeyboardArrowRight className={classes.root} /> : <KeyboardArrowLeft className={classes.root} />}
+              {theme.direction === "rtl" ? (
+                <KeyboardArrowRight className={classes.root} />
+              ) : (
+                  <KeyboardArrowLeft className={classes.root} />
+                )}
               <p className="btn-steppers">Back</p>
             </Button>
           }

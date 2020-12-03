@@ -32,6 +32,111 @@ const getUser = (req, res) => {
 // TODO
 // router.get("/:userId/mentors/match", matchMentors)
 const matchMentors = async (req, res) => {
+  console.log("ENTRA A RUTA")
+  try {
+    const pageOptions = {
+      page: parseInt(req.query.page, 10) || 0,
+      limit: parseInt(req.query.limit, 10) || 999,
+    }
+    const selectedUser = await User.findOne({ _id: req.params.userId }).select("-__v -skills").lean()
+    const skillsIdsToMatch = selectedUser.skillsToLearn.map((e) => e._id)
+    const skillsKeywordsToMatch = selectedUser.skillsToLearn.map((e) => e.keywords).flat(1)
+    const users = await User.aggregate([
+      { $unwind: "$skillsToTeach" },
+      { $unwind: "$skillsToTeach.keywords" },
+      {
+        $project: { skillsToLearn: 0 },
+      },
+      {
+        $match: {
+          $or: [
+            { "skillsToTeach._id": { $in: skillsIdsToMatch } }, //[id,id,id,id]
+            { "skillsToTeach.keywords": { $in: skillsKeywordsToMatch } },
+          ],
+        },
+      },
+      
+      {
+        $group: {
+          _id: {
+            userId: "$_id",
+            skillId: "$skillsToTeach._id",
+          },
+          firstName: { $first: "$firstName" },
+          lastName: { $first: "$lastName" },
+          country: { $first: "$country" },
+          languages: { $first: "$languages" },
+          avatar: { $first: "$avatar" },
+          name: { $first: "$skillsToTeach.name" },
+          proficiency: { $first: "$skillsToTeach.proficiency" },
+          popularity: { $first: "$skillsToTeach.popularity" },
+          keywords: { $push: "$skillsToTeach.keywords" },
+          keywordsCount: { $sum: 1 },
+        },
+      },
+      
+      {
+        $project: {
+          _id: "$_id.userId",
+          firstName: "$firstName",
+          lastName: "$lastName",
+          country: "$country",
+          languages: "$languages",
+          avatar: "$avatar",
+          
+          skillsToTeach: {
+            name: "$name",
+            proficiency: "$proficiency",
+            popularity: "$popularity",
+            keywords: "$keywords",
+            keywordsCount: "$keywordsCount",
+          },
+        },
+      },
+      
+      {
+        $group: {
+          _id: "$_id",
+          firstName: { $first: "$firstName" },
+          lastName: { $first: "$lastName" },
+          country: { $first: "$country" },
+          skillsToTeach: { $push: "$skillsToTeach" },
+          languages: { $first: "$languages" },
+          skillsCount: { $sum: 1 },
+        },
+      },
+      { $sort: { skillsCount: -1, "skillsToTeach.keywordsCount": -1 } },
+      {
+        $project: {
+          skillsCount: 0,
+          skillsToTeach: {
+            keywords: 0,
+            keywordsCount: 0,
+            popularity: 0,
+          },
+        },
+      },
+      { $skip: pageOptions.page * pageOptions.limit },
+      { $limit: pageOptions.limit },
+      
+      // {
+        //   $group: {
+      //     _id: "$_id.userId",
+      //     firstName: { $first: "$firstName" },
+      //     lastName: { $first: "$lastName" },
+      //     country: { $first: "$country" },
+      //     skillsToTeach: { $push: { _id: "$skillsToTeach._id", name: "$skillsToTeach.name" } },
+      //     count: { $sum: 1 },
+      //   },
+      // },
+    ])
+    return res.status(200).send(users)
+  } catch (error) {
+    res.status(500).send({ error })
+  }
+}
+/* working route
+const matchMentors = async (req, res) => {
   try {
     const pageOptions = {
       page: parseInt(req.query.page, 10) || 0,
@@ -52,7 +157,7 @@ const matchMentors = async (req, res) => {
           count: { $sum: 1 },
         },
       },
-      { $sort: { count: 1 } },
+      { $sort: { count: -1 } },
       { $skip: pageOptions.page * pageOptions.limit },
       { $limit: pageOptions.limit },
     ])
@@ -61,6 +166,7 @@ const matchMentors = async (req, res) => {
     res.status(500).send({ error })
   }
 }
+*/
 
 const uploadAvatar = (req, res, next) => {
   const _id = req.params.userId
@@ -257,7 +363,7 @@ const postObjective = async (req, res) => {
     })
 }
 
-// TODO no cambia de true a false
+// TODO: no cambia de true a false!!
 // router.patch("/:userId/mentors/:mentorId/objectives/:objectiveId/changeStatus")
 const patchObjectiveStatus = async (req, res) => {
   const { userId, objectiveId, mentorId } = req.params
