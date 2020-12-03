@@ -27,10 +27,11 @@ function Matching({
             {mentorOne && mentorOne.firstName} {mentorOne && mentorOne.lastName}
           </h4>
           <p>
-            - <em>{mentorOne && mentorOne.country}</em>
+            - <em>{mentorOne && mentorOne.country}</em> -
+            <em>{mentorOne && mentorOne.languages}</em>
           </p>
           <div className="skillsConteiner">
-            {mentorOne &&
+            {mentorOne.skillsToTeach &&
               mentorOne.skillsToTeach.map((skill) => {
                 return (
                   <p key={skill} className="matchingSkills">
@@ -62,14 +63,15 @@ function Matching({
         <div className="matchCardTwo">
           <Avatar className={classes.large} alt="Remy Sharp" src={img} />
           <h4>
-            {mentorOne && mentorOne.firstName} {mentorOne && mentorOne.lastName}
+            {mentorTwo && mentorTwo.firstName} {mentorTwo && mentorTwo.lastName}
           </h4>
           <p>
-            - <em>{mentorOne && mentorOne.country}</em>
+            - <em>{mentorTwo && mentorTwo.country}</em> -
+            <em>{mentorTwo && mentorTwo.languages}</em>
           </p>
           <div className="skillsConteiner">
-            {mentorOne &&
-              mentorOne.skillsToTeach.map((skill) => {
+            {mentorTwo.skillsToTeach &&
+              mentorTwo.skillsToTeach.map((skill) => {
                 return (
                   <p key={skill} className="matchingSkills">
                     <svg

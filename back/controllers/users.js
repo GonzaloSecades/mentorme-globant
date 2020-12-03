@@ -4,6 +4,7 @@ const User = require("../models/user")
 const Objective = require("../models/objective")
 
 const getUsers = (req, res) => {
+ 
   if (!_.isEmpty(req.query)) {
     const pageOptions = {
       page: parseInt(req.query.page, 10) || 0,
@@ -31,15 +32,18 @@ const getUser = (req, res) => {
 
 // TODO
 // router.get("/:userId/mentors/match", matchMentors)
+
 const matchMentors = async (req, res) => {
-  console.log("ENTRA A RUTA")
   try {
     const pageOptions = {
       page: parseInt(req.query.page, 10) || 0,
       limit: parseInt(req.query.limit, 10) || 999,
     }
     const selectedUser = await User.findOne({ _id: req.params.userId }).select("-__v -skills").lean()
+    console.log("SKILLSTOMATCHID",selectedUser) // react, bootstrap, swift, gdb
+    
     const skillsIdsToMatch = selectedUser.skillsToLearn.map((e) => e._id)
+    console.log(skillsIdsToMatch) // react, bootstrap, swift, gdb
     const skillsKeywordsToMatch = selectedUser.skillsToLearn.map((e) => e.keywords).flat(1)
     const users = await User.aggregate([
       { $unwind: "$skillsToTeach" },
@@ -49,13 +53,14 @@ const matchMentors = async (req, res) => {
       },
       {
         $match: {
+          _id: { $ne: selectedUser._id },
           $or: [
-            { "skillsToTeach._id": { $in: skillsIdsToMatch } }, //[id,id,id,id]
+            { "skillsToTeach._id": { $in: skillsIdsToMatch } }, // [id,id,id,id]
             { "skillsToTeach.keywords": { $in: skillsKeywordsToMatch } },
           ],
         },
       },
-      
+
       {
         $group: {
           _id: {
@@ -74,7 +79,7 @@ const matchMentors = async (req, res) => {
           keywordsCount: { $sum: 1 },
         },
       },
-      
+
       {
         $project: {
           _id: "$_id.userId",
@@ -83,8 +88,9 @@ const matchMentors = async (req, res) => {
           country: "$country",
           languages: "$languages",
           avatar: "$avatar",
-          
+
           skillsToTeach: {
+            _id: "$_id.skillId",
             name: "$name",
             proficiency: "$proficiency",
             popularity: "$popularity",
@@ -93,7 +99,21 @@ const matchMentors = async (req, res) => {
           },
         },
       },
-      
+
+      /*
+        _id,
+        email,
+        firstName,
+        lastName,
+        country,
+        phoneNumber,
+        languages,
+        avatar,
+        learningSkills,
+        meetings: [],
+        objectives: [],
+        active: true,
+      */
       {
         $group: {
           _id: "$_id",
@@ -102,71 +122,39 @@ const matchMentors = async (req, res) => {
           country: { $first: "$country" },
           skillsToTeach: { $push: "$skillsToTeach" },
           languages: { $first: "$languages" },
-          skillsCount: { $sum: 1 },
+          avatar: { $first: "$avatar" },
+          skillsCount: { $sum: 5 },
+          keywordsCount: { $sum: "$skillsToTeach.keywordsCount" },
+          score: { $sum: { $add: [5, "$skillsToTeach.keywordsCount"] } },
+
         },
       },
-      { $sort: { skillsCount: -1, "skillsToTeach.keywordsCount": -1 } },
+
+      // { $sort: { skillsCount: -1, keywordsCount: -1 } },
+      { $sort: { score: -1 } },
       {
         $project: {
-          skillsCount: 0,
           skillsToTeach: {
-            keywords: 0,
-            keywordsCount: 0,
-            popularity: 0,
+            "proficiency": 0,
+            "popularity": 0,
+            "keywords": 0,
+            "keywordsCount": 0,
           },
+          skillsCount: 0,
+          keywordsCount: 0,
+          score: 0,
         },
       },
+
       { $skip: pageOptions.page * pageOptions.limit },
       { $limit: pageOptions.limit },
-      
-      // {
-        //   $group: {
-      //     _id: "$_id.userId",
-      //     firstName: { $first: "$firstName" },
-      //     lastName: { $first: "$lastName" },
-      //     country: { $first: "$country" },
-      //     skillsToTeach: { $push: { _id: "$skillsToTeach._id", name: "$skillsToTeach.name" } },
-      //     count: { $sum: 1 },
-      //   },
-      // },
     ])
     return res.status(200).send(users)
   } catch (error) {
+    console.log(error)
     res.status(500).send({ error })
   }
 }
-/* working route
-const matchMentors = async (req, res) => {
-  try {
-    const pageOptions = {
-      page: parseInt(req.query.page, 10) || 0,
-      limit: parseInt(req.query.limit, 10) || 999,
-    }
-    const selectedUser = await User.findOne({ _id: req.params.userId }).select("-__v").lean()
-    const skillsToLearnArr = selectedUser.skillsToLearn.map((e) => e._id)
-    const users = await User.aggregate([
-      { $unwind: "$skillsToTeach" },
-      { $match: { "skillsToTeach._id": { $in: skillsToLearnArr } } },
-      {
-        $group: {
-          _id: "$_id",
-          firstName: { $first: "$firstName" },
-          lastName: { $first: "$lastName" },
-          country: { $first: "$country" },
-          skillsToTeach: { $push: { _id: "$skillsToTeach._id", name: "$skillsToTeach.name" } },
-          count: { $sum: 1 },
-        },
-      },
-      { $sort: { count: -1 } },
-      { $skip: pageOptions.page * pageOptions.limit },
-      { $limit: pageOptions.limit },
-    ])
-    res.status(200).send(users)
-  } catch (error) {
-    res.status(500).send({ error })
-  }
-}
-*/
 
 const uploadAvatar = (req, res, next) => {
   const _id = req.params.userId
