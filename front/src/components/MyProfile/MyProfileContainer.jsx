@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { useSelector } from "react-redux"
-import MyProfile from "./MyProfile"
+import MyProfile from "./MyProfile2"
 
 export default () => {
   const currentUser = useSelector((state) => state.currentUser)
