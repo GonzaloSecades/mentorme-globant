@@ -4,7 +4,6 @@ const User = require("../models/user")
 const Objective = require("../models/objective")
 
 const getUsers = (req, res) => {
- 
   if (!_.isEmpty(req.query)) {
     const pageOptions = {
       page: parseInt(req.query.page, 10) || 0,
@@ -40,11 +39,10 @@ const matchMentors = async (req, res) => {
       limit: parseInt(req.query.limit, 10) || 999,
     }
     const selectedUser = await User.findOne({ _id: req.params.userId }).select("-__v -skills").lean()
-    console.log("SKILLSTOMATCHID",selectedUser) // react, bootstrap, swift, gdb
-    
     const skillsIdsToMatch = selectedUser.skillsToLearn.map((e) => e._id)
-    console.log(skillsIdsToMatch) // react, bootstrap, swift, gdb
-    const skillsKeywordsToMatch = selectedUser.skillsToLearn.map((e) => e.keywords).flat(1)
+    // eslint-disable-next-line prettier/prettier
+    const skillsKeywordsToMatch = _.uniq([].concat.apply( [], selectedUser.skillsToLearn.map((e) => e.keywords) ) )
+    console.log(skillsKeywordsToMatch)
     const users = await User.aggregate([
       { $unwind: "$skillsToTeach" },
       { $unwind: "$skillsToTeach.keywords" },
@@ -111,7 +109,6 @@ const matchMentors = async (req, res) => {
           skillsCount: { $sum: 5 },
           keywordsCount: { $sum: "$skillsToTeach.keywordsCount" },
           score: { $sum: { $add: [5, "$skillsToTeach.keywordsCount"] } },
-
         },
       },
 
@@ -224,7 +221,6 @@ const postUserMentor = async (req, res, next) => {
 const postUserMentee = async (req, res, next) => {
   const { userId, menteeId } = req.params
   const { teachingSkills } = req.body
-
 
   try {
     const user = await User.findOne({ _id: userId })
